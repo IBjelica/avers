@@ -21,9 +21,9 @@ export default function AversFinancial() {
       `}</style>
 
       {/* Hero Section with Navigation */}
-      <section className="h-screen bg-cover bg-center flex flex-col justify-between relative" style={{backgroundImage: "url('/hero-bg.jpg')"}}>
+      <section className="h-screen bg-cover bg-center flex flex-col justify-between relative" style={{backgroundImage: "url('/assets/hero-background.jpg')"}}>
         <div className="container mx-auto grid grid-flow-row content-center justify-items-center text-white text-center">
-          <Image src="/logo-white.svg" alt="Avers Logo" width={150} height={60} className="mb-8" />
+          <Image src="/assets/logo-white.svg" alt="Avers Logo" width={150} height={60} className="mb-8" />
           <h1 className="text-7xl font-bold mb-8 leading-tight">WELCOME TO<br />PROGRESS</h1>
         </div>
         
