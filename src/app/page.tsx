@@ -1,50 +1,151 @@
 'use client'
 
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
+import { Roboto } from 'next/font/google'
+import localFont from 'next/font/local'
+import { useEffect, useState, useRef } from 'react'
+
+const glitten = localFont({
+  src: './fonts/glitten.otf',
+  variable: '--font-glitten',
+});
+
+const roboto = Roboto({
+  weight: ['300', '400', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-roboto',
+});
+
+const MENU_ITEMS = ['HOME', 'OUR VALUES', 'SERVICES', 'ABOUT US', 'CONTACT US', 'BLOG'] as const;
+type MenuItem = typeof MENU_ITEMS[number];
 
 export default function AversFinancial() {
-  return (
-    <div className="min-h-screen flex flex-col font-sans">
-      <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;700&display=swap');
-        
-        body {
-          font-family: 'roboto', sans-serif;
-        }
-        
-        h1, h2, h3, h4, h5, h6 {
-          font-family: 'Playfair Display', serif;
-        }
-      `}</style>
+  const [isSticky, setIsSticky] = useState(false);
+  const [activeSection, setActiveSection] = useState<MenuItem>('HOME');
+  const [hoveredItem, setHoveredItem] = useState<MenuItem | null>(null);
+  const menuItemRefs = useRef<Map<MenuItem, HTMLLIElement>>(new Map());
+  const underlineRef = useRef<HTMLDivElement>(null);
 
-      {/* Hero Section with Navigation */}
-      <section className="h-screen bg-cover bg-center flex flex-col justify-between relative" style={{backgroundImage: "url('/assets/hero-background.jpg')"}}>
-        <div className="container mx-auto grid grid-flow-row content-center justify-items-center text-white text-center">
-          <Image src="/assets/logo-white.svg" alt="Avers Logo" width={150} height={60} className="mb-8" />
-          <h1 className="text-7xl font-bold mb-8 leading-tight">WELCOME TO<br />PROGRESS</h1>
+  useEffect(() => {
+    const handleScroll = () => {
+      const heroSection = document.querySelector('#hero-section');
+      if (heroSection) {
+        const heroBottom = heroSection.getBoundingClientRect().bottom;
+        setIsSticky(heroBottom <= 0);
+      }
+    };
+
+    const observerCallback: IntersectionObserverCallback = (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.id;
+          const menuItem = MENU_ITEMS.find(
+            item => item.toLowerCase().replace(' ', '-') === sectionId
+          );
+          if (menuItem) {
+            setActiveSection(menuItem);
+            if (!hoveredItem) {
+              updateUnderlinePosition(menuItem);
+            }
+          }
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, {
+      threshold: 0.5,
+      rootMargin: '-68px 0px 0px 0px' // Account for nav height
+    });
+
+    // Observe all sections
+    MENU_ITEMS.forEach(item => {
+      const section = document.querySelector(`#${item.toLowerCase().replace(' ', '-')}`);
+      if (section) {
+        observer.observe(section);
+      }
+    });
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      observer.disconnect();
+    };
+  }, [hoveredItem]);
+
+  const updateUnderlinePosition = (item: MenuItem) => {
+    const currentItem = menuItemRefs.current.get(item);
+    if (!currentItem || !underlineRef.current) return;
+
+    const { width, left } = currentItem.getBoundingClientRect();
+    const containerLeft = currentItem.parentElement?.getBoundingClientRect().left || 0;
+    const position = left - containerLeft;
+
+    underlineRef.current.style.width = `${width}px`;
+    underlineRef.current.style.transform = `translateX(${position}px)`;
+  };
+
+  const handleMouseEnter = (item: MenuItem) => {
+    setHoveredItem(item);
+    updateUnderlinePosition(item);
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredItem(null);
+    updateUnderlinePosition(activeSection);
+  };
+
+  return (
+    <div className={`min-h-screen flex flex-col font-sans ${roboto.variable} ${glitten.variable}`}>
+      {/* Hero Section */}
+      <section id="home" className="h-screen bg-cover bg-left-top relative" style={{backgroundImage: "url('/assets/images/hero-bg.jpg')"}}>
+        <div className="absolute inset-0 bg-black opacity-25 z-0"></div>
+        <div className="container mx-auto flex flex-col h-full justify-start row-gap-[15%] text-white text-center pt-20 relative z-10">
+          <Image src="/assets/icons/logo-white.svg" alt="Avers Logo" width={237} height={102} className="mb-8 mx-auto" />
+          <h1 className="font-glitten font-bold mb-8 leading-tight uppercase w-[70vw] max-w-[1344px] text-[min(10vw,195px)] mx-auto">Welcome to<br />Progress</h1>
         </div>
-        
-        {/* Navigation */}
-        <nav className="fixed bottom-0 left-0 right-0 bg-black bg-opacity-50 py-6">
-          <div className="container mx-auto">
-            <ul className="flex justify-center space-x-8 text-white text-sm font-light">
-              {['HOME', 'OUR VALUES', 'SERVICES', 'ABOUT US', 'CONTACT US', 'BLOG'].map((item) => (
-                <li key={item}>
-                  <a href={`#${item.toLowerCase().replace(' ', '-')}`} className="hover:underline">
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </nav>
       </section>
 
+      {/* Navigation */}
+      <nav className="sticky top-0 -mt-[68px] py-6 z-50 transition-colors duration-300" style={{
+        backgroundColor: isSticky ? 'rgb(60, 101, 133, 1)' : 'transparent'
+      }}>
+        <div className="container mx-auto relative">
+          <ul className="flex justify-center space-x-8 text-white text-sm font-light">
+            {MENU_ITEMS.map((item) => (
+              <li 
+                key={item} 
+                className="relative"
+                ref={(el) => el && menuItemRefs.current.set(item, el)}
+                onMouseEnter={() => handleMouseEnter(item)}
+                onMouseLeave={handleMouseLeave}
+              >
+                <a 
+                  href={`#${item.toLowerCase().replace(' ', '-')}`} 
+                  className="hover:text-white transition-colors duration-200 py-1 block"
+                >
+                  {item}
+                </a>
+              </li>
+            ))}
+          </ul>
+          <div 
+            ref={underlineRef}
+            className="absolute bottom-0 h-0.5 bg-white transition-all duration-300"
+            style={{
+              left: '0px',
+              width: '0px',
+              transform: 'translateX(0px)'
+            }}
+          />
+        </div>
+      </nav>
+
       {/* Empowering Your Financial Success Section */}
-      <section className="py-24 bg-blue-800 text-white">
+      <section id="our-values" className="py-24 bg-blue-800 text-white">
         <div className="container mx-auto">
           <div className="flex flex-col md:flex-row items-start">
             <div className="md:w-1/2 mb-8 md:mb-0">
@@ -63,14 +164,14 @@ export default function AversFinancial() {
       </section>
 
       {/* Services Section */}
-      <section className="py-24 bg-gray-100">
+      <section id="services" className="py-24 bg-gray-100">
         <div className="container mx-auto">
           <h2 className="text-5xl font-bold mb-16 text-center text-blue-900">OUR SERVICES</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             {[
-              { title: "FINANCIAL CONSULTING", image: "/service1.jpg" },
-              { title: "ACCOUNTING & BOOKKEEPING", image: "/service2.jpg" },
-              { title: "TAX SERVICES", image: "/service3.jpg" },
+              { title: "FINANCIAL CONSULTING", image: "/assets/images/service1.png" },
+              { title: "ACCOUNTING & BOOKKEEPING", image: "/assets/images/service2.png" },
+              { title: "TAX SERVICES", image: "/assets/images/service3.png" },
             ].map((service) => (
               <div key={service.title} className="relative h-[600px] rounded-2xl overflow-hidden shadow-lg">
                 <Image src={service.image} alt={service.title} layout="fill" objectFit="cover" />
@@ -84,7 +185,7 @@ export default function AversFinancial() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-24 bg-blue-800 text-white">
+      <section id="about-us" className="py-24 bg-blue-800 text-white">
         <div className="container mx-auto">
           <h2 className="text-5xl font-bold mb-16 text-center">WHAT OUR CLIENTS SAY ABOUT US</h2>
           <div className="flex overflow-x-auto space-x-12 pb-12">
@@ -114,7 +215,7 @@ export default function AversFinancial() {
       </section>
 
       {/* About Us Section */}
-      <section className="py-24">
+      <section id="contact-us" className="py-24">
         <div className="container mx-auto">
           <h2 className="text-5xl font-bold mb-16 text-blue-900">ABOUT US</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
@@ -128,7 +229,7 @@ export default function AversFinancial() {
               </p>
             </div>
             <div className="relative h-[600px]">
-              <Image src="/founder.jpg" alt="Founder and CEO" layout="fill" objectFit="cover" className="rounded-2xl" />
+              <Image src="/assets/images/founder.png" alt="Founder and CEO" layout="fill" objectFit="cover" className="rounded-2xl" />
               <div className="absolute bottom-0 left-0 bg-white p-6 rounded-tr-2xl">
                 <p className="font-bold text-blue-900 text-lg">Founder and CEO</p>
                 <p className="text-gray-600">Samira Bielka</p>
@@ -139,7 +240,7 @@ export default function AversFinancial() {
       </section>
 
       {/* Trust Section */}
-      <section className="py-24 bg-gradient-to-r from-pink-400 to-purple-500 text-white">
+      <section id="blog" className="py-24 bg-gradient-to-r from-pink-400 to-purple-500 text-white">
         <div className="container mx-auto text-center">
           <h2 className="text-6xl font-bold mb-6 leading-tight">YOUR TRUST,<br />OUR COMMITMENT</h2>
           <p className="text-2xl font-light max-w-3xl mx-auto">UNVEILING OPPORTUNITY, NAVIGATING PROSPERITY, AND ENSURING PEACE OF MIND.</p>
@@ -147,7 +248,7 @@ export default function AversFinancial() {
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-24 bg-cover bg-center" style={{backgroundImage: "url('/contact-bg.jpg')"}}>
+      <section id="contact" className="py-24 bg-cover bg-center" style={{backgroundImage: "url('/assets/images/contact-bg.png')"}}>
         <div className="container mx-auto">
           <div className="bg-white p-12 rounded-2xl max-w-2xl mx-auto shadow-xl">
             <h2 className="text-5xl font-bold mb-8 text-blue-900">LET&apos;s TALK</h2>
