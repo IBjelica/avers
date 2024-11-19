@@ -4,20 +4,25 @@ import Image from "next/legacy/image"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Roboto } from 'next/font/google'
 import localFont from 'next/font/local'
 import { useEffect, useState, useRef } from 'react'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  CarouselDots,
+} from "@/components/ui/carousel"
 
 const glitten = localFont({
   src: './fonts/glitten.otf',
   variable: '--font-glitten',
 });
 
-const roboto = Roboto({
-  weight: ['300', '400', '700'],
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-roboto',
+const alaska = localFont({
+  src: './fonts/alaska.otf',
+  variable: '--font-alaska',
 });
 
 const MENU_ITEMS = ['HOME', 'OUR VALUES', 'SERVICES', 'ABOUT US', 'CONTACT US', 'BLOG'] as const;
@@ -32,7 +37,7 @@ export default function AversFinancial() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const heroSection = document.querySelector('#hero-section');
+      const heroSection = document.querySelector('#home');
       if (heroSection) {
         const heroBottom = heroSection.getBoundingClientRect().bottom;
         setIsSticky(heroBottom <= 0);
@@ -70,6 +75,9 @@ export default function AversFinancial() {
     });
 
     window.addEventListener('scroll', handleScroll);
+    // Initial check
+    handleScroll();
+
     return () => {
       window.removeEventListener('scroll', handleScroll);
       observer.disconnect();
@@ -99,7 +107,7 @@ export default function AversFinancial() {
   };
 
   return (
-    <div className={`min-h-screen flex flex-col font-sans ${roboto.variable} ${glitten.variable}`}>
+    <div className={`min-h-screen flex flex-col font-sans ${glitten.variable} ${alaska.variable}`}>
       {/* Hero Section */}
       <section id="home" className="h-screen bg-cover bg-left-top relative" style={{backgroundImage: "url('/assets/images/hero-bg.jpg')"}}>
         <div className="absolute inset-0 bg-black opacity-25 z-0"></div>
@@ -110,8 +118,8 @@ export default function AversFinancial() {
       </section>
 
       {/* Navigation */}
-      <nav className="sticky top-0 -mt-[68px] py-6 z-50 transition-colors duration-300" style={{
-        backgroundColor: isSticky ? 'rgb(60, 101, 133, 1)' : 'transparent'
+      <nav className="sticky top-0 -mt-[76px] py-6 z-50 transition-colors duration-300" style={{
+        backgroundColor: isSticky ? '#53758F' : 'rgba(83, 117, 143, 0.85)'
       }}>
         <div className="container mx-auto relative">
           <ul className="flex justify-center space-x-8 text-white text-sm font-light">
@@ -119,7 +127,9 @@ export default function AversFinancial() {
               <li 
                 key={item} 
                 className="relative"
-                ref={(el) => el && menuItemRefs.current.set(item, el)}
+                ref={(el) => {
+                  if (el) menuItemRefs.current.set(item, el);
+                }}
                 onMouseEnter={() => handleMouseEnter(item)}
                 onMouseLeave={handleMouseLeave}
               >
@@ -145,17 +155,27 @@ export default function AversFinancial() {
       </nav>
 
       {/* Empowering Your Financial Success Section */}
-      <section id="our-values" className="py-24 bg-blue-800 text-white">
+      <section id="our-values" className="py-24 text-white" style={{ backgroundColor: '#53758F' }}>
         <div className="container mx-auto">
-          <div className="flex flex-col md:flex-row items-start">
+          <div className="flex flex-col md:flex-row items-start justify-evenly">
             <div className="md:w-1/2 mb-8 md:mb-0">
-              <h2 className="text-5xl font-bold leading-tight">EMPOWERING<br />YOUR<br />FINANCIAL<br />SUCCESS</h2>
+              <h2 
+                className="text-[min(7vw,116px)] font-bold leading-none"
+                style={{
+                  backgroundImage: "url('/assets/images/gradient.png')",
+                  backgroundClip: "text",
+                  WebkitBackgroundClip: "text",
+                  color: "transparent",
+                  backgroundSize: "150%",
+                  backgroundPosition: "top center",
+                }}
+              >EMPOWERING<br />YOUR<br />FINANCIAL<br />SUCCESS</h2>
             </div>
-            <div className="md:w-1/2">
-              <p className="text-lg font-light leading-relaxed">
+            <div className="md:w-[40%]">
+              <p className="text-xl font-light leading-[30px] font-alaska">
                 At AVERS Financial Consultancy and Accounting, our mission is to create value every step of the way. We believe financial efficiency equals financial freedom, and we&apos;re here to guide you towards that reality.
               </p>
-              <p className="text-lg font-light leading-relaxed mt-4">
+              <p className="text-xl font-light leading-[30px] mt-4 font-alaska">
                 Our comprehensive approach to cost reduction, risk management, and strategic financial planning ensures that your business not only survives but thrives in today&apos;s competitive landscape.
               </p>
             </div>
@@ -166,17 +186,33 @@ export default function AversFinancial() {
       {/* Services Section */}
       <section id="services" className="py-24 bg-gray-100">
         <div className="container mx-auto">
-          <h2 className="text-5xl font-bold mb-16 text-center text-blue-900">OUR SERVICES</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <h2
+            className="text-5xl font-bold mb-16"
+            style={{
+              color: '#0E1A28',
+              paddingBottom: '18px',
+              borderBottom: '1px solid #0E1A28',
+              lineHeight: '.58',
+              overflow: 'hidden',
+            }}
+          >OUR SERVICES</h2>
+          <div className="flex justify-between">
             {[
               { title: "FINANCIAL CONSULTING", image: "/assets/images/service1.png" },
-              { title: "ACCOUNTING & BOOKKEEPING", image: "/assets/images/service2.png" },
-              { title: "TAX SERVICES", image: "/assets/images/service3.png" },
+              { title: "ACCOUNTING AND BOOKKEEPING", image: "/assets/images/service2.png" },
+              { title: "BACK\nOFFICE", image: "/assets/images/service3.png" },
             ].map((service) => (
-              <div key={service.title} className="relative h-[600px] rounded-2xl overflow-hidden shadow-lg">
+              <div key={service.title} className="relative w-[30%] h-[600px] rounded-2xl overflow-hidden shadow-lg">
                 <Image src={service.image} alt={service.title} layout="fill" objectFit="cover" />
-                <div className="absolute inset-0 bg-black bg-opacity-30 flex items-end p-8">
-                  <h3 className="text-white text-2xl font-bold">{service.title}</h3>
+                <div 
+                  className="absolute inset-0 flex items-center justify-center p-8"
+                  style={{
+                    background: 'linear-gradient(to bottom, rgba(60,101,133,.45) 16%, rgba(186,129,97,.45) 64%, rgba(225,147,180,.45) 100%)',
+                  }}
+                >
+                  <div className="w-[300px] bg-white rounded-2xl text-center px-12 py-6">
+                    <h3 className="text-[#53758F] text-xl leading-6 whitespace-pre-line" style={{ fontFamily: 'var(--font-alaska)' }}>{service.title}</h3>
+                  </div>
                 </div>
               </div>
             ))}
@@ -185,31 +221,38 @@ export default function AversFinancial() {
       </section>
 
       {/* Testimonials Section */}
-      <section id="about-us" className="py-24 bg-blue-800 text-white">
-        <div className="container mx-auto">
-          <h2 className="text-5xl font-bold mb-16 text-center">WHAT OUR CLIENTS SAY ABOUT US</h2>
-          <div className="flex overflow-x-auto space-x-12 pb-12">
-            {[1, 2, 3].map((i) => (
-              <div key={i} className="bg-white text-black p-8 rounded-2xl flex-shrink-0 w-96 shadow-lg">
-                <p className="mb-6 text-gray-600 leading-relaxed">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <p className="font-bold text-blue-900">Hannah Schmitt</p>
+      <section id="about-us" className="py-28 text-white overflow-hidden" style={{ backgroundColor: '#53758F' }}>
+        <div className="container mx-auto px-4">
+          <h2 className="text-5xl font-bold mb-[86px] text-center">WHAT OUR CLIENTS SAY ABOUT US</h2>
+          <div className="relative -mx-4 sm:-mx-6 md:-mx-8 lg:-mx-16">
+            <Carousel
+              opts={{
+                align: "center",
+                loop: true,
+                skipSnaps: false,
+                containScroll: "trimSnaps",
+                dragFree: false,
+                draggable: true,
+              }}
+              className="w-full"
+            >
+              <CarouselContent className="font-alaska -ml-4">
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <CarouselItem key={i} className="max-w-[658px] pl-4 basis-full sm:basis-3/4 md:basis-2/3 lg:basis-1/2 xl:basis-[45%] transition-opacity duration-300">
+                    <div className="bg-white p-8 rounded-2xl h-full shadow-lg mx-2 transition-all duration-300 hover:shadow-xl" style={{color: '#0E1A28'}}>
+                      <p className="font-bold text-[32px] leading-none">Hannah Schmitt</p>
+                      <p className="text-[16px] leading-none">Founder of ABC Company</p>
+                      <p className="text-[26px] mt-6">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <div className="flex items-center justify-center mt-[85px] space-x-20">
+                <CarouselPrevious variant="ghost" className="relative static border-none" />
+                <CarouselDots className="mx-4" />
+                <CarouselNext variant="ghost" className="relative static border-none" />
               </div>
-            ))}
-          </div>
-          <div className="flex justify-center mt-12 items-center">
-            <Button variant="ghost" className="text-white mr-4">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-8 h-8">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-              </svg>
-            </Button>
-            {[1, 2, 3, 4, 5].map((i) => (
-              <div key={i} className="w-3 h-3 rounded-full bg-white mx-2" />
-            ))}
-            <Button variant="ghost" className="text-white ml-4">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-8 h-8">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </Button>
+            </Carousel>
           </div>
         </div>
       </section>
@@ -221,10 +264,10 @@ export default function AversFinancial() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
             <div className="md:col-span-2">
               <h3 className="text-4xl font-bold mb-8 text-blue-900 leading-tight">YOUR GUIDE TO<br />FINANCIAL EXCELLENCE</h3>
-              <p className="mb-6 text-gray-600 leading-relaxed">
+              <p className="mb-6 text-gray-600 leading-relaxed font-alaska">
                 With a dynamic team of 25 years of financial experts and a commitment to excellence, we&apos;ve helped over 500 businesses navigate their financial journey and 2500 or more clients achieve financial freedom.
               </p>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 leading-relaxed font-alaska">
                 Our approach combines deep market insights, cutting-edge technology, and a wealth of experience. From startups to established enterprises, we&apos;re committed to client success.
               </p>
             </div>
@@ -243,7 +286,7 @@ export default function AversFinancial() {
       <section id="blog" className="py-24 bg-gradient-to-r from-pink-400 to-purple-500 text-white">
         <div className="container mx-auto text-center">
           <h2 className="text-6xl font-bold mb-6 leading-tight">YOUR TRUST,<br />OUR COMMITMENT</h2>
-          <p className="text-2xl font-light max-w-3xl mx-auto">UNVEILING OPPORTUNITY, NAVIGATING PROSPERITY, AND ENSURING PEACE OF MIND.</p>
+          <p className="text-2xl font-light max-w-3xl mx-auto font-alaska">UNVEILING OPPORTUNITY, NAVIGATING PROSPERITY, AND ENSURING PEACE OF MIND.</p>
         </div>
       </section>
 
@@ -252,7 +295,7 @@ export default function AversFinancial() {
         <div className="container mx-auto">
           <div className="bg-white p-12 rounded-2xl max-w-2xl mx-auto shadow-xl">
             <h2 className="text-5xl font-bold mb-8 text-blue-900">LET&apos;s TALK</h2>
-            <p className="mb-8 text-gray-600 leading-relaxed">Ready to take the next step? Let&apos;s discuss how we can help you achieve your financial goals. Reach out to us today!</p>
+            <p className="mb-8 text-gray-600 leading-relaxed font-alaska">Ready to take the next step? Let&apos;s discuss how we can help you achieve your financial goals. Reach out to us today!</p>
             <form className="space-y-6">
               <Input placeholder="Name" className="border-gray-300 py-3" />
               <Input type="email" placeholder="Email" className="border-gray-300 py-3" />
@@ -262,11 +305,11 @@ export default function AversFinancial() {
             <div className="mt-12 space-y-6">
               <div>
                 <h3 className="text-2xl font-bold mb-2 text-blue-900">ADDRESS</h3>
-                <p className="text-gray-600">45 Rockefeller Plaza,<br />New York, NY 10111</p>
+                <p className="text-gray-600 font-alaska">45 Rockefeller Plaza,<br />New York, NY 10111</p>
               </div>
               <div>
                 <h3 className="text-2xl font-bold mb-2 text-blue-900">PHONE NUMBER</h3>
-                <p className="text-gray-600">+1 234 567 8901</p>
+                <p className="text-gray-600 font-alaska">+1 234 567 8901</p>
               </div>
             </div>
           </div>
@@ -276,7 +319,7 @@ export default function AversFinancial() {
       {/* Footer */}
       <footer className="bg-blue-900 text-white py-4">
         <div className="container mx-auto text-center">
-          <p>&copy; 2023 Avers Financial. All rights reserved.</p>
+          <p className="font-alaska">&copy; 2023 Avers Financial. All rights reserved.</p>
         </div>
       </footer>
     </div>
