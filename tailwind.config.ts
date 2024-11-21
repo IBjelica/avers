@@ -49,6 +49,9 @@ const config: Config = {
         sans: ['var(--font-roboto)'],
         glitten: ['var(--font-glitten)'],
       },
+      gridTemplateColumns: {
+        '16': 'repeat(16, minmax(0, 1fr))',
+      },
       fontSize: tokens.typography.sizes,
       fontWeight: tokens.typography.weights,
       lineHeight: tokens.typography.lineHeights,
