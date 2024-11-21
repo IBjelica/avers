@@ -113,7 +113,9 @@ export default function AversFinancial() {
         <div className="absolute inset-0 bg-black opacity-25 z-0"></div>
         <div className="container mx-auto flex flex-col h-full justify-start row-gap-[15%] text-white text-center pt-20 relative z-10">
           <Image src="/assets/icons/logo-white.svg" alt="Avers Logo" width={237} height={102} className="mb-8 mx-auto" />
-          <h1 className="font-glitten font-bold mb-8 leading-tight uppercase w-[70vw] max-w-[1344px] text-[min(10vw,195px)] mx-auto">Welcome to<br />Progress</h1>
+          <h1 className={`${glitten.variable} font-bold mb-8 leading-tight uppercase w-[70vw] max-w-[1344px] text-[min(10vw,195px)] mx-auto`}>
+            Welcome to<br />Progress
+          </h1>
         </div>
       </section>
 
@@ -258,25 +260,21 @@ export default function AversFinancial() {
       </section>
 
       {/* About Us Section */}
-      <section id="contact-us" className="py-24">
+      <section id="contact-us" className="pt-[154px]">
         <div className="container mx-auto">
-          <h2 className="text-5xl font-bold mb-16 text-blue-900">ABOUT US</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
-            <div className="md:col-span-2">
-              <h3 className="text-4xl font-bold mb-8 text-blue-900 leading-tight">YOUR GUIDE TO<br />FINANCIAL EXCELLENCE</h3>
-              <p className="mb-6 text-gray-600 leading-relaxed font-alaska">
-                With a dynamic team of 25 years of financial experts and a commitment to excellence, we&apos;ve helped over 500 businesses navigate their financial journey and 2500 or more clients achieve financial freedom.
-              </p>
-              <p className="text-gray-600 leading-relaxed font-alaska">
-                Our approach combines deep market insights, cutting-edge technology, and a wealth of experience. From startups to established enterprises, we&apos;re committed to client success.
-              </p>
-            </div>
-            <div className="relative h-[600px]">
-              <Image src="/assets/images/founder.png" alt="Founder and CEO" layout="fill" objectFit="cover" className="rounded-2xl" />
-              <div className="absolute bottom-0 left-0 bg-white p-6 rounded-tr-2xl">
-                <p className="font-bold text-blue-900 text-lg">Founder and CEO</p>
-                <p className="text-gray-600">Samira Bielka</p>
-              </div>
+          <h2 className={`${glitten.variable} text-[50px] leading-10 text-[#0E1A28] font-bold mb-[127px] pb-[18px] border-b-[1px] border-[#0E1A28]`}>ABOUT US</h2>
+          <div className="grid grid-cols-16 grid-rows-3">
+            <h3 className={`text-[96px] leading-[86px] col-span-7 row-span-1 font-['glitten-standard']`}>YOUR GUIDE TO FINANCIAL EXCELLENCE</h3>
+            <p className="mb-6 text-gray-600 leading-relaxed font-alaska">
+              With a dynamic team of 25 years of financial experts and a commitment to excellence, we&apos;ve helped over 500 businesses navigate their financial journey and 2500 or more clients achieve financial freedom.
+            </p>
+            <p className="text-gray-600 leading-relaxed font-alaska">
+              Our approach combines deep market insights, cutting-edge technology, and a wealth of experience. From startups to established enterprises, we&apos;re committed to client success.
+            </p>
+            <Image src="/assets/images/founder.png" alt="Founder and CEO" layout="fill" objectFit="cover" className="rounded-2xl" />
+            <div className="absolute bottom-0 left-0 bg-white p-6 rounded-tr-2xl">
+              <p className="font-bold text-blue-900 text-lg">Founder and CEO</p>
+              <p className="text-gray-600">Samira Bielka</p>
             </div>
           </div>
         </div>
