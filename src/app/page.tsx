@@ -14,6 +14,7 @@ import {
   CarouselPrevious,
   CarouselDots,
 } from "@/components/ui/carousel"
+import { Inter } from 'next/font/google'
 
 const glitten = localFont({
   src: './fonts/glitten.otf',
@@ -25,7 +26,9 @@ const alaska = localFont({
   variable: '--font-alaska',
 });
 
-const MENU_ITEMS = ['HOME', 'OUR VALUES', 'SERVICES', 'ABOUT US', 'CONTACT US', 'BLOG'] as const;
+const inter = Inter({ subsets: ['latin'] })
+
+const MENU_ITEMS = ['HOME', 'OUR VALUES', 'SERVICES', 'ABOUT US', 'CONTACT US'] as const;
 type MenuItem = typeof MENU_ITEMS[number];
 
 export default function AversFinancial() {
@@ -121,6 +124,7 @@ export default function AversFinancial() {
 
       {/* Navigation */}
       <nav className="sticky top-0 -mt-[76px] py-6 z-50 transition-colors duration-300" style={{
+        fontFamily: 'var(--font-alaska)',
         backgroundColor: isSticky ? '#53758F' : 'rgba(83, 117, 143, 0.85)'
       }}>
         <div className="container mx-auto relative">
@@ -173,12 +177,15 @@ export default function AversFinancial() {
                 }}
               >EMPOWERING<br />YOUR<br />FINANCIAL<br />SUCCESS</h2>
             </div>
-            <div className="md:w-[40%]">
-              <p className="text-xl font-light leading-[30px] font-alaska">
-                At AVERS Financial Consultancy and Accounting, our mission is to create value every step of the way. We believe financial efficiency equals financial freedom, and we&apos;re here to guide you towards that reality.
+            <div className="mt-4 md:w-[40%]">
+              <p className="text-xl font-light leading-[30px] text-justify" style={{fontFamily: 'var(--font-alaska)'}}>
+                At AVERS Financial Consultancy and Accounting, our mission is crystal clear: we're here to enhance financial efficiency, ensure unwavering compliance, and ignite financial growth for our valued clients. 
               </p>
-              <p className="text-xl font-light leading-[30px] mt-4 font-alaska">
-                Our comprehensive approach to cost reduction, risk management, and strategic financial planning ensures that your business not only survives but thrives in today&apos;s competitive landscape.
+              <p className="text-xl font-light leading-[30px] mt-4 text-justify" style={{fontFamily: 'var(--font-alaska)'}}>
+                Our commitment extends to cost reduction, risk management, and the cultivation of innovation through our personalised, trustworthy solutions. Focusing on education and empowerment, we tailor our services to match your distinctive needs. Your success is our paramount objective, and we pledge steadfast integrity in every facet of our work. 
+              </p>
+              <p className="text-xl font-light leading-[30px] mt-4 text-justify" style={{fontFamily: 'var(--font-alaska)'}}>
+                Join us on the path toward financial prosperity and security.
               </p>
             </div>
           </div>
@@ -238,7 +245,7 @@ export default function AversFinancial() {
               }}
               className="w-full"
             >
-              <CarouselContent className="font-alaska -ml-4">
+              <CarouselContent className="-ml-4" style={{fontFamily: 'var(--font-alaska)'}}>
                 {[1, 2, 3, 4, 5].map((i) => (
                   <CarouselItem key={i} className="max-w-[658px] pl-4 basis-full sm:basis-3/4 md:basis-2/3 lg:basis-1/2 xl:basis-[45%] transition-opacity duration-300">
                     <div className="bg-white p-8 rounded-2xl h-full shadow-lg mx-2 transition-all duration-300 hover:shadow-xl" style={{color: '#0E1A28'}}>
@@ -250,9 +257,9 @@ export default function AversFinancial() {
                 ))}
               </CarouselContent>
               <div className="flex items-center justify-center mt-[85px] space-x-20">
-                <CarouselPrevious variant="ghost" className="relative static border-none" />
+                <CarouselPrevious variant="ghost" className="relative border-none" />
                 <CarouselDots className="mx-4" />
-                <CarouselNext variant="ghost" className="relative static border-none" />
+                <CarouselNext variant="ghost" className="relative border-none" />
               </div>
             </Carousel>
           </div>
@@ -260,64 +267,117 @@ export default function AversFinancial() {
       </section>
 
       {/* About Us Section */}
-      <section id="contact-us" className="pt-[154px]">
+      <section className="py-[154px]">
         <div className="container mx-auto">
           <h2 className={`${glitten.variable} text-[50px] leading-10 text-[#0E1A28] font-bold mb-[127px] pb-[18px] border-b-[1px] border-[#0E1A28]`}>ABOUT US</h2>
-          <div className="grid grid-cols-16 grid-rows-3">
-            <h3 className={`text-[96px] leading-[86px] col-span-7 row-span-1 font-['glitten-standard']`}>YOUR GUIDE TO FINANCIAL EXCELLENCE</h3>
-            <p className="mb-6 text-gray-600 leading-relaxed font-alaska">
-              With a dynamic team of 25 years of financial experts and a commitment to excellence, we&apos;ve helped over 500 businesses navigate their financial journey and 2500 or more clients achieve financial freedom.
-            </p>
-            <p className="text-gray-600 leading-relaxed font-alaska">
-              Our approach combines deep market insights, cutting-edge technology, and a wealth of experience. From startups to established enterprises, we&apos;re committed to client success.
-            </p>
-            <Image src="/assets/images/founder.png" alt="Founder and CEO" layout="fill" objectFit="cover" className="rounded-2xl" />
-            <div className="absolute bottom-0 left-0 bg-white p-6 rounded-tr-2xl">
-              <p className="font-bold text-blue-900 text-lg">Founder and CEO</p>
-              <p className="text-gray-600">Samira Bielka</p>
+          <div className="grid grid-cols-[repeat(18,minmax(0,1fr))] grid-rows-3 [&>*]:min-w-0">
+            <h3 className={`max-w-[658px] text-[94px] leading-[86px] col-span-8 row-span-1 font-['glitten-standard']`}>YOUR GUIDE TO FINANCIAL EXCELLENCE</h3>
+            <div className="row-start-2 row-span-2 col-start-2 col-span-6 pt-32">
+              <p className="max-w-[429px] mb-6 text-[#0E1A28] text-xl leading-normal text-justify" style={{fontFamily: 'var(--font-alaska)'}}>
+                With a dynamic blend of 25 years of financial wisdom and a personal mission to drive business success, Samira isn't just the founder and CEO of Avers — she's a <span className="font-semibold">transformative force in financial consulting.</span> 
+              </p>
+              <p className="max-w-[429px] mb-6 text-[#0E1A28] text-xl leading-normal text-justify" style={{fontFamily: 'var(--font-alaska)'}}>
+                Her approach combines deep market insight, personalised strategies and a wealth of knowledge, making Avers synonymous with an unparalleled commitment to client success.
+              </p>
+            </div>
+            <div className="row-start-2 row-span-2 col-start-8 col-span-6 pt-64">
+              <p className="max-w-[435px] mb-6 text-[#0E1A28] text-xl leading-normal text-justify" style={{fontFamily: 'var(--font-alaska)'}}>
+                With a <span className="font-semibold">foundation built on trust, innovation and an unwavering dedication to achieving financial excellence,</span> Samira and her team at Avers are not just advisors, but partners in your journey to excellence. 
+              </p>
+              <p className="max-w-[435px] text-[#0E1A28] text-xl leading-normal text-justify" style={{fontFamily: 'var(--font-alaska)'}}>
+                Their wealth of experience and passion for finance shines through in every endeavour, ensuring that your business is not only prepared for the future, but also ready to thrive in it.
+              </p>
+            </div>
+            <div className="relative flex flex-col row-start-1 row-span-3 col-start-15 col-span-5 h-full max-w-[407px]">
+              <div className="relative grow rounded-[27px] overflow-hidden">
+                <Image src="/assets/images/founder.png" alt="Founder and CEO" layout="fill" objectFit="cover" />
+              </div>
+              <div className="relative bottom-0 left-0 bg-white p-6 text-center">
+                <p className="font-bold text-2xl leading-5" style={{fontFamily: 'var(--font-alaska)'}}>Founder and CEO</p>
+                <p className={` ${glitten.variable} text-[#0E1A28] text-[50px]`}>Samira Bjelica</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Trust Section */}
-      <section id="blog" className="py-24 bg-gradient-to-r from-pink-400 to-purple-500 text-white">
+      <section className="py-24 text-[#0E1A28]">
         <div className="container mx-auto text-center">
-          <h2 className="text-6xl font-bold mb-6 leading-tight">YOUR TRUST,<br />OUR COMMITMENT</h2>
-          <p className="text-2xl font-light max-w-3xl mx-auto font-alaska">UNVEILING OPPORTUNITY, NAVIGATING PROSPERITY, AND ENSURING PEACE OF MIND.</p>
+          <p className="text-2xl font-light leading-[53px] mx-auto mb-[35px]" style={{fontFamily: 'var(--font-alaska)'}}>UNVEILING OPPORTUNITY, NAVIGATING PROSPERITY, AND ENSURING PEACE OF MIND.</p>
+          <h2
+            className="text-[116px] font-bold mt-9 mb-6 leading-[94px]"
+            style={{
+              backgroundImage: "url('/assets/images/gradient.png')",
+              backgroundClip: "text",
+              WebkitBackgroundClip: "text",
+              color: "transparent",
+              backgroundSize: "75%",
+              backgroundPosition: "54% center",
+              backgroundRepeat: "no-repeat",
+            }}
+          >
+            YOUR TRUST,<br />OUR COMMITMENT
+          </h2>
         </div>
       </section>
 
       {/* Contact Form Section */}
-      <section id="contact" className="py-24 bg-cover bg-center" style={{backgroundImage: "url('/assets/images/contact-bg.png')"}}>
+      <section id="contact-us" className="py-24 bg-cover bg-center" style={{backgroundImage: "url('/assets/images/contact-bg.png')"}}>
         <div className="container mx-auto">
-          <div className="bg-white p-12 rounded-2xl max-w-2xl mx-auto shadow-xl">
-            <h2 className="text-5xl font-bold mb-8 text-blue-900">LET&apos;s TALK</h2>
-            <p className="mb-8 text-gray-600 leading-relaxed font-alaska">Ready to take the next step? Let&apos;s discuss how we can help you achieve your financial goals. Reach out to us today!</p>
-            <form className="space-y-6">
-              <Input placeholder="Name" className="border-gray-300 py-3" />
-              <Input type="email" placeholder="Email" className="border-gray-300 py-3" />
-              <Textarea placeholder="Message" className="border-gray-300 py-3" rows={6} />
-              <Button className="w-full bg-blue-900 text-white hover:bg-blue-800 py-3 text-lg">Submit</Button>
-            </form>
-            <div className="mt-12 space-y-6">
-              <div>
-                <h3 className="text-2xl font-bold mb-2 text-blue-900">ADDRESS</h3>
-                <p className="text-gray-600 font-alaska">45 Rockefeller Plaza,<br />New York, NY 10111</p>
+          <div className="flex justify-between bg-white w-[92%] max-w-[1621px] mx-auto py-[97px] px-[86px] rounded-[27px] shadow-xl">
+            <div className="max-w-[538px]">
+              <div className="mb-[76px]">
+                <h2 className="text-[50px] font-bold leading-none mb-5">LET&apos;s TALK</h2>
+                <p className="text-xl mb-8" style={{fontFamily: 'var(--font-alaska)'}}>Have some big idea or brand to develop and need help? Then reach out we'd love to hear about your project and provide help</p>
+              </div>
+              <div className="mb-[53px]">
+                <h3 className="text-[50px] font-bold leading-none mb-5">ADDRESS</h3>
+                <p className="" style={{fontFamily: 'var(--font-alaska)'}}>dr. Dragoslava Popovića 14<br />Belgrade, Serbia</p>
               </div>
               <div>
-                <h3 className="text-2xl font-bold mb-2 text-blue-900">PHONE NUMBER</h3>
-                <p className="text-gray-600 font-alaska">+1 234 567 8901</p>
+                <h3 className="text-[50px] font-bold leading-none mb-5">PHONE NUMBER</h3>
+                <p className="" style={{fontFamily: 'var(--font-alaska)'}}>+1 234 567 8901</p>
               </div>
+            </div>
+            <div className="w-1/2 max-w-[772px]" style={{fontFamily: 'var(--font-alaska)'}}>
+              <form className="space-y-6">
+                <div className="space-y-4 w-full">
+                  <div>
+                    <label className="block text-xl">Name</label>
+                    <Input 
+                      type="text"
+                      className="w-full h-12 bg-[#F7F7F7] border-0 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0"
+                    />
+                  </div>
+                  <div className="space-y-[28px]">
+                    <label className="block text-xl">Email</label>
+                    <Input 
+                      type="email"
+                      className="w-full h-12 mt-[15px] bg-[#F7F7F7] border-0 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0"
+                    />
+                  </div>
+                  <div className="space-y-[28px]">
+                    <label className="block text-xl">Message</label>
+                    <Textarea 
+                      className="w-full min-h-[150px] mt-[15px] bg-[#F7F7F7] border-0 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0"
+                    />
+                  </div>
+                </div>
+                <Button className="w-full h-12 bg-black hover:bg-black/90 text-white text-lg font-medium">
+                  Submit
+                </Button>
+              </form>
             </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-blue-900 text-white py-4">
-        <div className="container mx-auto text-center">
-          <p className="font-alaska">&copy; 2023 Avers Financial. All rights reserved.</p>
+      <footer className="bg-[#111111] text-white py-4">
+        <div className={`flex items-center justify-between max-w-[940px] w-full text-[13px] leading-5 container mx-auto text-center ${inter.className}`}>
+          <p>Copyright | Information</p>
+          <p>Designed and developed by <a href="https://ntsh.studio">NTSH</a> exclusively for Avers.</p>
         </div>
       </footer>
     </div>
