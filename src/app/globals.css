@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: 'glitten-standard';
-  src: url('/fonts/glitten-standard.ttf') format('truetype');
+  src: url('./fonts/glitten-standard.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
