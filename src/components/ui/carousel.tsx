@@ -2,7 +2,6 @@ import * as React from "react"
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
 } from "embla-carousel-react"
-
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 
@@ -11,7 +10,6 @@ type UseCarouselParameters = Parameters<typeof useEmblaCarousel>[0]
 
 interface CarouselProps {
   opts?: UseCarouselParameters
-  plugins?: UseEmblaCarouselType[2]
   orientation?: "horizontal" | "vertical"
   setApi?: (api: CarouselApi) => void
   showDots?: boolean
@@ -50,10 +48,8 @@ const Carousel = React.forwardRef<
       orientation = "horizontal",
       opts,
       setApi,
-      plugins,
       className,
       children,
-      showDots = false,
       ...props
     },
     ref
@@ -63,7 +59,6 @@ const Carousel = React.forwardRef<
         ...opts,
         axis: orientation === "horizontal" ? "x" : "y",
       },
-      plugins
     )
     const [canScrollPrev, setCanScrollPrev] = React.useState(false)
     const [canScrollNext, setCanScrollNext] = React.useState(false)
@@ -191,22 +186,40 @@ const CarouselItem = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => {
-  const { orientation, selectedIndex, api } = useCarousel()
+  const { orientation, api } = useCarousel()
   const [isCurrent, setIsCurrent] = React.useState(false)
 
   React.useEffect(() => {
-    if (!api) return
-    
+    if (!api) return undefined
+
     const updateOpacity = () => {
       const slideNodes = api.slideNodes()
       const currentIndex = api.selectedScrollSnap()
-      const index = slideNodes.indexOf(props.children?.ref?.current)
+      
+      // Handle cases with single child or array of children
+      const childrenArray = React.Children.toArray(props.children)
+      const index = childrenArray.findIndex((child) => {
+        // Check if the child is a valid React element
+        if (React.isValidElement(child)) {
+          // Use optional chaining and nullish coalescing to safely access ref
+          const childRef = (child as React.ReactElement & { ref?: React.Ref<HTMLElement> }).ref
+          const refCurrent = childRef && 'current' in childRef ? childRef.current : null
+          
+          // Only compare if refCurrent is not null
+          return refCurrent ? slideNodes.indexOf(refCurrent) !== -1 : false
+        }
+        return false
+      })
+
       setIsCurrent(currentIndex === index)
     }
 
     updateOpacity()
     api.on("select", updateOpacity)
-    return () => api.off("select", updateOpacity)
+    
+    return () => {
+      api.off("select", updateOpacity)
+    }
   }, [api, props.children])
 
   return (
@@ -332,10 +345,10 @@ const CarouselDots = React.forwardRef<
         <button
           key={index}
           className={cn(
-            "h-4 w-4 rounded-full transition-colors",
+            "w-[clamp(6px,_0.8vw,_16px)] h-[clamp(6px,_0.8vw,_16px)] rounded-full transition-colors",
             index === selectedIndex
               ? "bg-[#0E1A28]"
-              : "bg-[#0E1A28]/50 hover:bg-[#0E1A28]/75"
+              : "bg-[#C7C7C7]/50 hover:bg-[#0E1A28]/75"
           )}
           onClick={() => scrollTo(index)}
           aria-label={`Go to slide ${index + 1}`}

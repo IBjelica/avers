@@ -12,7 +12,6 @@ type UseCarouselParameters = Parameters<typeof useEmblaCarousel>[0]
 
 interface CarouselProps {
   opts?: UseCarouselParameters
-  plugins?: UseEmblaCarouselType[2]
   orientation?: "horizontal" | "vertical"
   setApi?: (api: CarouselApi) => void
 }
@@ -47,7 +46,6 @@ const Carousel = React.forwardRef<
       orientation = "horizontal",
       opts,
       setApi,
-      plugins,
       className,
       children,
       ...props
@@ -58,8 +56,7 @@ const Carousel = React.forwardRef<
       {
         ...opts,
         axis: orientation === "horizontal" ? "x" : "y",
-      },
-      plugins
+      }
     )
     const [canScrollPrev, setCanScrollPrev] = React.useState(false)
     const [canScrollNext, setCanScrollNext] = React.useState(false)

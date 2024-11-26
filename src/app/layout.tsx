@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import styles from './layout.module.css';
 
 const glitten = localFont({
   src: "./fonts/glitten.otf",
@@ -23,7 +24,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html className={styles.smoothScroll} lang="en" suppressHydrationWarning>
       <head />
       <body
         className={`${glitten.variable} ${alaska.variable} antialiased`}

@@ -1,0 +1,127 @@
+/* Smooth scroll */
+.smoothScroll {
+  scroll-behavior: smooth;
+}
+
+/* Layout Container */
+.container {
+  width: 85%;
+  max-width: 1600px;
+  margin-inline: auto;
+  padding: 0;
+}
+
+/* Flex Layouts */
+.flexRow {
+  display: flex;
+  flex-direction: row;
+}
+
+.flexColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.flexCenter {
+  justify-content: center;
+  align-items: center;
+}
+
+.flexBetween {
+  justify-content: space-between;
+}
+
+.flexStart {
+  justify-content: flex-start;
+}
+
+.flexEnd {
+  justify-content: flex-end;
+}
+
+/* Grid Layouts */
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.gridCols2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.gridCols3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.gridCols4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Spacing */
+.gap0 { gap: 0; }
+.gap1 { gap: 0.25rem; }
+.gap2 { gap: 0.5rem; }
+.gap3 { gap: 1rem; }
+.gap4 { gap: 1.5rem; }
+.gap5 { gap: 2rem; }
+
+.m0 { margin: 0; }
+.m1 { margin: 0.25rem; }
+.m2 { margin: 0.5rem; }
+.m3 { margin: 1rem; }
+.m4 { margin: 1.5rem; }
+.m5 { margin: 2rem; }
+
+.p0 { padding: 0; }
+.p1 { padding: 0.25rem; }
+.p2 { padding: 0.5rem; }
+.p3 { padding: 1rem; }
+.p4 { padding: 1.5rem; }
+.p5 { padding: 2rem; }
+
+/* Responsive Layout */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 0.5rem;
+  }
+  
+  .gridCols2,
+  .gridCols3,
+  .gridCols4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Section Spacing */
+.section {
+  padding: 4rem 0;
+}
+
+.sectionSm {
+  padding: 2rem 0;
+}
+
+/* Utility Classes */
+.fullWidth {
+  width: 100%;
+}
+
+.fullHeight {
+  height: 100%;
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.hidden {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
