@@ -35,6 +35,11 @@ export const tokens = {
     // Add your breakpoints
     // Example:
     // sm: '640px',
+    sm: '640px',
+    md: '768px',
+    ml: '930px',
+    lg: '1024px',
+    xl: '1280px',
   },
   shadows: {
     // Add your shadow styles

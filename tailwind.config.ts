@@ -9,6 +9,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        'ml': '930px',
+      },
       colors: {
         ...tokens.colors,
         border: "hsl(var(--border))",
@@ -63,7 +66,6 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       boxShadow: tokens.shadows,
-      screens: tokens.breakpoints,
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
