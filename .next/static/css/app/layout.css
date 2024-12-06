@@ -2,12 +2,12 @@
   !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[3].use[1]!./node_modules/next/dist/build/webpack/loaders/next-font-loader/index.js??ruleSet[1].rules[13].oneOf[3].use[2]!./node_modules/next/font/local/target.css?{"path":"src\\app\\layout.tsx","import":"","arguments":[{"src":"./fonts/glitten.otf","variable":"--font-glitten"}],"variableName":"glitten"} ***!
   \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 @font-face {
-font-family: '__glitten_0638d5';
-src: url(/_next/static/media/8b2f679133f87bc1-s.p.otf) format('opentype');
+font-family: '__glitten_0540fb';
+src: url(/_next/static/media/5eb873fa4e1c679f-s.p.otf) format('opentype');
 font-display: swap;
-}@font-face {font-family: '__glitten_Fallback_0638d5';src: local("Arial");ascent-override: 58.14%;descent-override: 19.84%;line-gap-override: 0.00%;size-adjust: 131.05%
-}.__className_0638d5 {font-family: '__glitten_0638d5', '__glitten_Fallback_0638d5'
-}.__variable_0638d5 {--font-glitten: '__glitten_0638d5', '__glitten_Fallback_0638d5'
+}@font-face {font-family: '__glitten_Fallback_0540fb';src: local("Arial");ascent-override: 78.59%;descent-override: 24.75%;line-gap-override: 0.00%;size-adjust: 96.96%
+}.__className_0540fb {font-family: '__glitten_0540fb', '__glitten_Fallback_0540fb'
+}.__variable_0540fb {--font-glitten: '__glitten_0540fb', '__glitten_Fallback_0540fb'
 }
 
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
@@ -1364,7 +1364,7 @@ video {
 
 @font-face {
   font-family: 'glitten-standard';
-  src: url(/_next/static/media/glitten-standard.74c44e58.ttf) format('truetype');
+  src: url(/_next/static/media/glitten-standard.9cbfd969.otf) format('opentype');
   font-weight: normal;
   font-style: normal;
 }

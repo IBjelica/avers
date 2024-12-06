@@ -4,7 +4,6 @@ import Image from "next/legacy/image"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import localFont from 'next/font/local'
 import { useEffect, useState, useRef } from 'react'
 import {
   Carousel,
@@ -16,16 +15,6 @@ import {
 } from "@/components/ui/carousel"
 import { Inter } from 'next/font/google'
 import styles from './layout.module.css'
-
-const glitten = localFont({
-  src: './fonts/glitten.otf',
-  variable: '--font-glitten',
-});
-
-const alaska = localFont({
-  src: './fonts/alaska.otf',
-  variable: '--font-alaska',
-});
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -160,13 +149,13 @@ export default function AversFinancial() {
   };
 
   return (
-    <div className={`min-h-screen flex flex-col font-sans ${glitten.variable} ${alaska.variable}`}>
+    <div className={`min-h-screen flex flex-col font-sans ${inter.variable}`}>
       {/* Hero Section */}
       <section id="home" className="h-[calc(100vh-80px)] bg-cover bg-left-top relative" style={{backgroundImage: "url('/assets/images/hero-bg.jpg')"}}>
         <div className="absolute inset-0 bg-black opacity-25 z-0"></div>
         <div className={`${styles.container} mt-20 mx-auto flex flex-col h-full justify-start row-gap-[15%] text-white text-center pt-20 relative z-10`}>
           <Image src="/assets/icons/logo-white.svg" alt="Avers Logo" width={237} height={102} className="mb-8 mx-auto" />
-          <h1 className={`${glitten.variable} font-bold mt-[40%] md:mt-[25%] ml:mt-[92px] mb-8 leading-[0.987] uppercase w-full md:w-[85vw] max-w-[1344px] text-[min(12vw,157px)] mx-auto`}>
+          <h1 className={`font-bold mt-[40%] md:mt-[25%] ml:mt-[92px] mb-8 leading-[0.987] uppercase w-full md:w-[85vw] max-w-[1344px] text-[min(12vw,157px)] mx-auto`}>
             Welcome to<br />Progress
           </h1>
         </div>
@@ -174,7 +163,6 @@ export default function AversFinancial() {
 
       {/* Navigation */}
       <nav className="sticky top-0 py-6 z-50 transition-colors duration-300" style={{
-        fontFamily: 'var(--font-alaska)',
         backgroundColor: isSticky ? '#53758F' : 'rgba(83, 117, 143, 0.85)'
       }}>
         <div className="container w-[88%] min-w-[320px] mx-auto relative">
@@ -317,7 +305,7 @@ export default function AversFinancial() {
       {/* About Us Section */}
       <section className="py-[clamp(0px,_2vw,_154px)]">
         <div className={`${styles.container} mx-auto`}>
-          <h2 className={`${glitten.variable} text-[50px] leading-none text-[#0E1A28] font-bold mb-[127px] pb-[18px] border-b-[1px] border-[#0E1A28]`}>ABOUT US</h2>
+          <h2 className={`text-[50px] leading-none text-[#0E1A28] font-bold mb-[127px] pb-[18px] border-b-[1px] border-[#0E1A28]`}>ABOUT US</h2>
           <div className="grid grid-cols-[repeat(18,minmax(0,1fr))] grid-rows-5 gap-x-6 md:grid-rows-3 [&>*]:min-w-0">
             <h3 className={`max-w-[658px] text-[clamp(80px,_5.625vw,_94px)] leading-[.9] col-span-full md:col-span-8 row-span-1 font-['glitten-standard']`}>YOUR GUIDE TO FINANCIAL EXCELLENCE</h3>
             <div className="row-start-2 row-span-2 col-start-2 col-span-8 md:col-span-6 pt-[clamp(32px,_10vw,_128px)]">
