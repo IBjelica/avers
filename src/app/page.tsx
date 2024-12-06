@@ -110,6 +110,55 @@ export default function AversFinancial() {
     updateUnderlinePosition(activeSection);
   };
 
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: 'success' | 'error' | null;
+    message: string;
+  }>({ type: null, message: '' });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: '' });
+
+    try {
+      const response = await fetch('/api/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message');
+      }
+
+      setSubmitStatus({
+        type: 'success',
+        message: 'Message sent successfully! We will get back to you soon.',
+      });
+      setFormData({ name: '', email: '', message: '' });
+    } catch (error) {
+      setSubmitStatus({
+        type: 'error',
+        message: 'Failed to send message. Please try again later.',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
   return (
     <div className={`min-h-screen flex flex-col font-sans ${glitten.variable} ${alaska.variable}`}>
       {/* Hero Section */}
@@ -340,31 +389,54 @@ export default function AversFinancial() {
               </div>
             </div>
             <div className="w-full ml:w-1/2 ml:max-w-[772px] mt-[53px] ml:mb-0" style={{fontFamily: 'var(--font-alaska)'}}>
-              <form className="space-y-6">
-                <div className="space-y-4 w-full">
-                  <div>
+              <form 
+                onSubmit={handleSubmit} 
+                className="space-y-[28px]"
+              >
+                <div className="space-y-[28px]">
+                  <div className="space-y-[28px]">
                     <label className="block text-xl">Name</label>
                     <Input 
-                      type="text"
-                      className="w-full h-12 bg-[#F7F7F7] border-0 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="w-full h-12 mt-[15px] bg-[#F7F7F7] border-0 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0"
                     />
                   </div>
                   <div className="space-y-[28px]">
                     <label className="block text-xl">Email</label>
                     <Input 
                       type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
                       className="w-full h-12 mt-[15px] bg-[#F7F7F7] border-0 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0"
                     />
                   </div>
                   <div className="space-y-[28px]">
                     <label className="block text-xl">Message</label>
                     <Textarea 
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
                       className="w-full min-h-[150px] mt-[15px] bg-[#F7F7F7] border-0 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0"
                     />
                   </div>
                 </div>
-                <Button className="w-full h-12 bg-black hover:bg-black/90 text-white text-lg font-medium">
-                  Submit
+                {submitStatus.message && (
+                  <div className={`text-sm ${submitStatus.type === 'success' ? 'text-green-600' : 'text-red-600'}`}>
+                    {submitStatus.message}
+                  </div>
+                )}
+                <Button 
+                  type="submit" 
+                  disabled={isSubmitting}
+                  className="w-full h-12 bg-black hover:bg-black/90 text-white text-lg font-medium disabled:opacity-50"
+                >
+                  {isSubmitting ? 'Sending...' : 'Submit'}
                 </Button>
               </form>
             </div>
