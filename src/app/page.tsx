@@ -16,7 +16,10 @@ import {
 import { Inter } from 'next/font/google'
 import styles from './layout.module.css'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+})
 
 const MENU_ITEMS = ['HOME', 'OUR VALUES', 'SERVICES', 'ABOUT US', 'CONTACT US'] as const;
 type MenuItem = typeof MENU_ITEMS[number];
@@ -149,7 +152,7 @@ export default function AversFinancial() {
   };
 
   return (
-    <div className={`min-h-screen flex flex-col font-sans ${inter.variable}`}>
+    <div className={`min-h-screen flex flex-col font-sans ${inter.className}`}>
       {/* Hero Section */}
       <section id="home" className="h-[calc(100vh-80px)] bg-cover bg-left-top relative" style={{backgroundImage: "url('/assets/images/hero-bg.jpg')"}}>
         <div className="absolute inset-0 bg-black opacity-25 z-0"></div>
