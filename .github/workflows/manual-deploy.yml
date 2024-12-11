@@ -32,6 +32,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           NODE_ENV: production
           
       - name: Install PM2
@@ -65,6 +66,7 @@ jobs:
           # Install dependencies and build on server
           ssh ${{ secrets.SSH_USER }}@${{ secrets.HETZNER_HOST }} "cd ${DEPLOY_DIR} && \
             npm ci && \
+            export RESEND_API_KEY='${{ secrets.RESEND_API_KEY }}' && \
             npm run build && \
             
             # Update symlink
@@ -72,7 +74,7 @@ jobs:
             
             # Start or restart the application using port 3001 (or your preferred port)
             if pm2 list | grep -q 'avers'; then
-              pm2 restart avers
+              RESEND_API_KEY='${{ secrets.RESEND_API_KEY }}' PORT=3001 pm2 restart avers
             else
-              PORT=3001 pm2 start npm --name avers -- start
+              RESEND_API_KEY='${{ secrets.RESEND_API_KEY }}' PORT=3001 pm2 start npm --name avers -- start
             fi"
