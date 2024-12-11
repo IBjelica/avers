@@ -24,17 +24,55 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
+          cache: 'npm'
           
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
         
       - name: Build
         run: npm run build
+        env:
+          NODE_ENV: production
+          
+      - name: Install PM2
+        run: npm install pm2 -g
         
-      # Add your deployment steps here
-      # For example, if deploying to a cloud service:
-      # - name: Deploy to Cloud
-      #   run: |
-      #     # Add your deployment commands here
-      #   env:
-      #     DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+      - name: Setup SSH key
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          
+      - name: Add known hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ secrets.HETZNER_HOST }} >> ~/.ssh/known_hosts
+          
+      - name: Deploy to Hetzner
+        run: |
+          # Create deployment directory with timestamp
+          DEPLOY_DIR="~/avers/releases/$(date +%Y%m%d_%H%M%S)"
+          
+          # Create directory structure
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.HETZNER_HOST }} "mkdir -p ~/avers/releases"
+          
+          # Copy files
+          rsync -azP --delete \
+            --exclude='.git' \
+            --exclude='node_modules' \
+            --exclude='.next/cache' \
+            ./ ${{ secrets.SSH_USER }}@${{ secrets.HETZNER_HOST }}:${DEPLOY_DIR}/
+            
+          # Install dependencies and build on server
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.HETZNER_HOST }} "cd ${DEPLOY_DIR} && \
+            npm ci && \
+            npm run build && \
+            
+            # Update symlink
+            ln -sfn ${DEPLOY_DIR} ~/avers/current && \
+            
+            # Start or restart the application using port 3001 (or your preferred port)
+            if pm2 list | grep -q 'avers'; then
+              pm2 restart avers
+            else
+              PORT=3001 pm2 start npm --name avers -- start
+            fi"
