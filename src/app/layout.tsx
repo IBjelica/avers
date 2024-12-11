@@ -4,12 +4,12 @@ import "./globals.css";
 import styles from './layout.module.css';
 
 const glitten = localFont({
-  src: "./fonts/glitten.otf",
+  src: "./fonts/GLITTEN.otf",
   variable: "--font-glitten",
 });
 
 const alaska = localFont({
-  src: "./fonts/alaska.otf",
+  src: "./fonts/Alaska.otf",
   variable: "--font-alaska",
 });
 
