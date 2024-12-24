@@ -7,74 +7,82 @@ on:
         description: 'Environment to deploy to'
         required: true
         default: 'production'
-        type: choice
-        options:
-          - production
-          - staging
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: ${{ github.event.inputs.deploy_environment }}
     
     steps:
+      # Checkout the repository
       - uses: actions/checkout@v3
       
+      # Set up Node.js environment
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
           cache: 'npm'
           
+      # Install project dependencies
       - name: Install Dependencies
         run: npm ci
         
+      # Build the project
       - name: Build
         run: npm run build
         env:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           NODE_ENV: production
           
+      # Install PM2 globally
       - name: Install PM2
         run: npm install pm2 -g
         
+      # Set up SSH agent and key
       - name: Setup SSH key
         uses: webfactory/ssh-agent@v0.8.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
           
+      # Add the remote server to known hosts
       - name: Add known hosts
         run: |
           mkdir -p ~/.ssh
           ssh-keyscan -H ${{ secrets.HETZNER_HOST }} >> ~/.ssh/known_hosts
           
+      # Deploy to Hetzner
       - name: Deploy to Hetzner
+        env:
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
         run: |
           # Create deployment directory with timestamp
           DEPLOY_DIR="~/avers/releases/$(date +%Y%m%d_%H%M%S)"
           
-          # Create directory structure
+          # Create release directory
           ssh ${{ secrets.SSH_USER }}@${{ secrets.HETZNER_HOST }} "mkdir -p ~/avers/releases"
           
-          # Copy files
+          # Sync files to the server
           rsync -azP --delete \
             --exclude='.git' \
             --exclude='node_modules' \
             --exclude='.next/cache' \
             ./ ${{ secrets.SSH_USER }}@${{ secrets.HETZNER_HOST }}:${DEPLOY_DIR}/
             
-          # Install dependencies and build on server
-          ssh ${{ secrets.SSH_USER }}@${{ secrets.HETZNER_HOST }} "cd ${DEPLOY_DIR} && \
-            npm ci && \
-            export RESEND_API_KEY='${{ secrets.RESEND_API_KEY }}' && \
-            npm run build && \
+          # Install dependencies, build, and restart the application
+          ssh ${{ secrets.SSH_USER }}@${{ secrets.HETZNER_HOST }} << 'EOF'
+            set -e
+            cd ${DEPLOY_DIR}
+            npm ci
+            export RESEND_API_KEY="${{ secrets.RESEND_API_KEY }}"
+            npm run build
             
             # Update symlink
-            ln -sfn ${DEPLOY_DIR} ~/avers/current && \
+            ln -sfn ${DEPLOY_DIR} ~/avers/current
             
-            # Start or restart the application using port 3001 (or your preferred port)
+            # Start or restart application using PM2
             if pm2 list | grep -q 'avers'; then
-              RESEND_API_KEY='${{ secrets.RESEND_API_KEY }}' PORT=3001 pm2 restart avers
+              RESEND_API_KEY="${{ secrets.RESEND_API_KEY }}" PORT=3001 pm2 restart avers
             else
-              RESEND_API_KEY='${{ secrets.RESEND_API_KEY }}' PORT=3001 pm2 start npm --name avers -- start
-            fi"
+              RESEND_API_KEY="${{ secrets.RESEND_API_KEY }}" PORT=3001 pm2 start npm --name avers -- start
+            fi
+          EOF
