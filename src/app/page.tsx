@@ -42,7 +42,9 @@ export default function AversFinancial() {
 
     const observerCallback: IntersectionObserverCallback = (entries) => {
       entries.forEach(entry => {
+        console.log(entry);
         if (entry.isIntersecting) {
+          console.log(entry.target.id);
           const sectionId = entry.target.id;
           const menuItem = MENU_ITEMS.find(
             item => item.toLowerCase().replace(' ', '-') === sectionId
@@ -58,7 +60,7 @@ export default function AversFinancial() {
     };
 
     const observer = new IntersectionObserver(observerCallback, {
-      threshold: 0.5,
+      threshold: 0.25,
       rootMargin: '-68px 0px 0px 0px' // Account for nav height
     });
 
@@ -306,7 +308,7 @@ export default function AversFinancial() {
       </section>
 
       {/* About Us Section */}
-      <section id="about-us" className="py-[clamp(50px,_2vw,_154px)] scroll-mt-12">
+      <section id="about-us" className="py-[clamp(50px,_2vw,_154px)]">
         <div className={`${styles.container} mx-auto`}>
           <h2 className={`text-[50px] leading-none text-[#0E1A28] font-bold mb-[127px] pb-[18px] border-b-[1px] border-[#0E1A28]`}>ABOUT US</h2>
           <div className="grid grid-cols-[repeat(18,minmax(0,1fr))] grid-rows-5 max-xs:grid-cols-[repeat(14,minmax(0,1fr))] max-xs:grid-rows-7 gap-x-6 md:grid-rows-3 [&>*]:min-w-0">
