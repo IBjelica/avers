@@ -35,6 +35,7 @@ export const tokens = {
     // Add your breakpoints
     // Example:
     // sm: '640px',
+    xs: '480px',
     sm: '640px',
     md: '768px',
     ml: '930px',

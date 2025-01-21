@@ -10,6 +10,7 @@ const config: Config = {
   theme: {
     extend: {
       screens: {
+        ...tokens.breakpoints,
         'ml': '930px',
       },
       colors: {
