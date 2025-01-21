@@ -308,7 +308,7 @@ export default function AversFinancial() {
       </section>
 
       {/* About Us Section */}
-      <section id="about-us" className="py-[clamp(50px,_2vw,_154px)]">
+      <section id="about-us" className="py-[clamp(50px,_2vw,_154px)] scroll-mt-12">
         <div className={`${styles.container} mx-auto`}>
           <h2 className={`text-[50px] leading-none text-[#0E1A28] font-bold mb-[127px] pb-[18px] border-b-[1px] border-[#0E1A28]`}>ABOUT US</h2>
           <div className="grid grid-cols-[repeat(18,minmax(0,1fr))] grid-rows-5 max-xs:grid-cols-[repeat(14,minmax(0,1fr))] max-xs:grid-rows-7 gap-x-6 md:grid-rows-3 [&>*]:min-w-0">
