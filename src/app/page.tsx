@@ -313,7 +313,7 @@ export default function AversFinancial() {
           <h2 className={`text-[50px] leading-none text-[#0E1A28] font-bold mb-[127px] pb-[18px] border-b-[1px] border-[#0E1A28]`}>ABOUT US</h2>
           <div className="grid grid-cols-[repeat(18,minmax(0,1fr))] grid-rows-5 max-xs:grid-cols-[repeat(14,minmax(0,1fr))] max-xs:grid-rows-7 gap-x-6 md:grid-rows-3 [&>*]:min-w-0">
             <h3 className={`w-[clamp(300px,_90vw,_658px)] text-[clamp(53px,_5.625vw,_94px)] leading-[.9] col-span-full md:col-span-8 row-span-1 font-['glitten-standard']`}>YOUR GUIDE TO FINANCIAL EXCELLENCE</h3>
-            <div className="row-start-2 row-span-2 col-start-2 col-span-8 max-xs:-col-end-2 md:col-span-6 pt-[clamp(32px,_10vw,_128px)]">
+            <div className="row-start-2 row-span-2 col-start-2 col-span-8 max-xs:-col-end-2 max-xs:self-center md:col-span-6 pt-[clamp(32px,_10vw,_128px)]">
               <p className="w-full md:w-[clamp(150px,_25vw,_429px)] max-w-full mb-6 text-[#0E1A28] text-[clamp(15px,_1.125vw,_20px)] leading-normal text-justify" style={{fontFamily: 'var(--font-alaska)'}}>
                 With a dynamic blend of 25 years of financial wisdom and a personal mission to drive business success, Samira isn&apos;t just the founder and CEO of Avers — she&apos;s a <span className="font-semibold">transformative force in financial consulting.</span> 
               </p>
@@ -321,7 +321,7 @@ export default function AversFinancial() {
                 Her approach combines deep market insight, personalised strategies and a wealth of knowledge, making Avers synonymous with an unparalleled commitment to client success.
               </p>
             </div>
-            <div className="row-start-2 row-span-2 col-start-10 col-span-8 max-xs:row-start-4 max-xs:col-start-2 max-xs:-col-end-2 md:col-span-6 pt-[clamp(74px,_20vw,_296px)]">
+            <div className="row-start-2 row-span-2 col-start-10 col-span-8 max-xs:row-start-4 max-xs:col-start-2 max-xs:-col-end-2 md:col-span-6 md:pt-[clamp(74px,_20vw,_296px)]">
               <p className="w-full md:w-[clamp(150px,_25vw,_434px)] mb-6 text-[#0E1A28] text-[clamp(15px,_1.125vw,_20px)] leading-normal text-justify" style={{fontFamily: 'var(--font-alaska)'}}>
                 With a <span className="font-semibold">foundation built on trust, innovation and an unwavering dedication to achieving financial excellence,</span> Samira and her team at Avers are not just advisors, but partners in your journey to excellence. 
               </p>
@@ -374,7 +374,7 @@ export default function AversFinancial() {
               </div>
               <div className="mb-[53px]">
                 <h3 className="text-[50px] font-bold leading-none mb-5">ADDRESS</h3>
-                <p className="" style={{fontFamily: 'var(--font-alaska)'}}>dr. Dragoslava Popovića 14<br />Belgrade, Serbia</p>
+                <p className="" style={{fontFamily: 'var(--font-alaska)'}}>dr Dragoslava Popovića 14, lokal 12<br />Belgrade, Serbia</p>
               </div>
               <div>
                 <h3 className="text-[50px] font-bold leading-none mb-5">PHONE NUMBER</h3>
