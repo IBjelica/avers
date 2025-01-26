@@ -1,0 +1,66 @@
+{
+  "menu": {
+    "home": "HOME",
+    "ourvalues": "OUR VALUES",
+    "services": "SERVICES",
+    "aboutus": "ABOUT US",
+    "contactus": "CONTACT US"
+  },
+  "hero": {
+    "title": "Welcome to Progress",
+    "subtitle": "Your Trusted Partner in Financial Growth"
+  },
+  "values": {
+    "title": "EMPOWERING YOUR FINANCIAL SUCCESS",
+    "description": "At AVERS Financial Consultancy and Accounting, our mission is crystal clear: we're here to enhance financial efficiency, ensure unwavering compliance, and ignite financial growth for our valued clients."
+  },
+  "services": {
+    "title": "OUR SERVICES",
+    "financialconsulting": "FINANCIAL CONSULTING",
+    "accountingandBookkeeping": "ACCOUNTING AND BOOKKEEPING",
+    "backoffice": "BACK OFFICE"
+  },
+  "testimonials": {
+    "title": "WHAT OUR CLIENTS SAY ABOUT US",
+    "name": "Hannah Schmitt",
+    "position": "CEO at TechCorp",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus nibh mauris, nec turpis orci lectus maecenas. Suspendisse sed magna eget nibh in turpis."
+  },
+  "about": {
+    "title": "ABOUT US",
+    "description": "YOUR GUIDE TO FINANCIAL EXCELLENCE",
+    "founder": "With a dynamic blend of 25 years of financial wisdom and a personal mission to drive business success, Samira isn't just the founder and CEO of Avers — she's a transformative force in financial consulting.",
+    "founderDescription": "Her approach combines deep market insight, personalised strategies and a wealth of knowledge, making Avers synonymous with an unparalleled commitment to client success.",
+    "founderDescription2": "With a foundation built on trust, innovation and an unwavering dedication to achieving financial excellence, Samira and her team at Avers are not just advisors, but partners in your journey to excellence.",
+    "founderDescription3": "Their wealth of experience and passion for finance shines through in every endeavour, ensuring that your business is not only prepared for the future, but also ready to thrive in it.",
+    "founderName": "Founder and CEO",
+    "founderPosition": "Samira Bjelica"
+  },
+  "trust": {
+    "description": "UNVEILING OPPORTUNITY, NAVIGATING PROSPERITY, AND ENSURING PEACE OF MIND.",
+    "title": "YOUR TRUST, OUR COMMITMENT"
+  },
+  "contact": {
+    "title": "LET'S TALK",
+    "description": "Have some big idea or brand to develop and need help? Then reach out we'd love to hear about your project and provide help",
+    "address": {
+      "title": "ADDRESS",
+      "description": "dr Dragoslava Popovića 14, lokal 12\nBelgrade, Serbia"
+    },
+    "phone": {
+      "title": "PHONE NUMBER",
+      "description": "+1 234 567 8901"
+    },
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "submitting": "Sending...",
+      "submit": "Submit"
+    }
+  },
+  "footer": {
+    "copyright": "Copyright | Information",
+    "info": "Designed and developed by NTSH exclusively for Avers."
+  }
+}

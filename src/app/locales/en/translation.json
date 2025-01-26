@@ -1,0 +1,9 @@
+{
+    "page": {
+        "title": "Your Page Title",
+        "description": "Your page description goes here.",
+        "buttonText": "Click Me",
+        "welcomeMessage": "Welcome to our website!",
+        "footerText": "All rights reserved."
+    }
+}

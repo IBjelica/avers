@@ -1,0 +1,66 @@
+{
+  "menu": {
+    "home": "POČETNA",
+    "ourvalues": "NAŠE VREDNOSTI",
+    "services": "USLUGE",
+    "aboutus": "O NAMA",
+    "contactus": "KONTAKT"
+  },
+  "hero": {
+    "title": "Dobrodošli u Progress",
+    "subtitle": "Vaš pouzdan partner u finansijskom rastu"
+  },
+  "values": {
+    "title": "OSNAŽIVANJE VAŠEG FINANSIJSKOG USPEHA",
+    "description": "U AVERS Finansijskom konsaltingu i računovodstvu, naša misija je kristalno jasna: tu smo da poboljšamo finansijsku efikasnost, osiguramo besprekornu usklađenost i podstaknemo finansijski rast naših cenjenih klijenata."
+  },
+  "services": {
+    "title": "NAŠE USLUGE",
+    "financialconsulting": "FINANSIJSKI KONSALTING",
+    "accountingandBookkeeping": "RAČUNOVODSTVO I KNJIGOVODSTVO",
+    "backoffice": "BACK OFFICE"
+  },
+  "testimonials": {
+    "title": "ŠTA NAŠI KLIJENTI KAŽU O NAMA",
+    "name": "Hannah Schmitt",
+    "position": "CEO u TechCorp",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus nibh mauris, nec turpis orci lectus maecenas. Suspendisse sed magna eget nibh in turpis."
+  },
+  "about": {
+    "title": "O NAMA",
+    "description": "VAŠ VODIČ KA FINANSIJSKOJ IZVRSNOSTI",
+    "founder": "Sa dinamičnom kombinacijom od 25 godina finansijske mudrosti i ličnom misijom da pokrene poslovni uspeh, Samira nije samo osnivač i CEO Aversa — ona je transformativna sila u finansijskom konsaltingu.",
+    "founderDescription": "Njen pristup kombinuje duboko razumevanje tržišta, personalizovane strategije i bogatstvo znanja, čineći Avers sinonimom za nenadmašnu posvećenost uspehu klijenata.",
+    "founderDescription2": "Sa temeljem izgrađenim na poverenju, inovacijama i nepokolebljivoj posvećenosti postizanju finansijske izvrsnosti, Samira i njen tim u Aversu nisu samo savetnici, već partneri na vašem putu ka izvrsnosti.",
+    "founderDescription3": "Njihovo bogato iskustvo i strast prema finansijama sijaju kroz svaki poduhvat, osiguravajući da vaše poslovanje nije samo pripremljeno za budućnost, već i spremno da u njoj napreduje.",
+    "founderName": "Osnivač i CEO",
+    "founderPosition": "Samira Bjelica"
+  },
+  "trust": {
+    "description": "OTKRIVANJE PRILIKA, NAVIGACIJA PROSPERITETA I OSIGURANJE MIRA UMA.",
+    "title": "VAŠE POVERENJE, NAŠA POSVEĆENOST"
+  },
+  "contact": {
+    "title": "RAZGOVARAJMO",
+    "description": "Imate veliku ideju ili brend za razvoj i potrebna vam je pomoć? Javite nam se, voleli bismo da čujemo o vašem projektu i pružimo pomoć",
+    "address": {
+      "title": "ADRESA",
+      "description": "dr Dragoslava Popovića 14, lokal 12\nBeograd, Srbija"
+    },
+    "phone": {
+      "title": "BROJ TELEFONA",
+      "description": "+1 234 567 8901"
+    },
+    "form": {
+      "name": "Ime",
+      "email": "Email",
+      "message": "Poruka",
+      "submitting": "Slanje...",
+      "submit": "Pošalji"
+    }
+  },
+  "footer": {
+    "copyright": "Autorska prava | Informacije",
+    "info": "Dizajnirao i razvio NTSH ekskluzivno za Avers."
+  }
+}
