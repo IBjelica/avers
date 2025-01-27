@@ -36,6 +36,8 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
+    --font-glitten: 'glitten-standard', serif;
+    --font-roboto: 'Roboto', sans-serif;
   }
 
   .dark {
@@ -64,6 +66,10 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
   }
+}
+
+.language-specific-font {
+  font-family: var(--current-font, var(--font-glitten));
 }
 
 @layer base {

@@ -29,23 +29,17 @@ const MENU_ITEMS = ['HOME', 'OUR VALUES', 'SERVICES', 'ABOUT US', 'CONTACT US'] 
 type MenuItem = typeof MENU_ITEMS[number];
 
 function AversFinancialContent() {
+  const { t, i18n } = useTranslation();
+  const [mounted, setMounted] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
   const [activeSection, setActiveSection] = useState<MenuItem>('HOME');
   const [hoveredItem, setHoveredItem] = useState<MenuItem | null>(null);
   const menuItemRefs = useRef<Map<MenuItem, HTMLLIElement>>(new Map());
   const underlineRef = useRef<HTMLDivElement>(null);
-  const { t, i18n } = useTranslation();
 
-  const toggleLanguage = () => {
-    const newLang = i18n.language === 'en' ? 'sr' : 'en';
-    i18n.changeLanguage(newLang);
-    localStorage.setItem('language', newLang);
-    
-    // Update URL without refresh
-    const url = new URL(window.location.href);
-    url.searchParams.set('lang', newLang);
-    window.history.pushState({}, '', url);
-  };
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -179,14 +173,31 @@ function AversFinancialContent() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const toggleLanguage = () => {
+    const newLang = i18n.language === 'en' ? 'sr' : 'en';
+    i18n.changeLanguage(newLang);
+    localStorage.setItem('language', newLang);
+    
+    // Update URL without refresh
+    const url = new URL(window.location.href);
+    url.searchParams.set('lang', newLang);
+    window.history.pushState({}, '', url);
+  };
+
+  if (!mounted) {
+    return null;
+  }
+
+  const currentFont = i18n.language === 'sr' ? 'var(--font-newyork)' : 'var(--font-glitten)';
+
   return (
-    <div className={`min-h-screen flex flex-col font-sans ${inter.className}`}>
+    <div suppressHydrationWarning className={`min-h-screen flex flex-col font-sans ${inter.className}`} style={{ '--current-font': currentFont } as React.CSSProperties}>
       {/* Hero Section */}
       <section id="home" className="h-[calc(100vh-80px)] bg-cover bg-left-top relative" style={{backgroundImage: "url('/assets/images/hero-bg.jpg')"}}>
         <div className="absolute inset-0 bg-black opacity-25 z-0"></div>
         <div className={`${styles.container} mt-20 mx-auto flex flex-col h-full justify-start row-gap-[15%] text-white text-center pt-20 relative z-10`}>
           <Image src="/assets/icons/logo-white.svg" alt="Avers Logo" width={237} height={102} className="mb-8 mx-auto" />
-          <h1 className={`font-bold mt-[40%] md:mt-[25%] ml:mt-[92px] mb-8 leading-[0.987] uppercase w-full md:w-[85vw] max-w-[1344px] text-[min(12vw,157px)] mx-auto`}>
+          <h1 className={`font-bold mt-[40%] md:mt-[25%] ml:mt-[92px] mb-8 leading-[0.987] uppercase w-full md:w-[85vw] max-w-[1344px] text-[min(12vw,157px)] mx-auto`} style={{ fontFamily: 'var(--current-font)' }}>
             {t('hero.title')}
           </h1>
         </div>

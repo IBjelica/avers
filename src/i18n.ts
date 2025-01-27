@@ -1,10 +1,24 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
+// Get initial language from localStorage or URL if available, fallback to 'en'
+const getInitialLanguage = () => {
+  if (typeof window === 'undefined') return 'en'; // Default to English on server
+  
+  const savedLang = localStorage.getItem('language');
+  if (savedLang) return savedLang;
+  
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlLang = urlParams.get('lang');
+  if (urlLang && ['en', 'sr'].includes(urlLang)) return urlLang;
+  
+  return 'en';
+};
+
 i18n
   .use(initReactI18next)
   .init({
-    lng: 'en', // default language
+    lng: getInitialLanguage(),
     fallbackLng: 'en',
     interpolation: {
       escapeValue: false

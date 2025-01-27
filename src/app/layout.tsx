@@ -13,6 +13,11 @@ const alaska = localFont({
   variable: "--font-alaska",
 });
 
+const newYork = localFont({
+  src: "./fonts/NewYork.ttf",
+  variable: "--font-newyork",
+});
+
 export const metadata: Metadata = {
   title: "Avers Financial",
   description: "Financial services and consulting",
@@ -24,10 +29,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html className={styles.smoothScroll} lang="en" suppressHydrationWarning>
-      <head />
+    <html className={`${styles.smoothScroll} ${glitten.variable} ${alaska.variable} ${newYork.variable}`} lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          async
+          src="//unpkg.com/react-scan/dist/auto.global.js"
+        />
+      </head>
       <body
-        className={`${glitten.variable} ${alaska.variable} antialiased`}
+        className="antialiased"
         suppressHydrationWarning
       >
         {children}

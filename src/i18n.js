@@ -102,7 +102,7 @@ const resources = {
         contactus: 'KONTAKT'
       },
       hero: {
-        title: 'Dobrodošli u Прогрес',
+        title: 'Dobrodošli u Progres',
         subtitle: 'Vaš pouzdan partner u finansijskom rastu'
       },
       values: {
