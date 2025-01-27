@@ -52,9 +52,7 @@ function AversFinancialContent() {
 
     const observerCallback: IntersectionObserverCallback = (entries) => {
       entries.forEach(entry => {
-        console.log(entry);
         if (entry.isIntersecting) {
-          console.log(entry.target.id);
           const sectionId = entry.target.id;
           const menuItem = MENU_ITEMS.find(
             item => item.toLowerCase().replace(' ', '-') === sectionId
