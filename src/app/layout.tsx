@@ -31,6 +31,18 @@ export default function RootLayout({
   return (
     <html className={`${styles.smoothScroll} ${glitten.variable} ${alaska.variable} ${newYork.variable}`} lang="en" suppressHydrationWarning>
       <head>
+        <link
+          rel="preload"
+          href="/assets/images/hero-bg.jpg"
+          as="image"
+          type="image/jpeg"
+        />
+        <link
+          rel="preload"
+          href="/assets/icons/logo-white.svg"
+          as="image"
+          type="image/svg+xml"
+        />
         <script
           async
           src="//unpkg.com/react-scan/dist/auto.global.js"
