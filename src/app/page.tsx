@@ -191,7 +191,7 @@ function AversFinancialContent() {
   return (
     <div suppressHydrationWarning className={`min-h-screen flex flex-col font-sans ${inter.className}`} style={{ '--current-font': currentFont } as React.CSSProperties}>
       {/* Hero Section */}
-      <section id="home" className="h-[calc(100vh-80px)] bg-cover bg-left-top relative" style={{backgroundImage: "url('/assets/images/hero-bg.jpg')"}}>
+      <section id="home" className="h-[calc(100vh-80px)] max-h-screen bg-cover bg-left-top bg-no-repeat relative" style={{backgroundImage: "url('/assets/images/hero-bg.jpg')"}}>
         <div className="absolute inset-0 bg-black opacity-25 z-0"></div>
         <div className={`${styles.container} mt-20 mx-auto flex flex-col h-full justify-start row-gap-[15%] text-white text-center pt-20 relative z-10`}>
           <Image src="/assets/icons/logo-white.svg" alt="Avers Logo" width={237} height={102} className="mb-8 mx-auto" />
