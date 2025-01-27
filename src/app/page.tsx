@@ -434,33 +434,48 @@ function AversFinancialContent() {
                 <div className="space-y-[28px]">
                   <div className="space-y-[28px]">
                     <label className="block text-xl">{parse(t('contact.form.name'))}</label>
+                    <label className="sr-only" htmlFor="name-input">
+                      {parse(t('contact.form.name'))}
+                    </label>
                     <Input 
+                      id="name-input"
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
                       required
                       className="w-full h-12 mt-[15px] bg-[#F7F7F7] border-0 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0"
+                      aria-required="true"
                     />
                   </div>
                   <div className="space-y-[28px]">
                     <label className="block text-xl">{parse(t('contact.form.email'))}</label>
+                    <label className="sr-only" htmlFor="email-input">
+                      {parse(t('contact.form.email'))}
+                    </label>
                     <Input 
+                      id="email-input"
                       type="email"
                       name="email"
                       value={formData.email}
                       onChange={handleChange}
                       required
                       className="w-full h-12 mt-[15px] bg-[#F7F7F7] border-0 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0"
+                      aria-required="true"
                     />
                   </div>
                   <div className="space-y-[28px]">
                     <label className="block text-xl">{parse(t('contact.form.message'))}</label>
+                    <label className="sr-only" htmlFor="message-input">
+                      {parse(t('contact.form.message'))}
+                    </label>
                     <Textarea 
+                      id="message-input"
                       name="message"
                       value={formData.message}
                       onChange={handleChange}
                       required
                       className="w-full min-h-[150px] mt-[15px] bg-[#F7F7F7] border-0 rounded-none focus-visible:ring-0 focus-visible:ring-offset-0"
+                      aria-required="true"
                     />
                   </div>
                 </div>
