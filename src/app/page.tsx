@@ -195,7 +195,7 @@ function AversFinancialContent() {
         <div className="absolute inset-0 bg-black opacity-25 z-0"></div>
         <div className={`${styles.container} mt-20 mx-auto flex flex-col h-full justify-start row-gap-[15%] text-white text-center pt-20 relative z-10`}>
           <Image src="/assets/icons/logo-white.svg" alt="Avers Logo" width={237} height={102} className="mb-8 mx-auto" />
-          <h1 className={`font-bold mt-[40%] md:mt-[25%] ml:mt-[92px] mb-8 leading-[0.987] uppercase w-full md:w-[85vw] max-w-[1344px] text-[min(12vw,157px)] mx-auto`} style={{ fontFamily: 'var(--current-font)' }}>
+          <h1 className={`font-medium mt-[40%] md:mt-[25%] ml:mt-[92px] mb-8 leading-[0.987] uppercase w-full md:w-[85vw] max-w-[1344px] text-[min(12vw,157px)] mx-auto`} style={{ fontFamily: 'var(--current-font)' }}>
             {t('hero.title')}
           </h1>
         </div>
