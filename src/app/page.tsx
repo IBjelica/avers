@@ -376,7 +376,14 @@ function AversFinancialContent() {
             </div>
             <div className="relative flex flex-row max-xs:flex-col-reverse max-xs:self-center md:flex-col row-start-4 row-span-2 max-xs:row-start-6 md:row-start-1 md:row-span-3 col-start-2 col-end-auto md:col-start-15 md:col-span-5 self-end h-[80%] xl:h-full max-md:h-[500px] max-md:w-[80vw] md:max-w-[407px]">
               <div className="relative grow-[.9] md:grow-[.8] md:grow max-h-[696px] max-md:min-w-48 rounded-[27px] overflow-hidden">
-                <Image src="/assets/images/founder.png" alt="Founder and CEO" layout="fill" objectFit="cover" />
+                <Image 
+                  src="/assets/images/founder.png" 
+                  alt="Founder and CEO" 
+                  layout="fill" 
+                  objectFit="contain"
+                  quality={100}
+                  className="object-center"
+                /> 
               </div>
               <div className="flex flex-col justify-end relative bottom-0 left-0 bg-white p-6 text-center whitespace-nowrap">
                 <p className="text-[clamp(14px,_1.7vw,_24px)] leading-5" style={{fontFamily: 'var(--font-alaska)'}}>{parse(t('about.founderName'))}</p>
