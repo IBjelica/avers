@@ -9,6 +9,13 @@
   font-style: normal;
 }
 
+.serbian-text {
+  font-family: var(--font-roboto), system-ui, -apple-system, sans-serif;
+  font-feature-settings: "locl" 1;  /* Enable localized font forms */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
