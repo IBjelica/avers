@@ -308,7 +308,7 @@ function AversFinancialContent() {
                   }}
                 >
                   <div className="w-[300px] max-w-full bg-white rounded-2xl text-center px-[clamp(1rem,_2vw,_3rem)] py-6">
-                    <h3 className="text-[#53758F] text-[clamp(14px,_1.4vw,_20px)] leading-5 whitespace-nowrap ml:whitespace-pre-line" style={{ fontFamily: fontGuide.headings.h3[i18n.language as 'en' | 'sr'] }}>{t(`services.${service.key}`)}</h3>
+                    <h3 className="text-[#53758F] text-[clamp(14px,_1.4vw,_20px)] leading-5 whitespace-nowrap ml:whitespace-pre-line" style={{ fontFamily: fontGuide.headings.h3.en }}>{t(`services.${service.key}`)}</h3>
                   </div>
                 </div>
               </div>

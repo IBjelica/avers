@@ -42,7 +42,10 @@ export const fontGuide = {
       en: 'var(--font-glitten)',
       sr: 'var(--font-newyork)',
     },
-    h3: 'var(--font-alaska)',
+    h3: {
+      en: 'var(--font-alaska)',
+      sr: 'var(--font-alaska)',
+    },
   },
   body: {
     primary: 'var(--font-roboto)',
