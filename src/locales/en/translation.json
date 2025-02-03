@@ -12,12 +12,14 @@
   },
   "values": {
     "title": "EMPOWERING YOUR FINANCIAL SUCCESS",
-    "description": "At AVERS Financial Consultancy and Accounting, our mission is crystal clear: we're here to enhance financial efficiency, ensure unwavering compliance, and ignite financial growth for our valued clients."
+    "mission": "At AVERS Financial Consultancy and Accounting, our mission is crystal clear: we're here to enhance financial efficiency, ensure unwavering compliance, and ignite financial growth for our valued clients.",
+    "commitment": "Our commitment extends to cost reduction, risk management, and the cultivation of innovation through our personalised, trustworthy solutions. Focusing on education and empowerment, we tailor our services to match your distinctive needs. Your success is our paramount objective, and we pledge steadfast integrity in every facet of our work.",
+    "join": "Join us on the path toward financial prosperity and security."
   },
   "services": {
     "title": "OUR SERVICES",
-    "financialconsulting": "FINANCIAL CONSULTING",
-    "accountingandBookkeeping": "ACCOUNTING AND BOOKKEEPING",
+    "financial": "FINANCIAL CONSULTING",
+    "accounting": "ACCOUNTING AND BOOKKEEPING",
     "backoffice": "BACK OFFICE"
   },
   "testimonials": {
@@ -29,9 +31,9 @@
   "about": {
     "title": "ABOUT US",
     "description": "YOUR GUIDE TO FINANCIAL EXCELLENCE",
-    "founder": "With a dynamic blend of 25 years of financial wisdom and a personal mission to drive business success, Samira isn't just the founder and CEO of Avers — she's a transformative force in financial consulting.",
+    "founder": "With a dynamic blend of 25 years of financial wisdom and a personal mission to drive business success, Samira isn't just the founder and CEO of Avers — she's a <b>transformative force in financial consulting.</b>",
     "founderDescription": "Her approach combines deep market insight, personalised strategies and a wealth of knowledge, making Avers synonymous with an unparalleled commitment to client success.",
-    "founderDescription2": "With a foundation built on trust, innovation and an unwavering dedication to achieving financial excellence, Samira and her team at Avers are not just advisors, but partners in your journey to excellence.",
+    "founderDescription2": "With a <b>foundation built on trust, innovation and an unwavering dedication to achieving financial excellence,</b> Samira and her team at Avers are not just advisors, but partners in your journey to excellence.",
     "founderDescription3": "Their wealth of experience and passion for finance shines through in every endeavour, ensuring that your business is not only prepared for the future, but also ready to thrive in it.",
     "founderName": "Founder and CEO",
     "founderPosition": "Samira Bjelica"
@@ -45,7 +47,7 @@
     "description": "Have some big idea or brand to develop and need help? Then reach out we'd love to hear about your project and provide help",
     "address": {
       "title": "ADDRESS",
-      "description": "dr Dragoslava Popovića 14, lokal 12\nBelgrade, Serbia"
+      "description": "dr Dragoslava Popovića 14, lokal 12<br/>Belgrade, Serbia"
     },
     "phone": {
       "title": "PHONE NUMBER",

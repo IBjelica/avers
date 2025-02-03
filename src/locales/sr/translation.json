@@ -7,45 +7,47 @@
     "contactus": "KONTAKT"
   },
   "hero": {
-    "title": "Dobrodošli u Progress",
+    "title": "Dobrodošli u Progres",
     "subtitle": "Vaš pouzdan partner u finansijskom rastu"
   },
   "values": {
-    "title": "OSNAŽIVANJE VAŠEG FINANSIJSKOG USPEHA",
-    "description": "U AVERS Finansijskom konsaltingu i računovodstvu, naša misija je kristalno jasna: tu smo da poboljšamo finansijsku efikasnost, osiguramo besprekornu usklađenost i podstaknemo finansijski rast naših cenjenih klijenata."
+    "title": "PODRŠKA ZA VAŠ FINANSIJSKI USPEH",
+    "mission": "U AVERS finansijskoj konsultantskoj i knjigovodstvenoj agenciji, naša misija je jasna: ovde smo da unapredimo finansijsku efikasnost, osiguramo doslednost i podstaknemo finansijski rast za Vas, naše cenjene klijente.",
+    "commitment": "Naša posvećenost se proteže na smanjenje troškova, upravljanje rizicima i kultivaciju inovacija kroz naša personalizovana, pouzdana rešenja. Fokusirajući se na obrazovanje i osnaživanje, prilagođavamo naše usluge vašim jedinstvenim potrebama. Vaš uspeh je naš prioritet, i obećavamo integritet u svakom aspektu našeg rada.",
+    "join": "Pridružite nam se na putu ka finansijskom prosperitetu i sigurnosti."
   },
   "services": {
     "title": "NAŠE USLUGE",
-    "financialconsulting": "FINANSIJSKI KONSALTING",
-    "accountingandBookkeeping": "RAČUNOVODSTVO I KNJIGOVODSTVO",
-    "backoffice": "BACK OFFICE"
+    "financial": "FINANSISKO KONSULTOVANJE",
+    "accounting": "KNJIGOVODSTVO I RAČUNOVODSTVO",
+    "backoffice": "ADMINISTRACIJA"
   },
   "testimonials": {
     "title": "ŠTA NAŠI KLIJENTI KAŽU O NAMA",
-    "name": "Hannah Schmitt",
+    "name": "Hana Šmit",
     "position": "CEO u TechCorp",
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus nibh mauris, nec turpis orci lectus maecenas. Suspendisse sed magna eget nibh in turpis."
   },
   "about": {
     "title": "O NAMA",
     "description": "VAŠ VODIČ KA FINANSIJSKOJ IZVRSNOSTI",
-    "founder": "Sa dinamičnom kombinacijom od 25 godina finansijske mudrosti i ličnom misijom da pokrene poslovni uspeh, Samira nije samo osnivač i CEO Aversa — ona je transformativna sila u finansijskom konsaltingu.",
-    "founderDescription": "Njen pristup kombinuje duboko razumevanje tržišta, personalizovane strategije i bogatstvo znanja, čineći Avers sinonimom za nenadmašnu posvećenost uspehu klijenata.",
-    "founderDescription2": "Sa temeljem izgrađenim na poverenju, inovacijama i nepokolebljivoj posvećenosti postizanju finansijske izvrsnosti, Samira i njen tim u Aversu nisu samo savetnici, već partneri na vašem putu ka izvrsnosti.",
-    "founderDescription3": "Njihovo bogato iskustvo i strast prema finansijama sijaju kroz svaki poduhvat, osiguravajući da vaše poslovanje nije samo pripremljeno za budućnost, već i spremno da u njoj napreduje.",
+    "founder": "Sa dinamičnom kombinacijom od 25 godina finansijske mudrosti i lične misije da podstakne poslovni uspeh, Samira nije samo osnivač i CEO Avers-a — ona je <b>transformativna snaga u finansijskom konsultovanju.</b>",
+    "founderDescription": "Njen pristup kombinuje duboko razumevanje tržišta, personalizovane strategije i bogatstvo znanja, čineći Avers sinonimom za neuporedivu posvećenost uspehu klijenata.",
+    "founderDescription2": "Sa <b>temeljima izgrađenim na poverenju, inovacijama i nepokolebljivoj posvećenosti postizanju finansijske izvrsnosti,</b> Samira i njen tim u Avers-u nisu samo savetnici, već partneri na vašem putu ka izvrsnosti.",
+    "founderDescription3": "Njihovo bogatstvo iskustva i strast prema finansijama se ogleda u svakom poduhvatu, osiguravajući da vaše poslovanje ne samo bude spremno za budućnost, već i da u njoj uspeva.",
     "founderName": "Osnivač i CEO",
     "founderPosition": "Samira Bjelica"
   },
   "trust": {
-    "description": "OTKRIVANJE PRILIKA, NAVIGACIJA PROSPERITETA I OSIGURANJE MIRA UMA.",
+    "description": "OTKRIVANJE PRILIKA, NAVIGACIJA KROZ PROSPERITET I OSIGURANJE MIRNOG UMA.",
     "title": "VAŠE POVERENJE, NAŠA POSVEĆENOST"
   },
   "contact": {
-    "title": "RAZGOVARAJMO",
-    "description": "Imate veliku ideju ili brend za razvoj i potrebna vam je pomoć? Javite nam se, voleli bismo da čujemo o vašem projektu i pružimo pomoć",
+    "title": "UPOZNAJMO SE",
+    "description": "Imate veliku ideju ili brend koji treba razviti i potrebna vam je pomoć? Onda nas kontaktirajte, rado bismo čuli o vašem projektu i pružili pomoć.",
     "address": {
       "title": "ADRESA",
-      "description": "dr Dragoslava Popovića 14, lokal 12\nBeograd, Srbija"
+      "description": "dr Dragoslava Popovića 14, lokal 12<br/>Beograd, Srbija"
     },
     "phone": {
       "title": "BROJ TELEFONA",
@@ -55,12 +57,12 @@
       "name": "Ime",
       "email": "Email",
       "message": "Poruka",
-      "submitting": "Slanje...",
+      "submitting": "Šaljem...",
       "submit": "Pošalji"
     }
   },
   "footer": {
     "copyright": "Autorska prava | Informacije",
-    "info": "Dizajnirao i razvio NTSH ekskluzivno za Avers."
+    "info": "Dizajnirano i razvijeno od strane NTSH ekskluzivno za Avers."
   }
 }

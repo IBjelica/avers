@@ -17,22 +17,23 @@ import { Inter } from 'next/font/google'
 import styles from './layout.module.css'
 import React from 'react';
 import { I18nextProvider, useTranslation } from 'react-i18next';
-import i18n from '../i18n';
+import i18n from '@/i18n';
 import parse from 'html-react-parser';
+import { fontGuide } from '@/lib/fonts';
 
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
 })
 
-const MENU_ITEMS = ['HOME', 'OUR VALUES', 'SERVICES', 'ABOUT US', 'CONTACT US'] as const;
+const MENU_ITEMS = ['menu.home', 'menu.ourvalues', 'menu.services', 'menu.aboutus', 'menu.contactus'] as const;
 type MenuItem = typeof MENU_ITEMS[number];
 
 function AversFinancialContent() {
   const { t, i18n } = useTranslation();
   const [mounted, setMounted] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
-  const [activeSection, setActiveSection] = useState<MenuItem>('HOME');
+  const [activeSection, setActiveSection] = useState<MenuItem>('menu.home');
   const [hoveredItem, setHoveredItem] = useState<MenuItem | null>(null);
   const menuItemRefs = useRef<Map<MenuItem, HTMLLIElement>>(new Map());
   const underlineRef = useRef<HTMLDivElement>(null);
@@ -55,7 +56,7 @@ function AversFinancialContent() {
         if (entry.isIntersecting) {
           const sectionId = entry.target.id;
           const menuItem = MENU_ITEMS.find(
-            item => item.toLowerCase().replace(' ', '-') === sectionId
+            item => item.replace('menu.', '').toLowerCase().replace(' ', '-') === sectionId
           );
           if (menuItem) {
             setActiveSection(menuItem);
@@ -74,7 +75,7 @@ function AversFinancialContent() {
 
     // Observe all sections
     MENU_ITEMS.forEach(item => {
-      const section = document.querySelector(`#${item.toLowerCase().replace(' ', '-')}`);
+      const section = document.querySelector(`#${item.replace('menu.', '').toLowerCase().replace(' ', '-')}`);
       if (section) {
         observer.observe(section);
       }
@@ -186,16 +187,14 @@ function AversFinancialContent() {
     return null;
   }
 
-  const currentFont = i18n.language === 'sr' ? 'var(--font-newyork)' : 'var(--font-glitten)';
-
   return (
-    <div suppressHydrationWarning className={`min-h-screen flex flex-col font-sans ${inter.className}`} style={{ '--current-font': currentFont } as React.CSSProperties}>
+    <div suppressHydrationWarning className={`min-h-screen flex flex-col font-sans ${inter.className}`}>
       {/* Hero Section */}
       <section id="home" className="h-[calc(100vh-80px)] max-h-screen bg-cover bg-left-top bg-no-repeat relative" style={{backgroundImage: "url('/assets/images/hero-bg.jpg')"}}>
         <div className="absolute inset-0 bg-black opacity-25 z-0"></div>
         <div className={`${styles.container} mt-20 mx-auto flex flex-col h-full justify-start row-gap-[15%] text-white text-center pt-20 relative z-10`}>
           <Image src="/assets/icons/logo-white.svg" alt="Avers Logo" width={237} height={102} className="mb-8 mx-auto" />
-          <h1 className={`font-medium mt-[40%] md:mt-[25%] ml:mt-[92px] mb-8 leading-[0.987] uppercase w-full md:w-[85vw] max-w-[1344px] text-[min(12vw,157px)] mx-auto`} style={{ fontFamily: 'var(--current-font)' }}>
+          <h1 className={`font-medium mt-[40%] md:mt-[25%] ml:mt-[92px] mb-8 leading-[0.987] uppercase w-full md:w-[85vw] max-w-[1344px] text-[min(12vw,157px)] mx-auto`} style={{ fontFamily: fontGuide.headings.h1[i18n.language as 'en' | 'sr'] }}>
             {t('hero.title')}
           </h1>
         </div>
@@ -228,10 +227,10 @@ function AversFinancialContent() {
                 onMouseLeave={handleMouseLeave}
               >
                 <a 
-                  href={`#${item.toLowerCase().replace(' ', '-')}`} 
+                  href={`#${item.replace('menu.', '').toLowerCase().replace(' ', '-')}`} 
                   className="whitespace-nowrap hover:text-white transition-colors duration-200 py-1 block"
                 >
-                  {item}
+                  {t(item)}
                 </a>
               </li>
             ))}
@@ -256,6 +255,7 @@ function AversFinancialContent() {
               <h2 
                 className="text-[clamp(50px,_6vw,_116px)] font-bold leading-none max-xs:break-words"
                 style={{
+                  fontFamily: fontGuide.headings.h2[i18n.language as 'en' | 'sr'],
                   backgroundImage: "url('/assets/images/gradient.png')",
                   backgroundClip: "text",
                   WebkitBackgroundClip: "text",
@@ -266,13 +266,13 @@ function AversFinancialContent() {
               >{t('values.title')}</h2>
             </div>
             <div className="mt-4 md:w-[40%]">
-              <p className="text-[clamp(15px,_1.125vw,_20px)] font-light leading-normal text-justify" style={{fontFamily: 'var(--font-alaska)'}}>
+              <p className="text-[clamp(15px,_1.125vw,_20px)] font-light leading-normal text-justify" style={{ fontFamily: fontGuide.body.secondary }}>
                 {t('values.mission')}
               </p>
-              <p className="text-[clamp(15px,_1.125vw,_20px)] font-light leading-normal mt-[30px] text-justify" style={{fontFamily: 'var(--font-alaska)'}}>
+              <p className="text-[clamp(15px,_1.125vw,_20px)] font-light leading-normal mt-[30px] text-justify" style={{ fontFamily: fontGuide.body.secondary }}>
                 {t('values.commitment')}
               </p>
-              <p className="text-[clamp(15px,_1.125vw,_20px)] font-light leading-normal mt-[30px] text-justify" style={{fontFamily: 'var(--font-alaska)'}}>
+              <p className="text-[clamp(15px,_1.125vw,_20px)] font-light leading-normal mt-[30px] text-justify" style={{ fontFamily: fontGuide.body.secondary }}>
                 {t('values.join')}
               </p>
             </div>
@@ -286,6 +286,7 @@ function AversFinancialContent() {
           <h2
             className="text-5xl font-bold mb-16"
             style={{
+              fontFamily: fontGuide.headings.h2[i18n.language as 'en' | 'sr'],
               color: '#0E1A28',
               paddingBottom: '18px',
               borderBottom: '1px solid #0E1A28',
@@ -307,7 +308,7 @@ function AversFinancialContent() {
                   }}
                 >
                   <div className="w-[300px] max-w-full bg-white rounded-2xl text-center px-[clamp(1rem,_2vw,_3rem)] py-6">
-                    <h3 className="text-[#53758F] text-[clamp(14px,_1.4vw,_20px)] leading-5 whitespace-nowrap ml:whitespace-pre-line" style={{ fontFamily: 'var(--font-alaska)' }}>{t(`services.${service.key}`)}</h3>
+                    <h3 className="text-[#53758F] text-[clamp(14px,_1.4vw,_20px)] leading-5 whitespace-nowrap ml:whitespace-pre-line" style={{ fontFamily: fontGuide.headings.h3[i18n.language as 'en' | 'sr'] }}>{t(`services.${service.key}`)}</h3>
                   </div>
                 </div>
               </div>
@@ -331,13 +332,13 @@ function AversFinancialContent() {
               }}
               className="w-full"
             >
-              <CarouselContent className="-ml-[clamp(50px,_10vw,_113px)]" style={{fontFamily: 'var(--font-alaska)'}}>
+              <CarouselContent className="-ml-[clamp(50px,_10vw,_113px)]" style={{fontFamily: fontGuide.body.primary}}>
                 {[1, 2, 3, 4, 5].map((i) => (
                   <CarouselItem key={i} className="max-w-[658px] max-md:max-w-[90vw] pl-[clamp(20px,_5vw,_113px)] basis-full sm:basis-3/4 md:basis-2/3 lg:basis-1/2 xl:basis-[35%] transition-opacity duration-300">
                     <div className="bg-white p-8 rounded-2xl h-full shadow-lg mx-2 transition-all duration-300 hover:shadow-xl" style={{color: '#0E1A28'}}>
-                      <p className="font-bold text-[clamp(26px,_1.75vw,_32px)] leading-[1.155]">{t('testimonials.name')}</p>
+                      <p className="font-bold text-[clamp(26px,_1.75vw,_32px)] leading-[1.155]" style={{fontFamily: fontGuide.headings.h3[i18n.language as 'en' | 'sr']}}>{t('testimonials.name')}</p>
                       <p className="text-[clamp(12px,_0.9vw,_16px)] leading-none">{t('testimonials.position')}</p>
-                      <p className="text-[clamp(16px,_1.25vw,_26px)] mt-6 leading-[1.155]">{t('testimonials.description')}</p>
+                      <p className="text-[clamp(16px,_1.25vw,_26px)] mt-6 leading-[1.155]" style={{fontFamily: fontGuide.body.primary}}>{t('testimonials.description')}</p>
                     </div>
                   </CarouselItem>
                 ))}
@@ -355,38 +356,39 @@ function AversFinancialContent() {
       {/* About Us Section */}
       <section id="about-us" className="py-[clamp(50px,_2vw,_154px)] scroll-mt-12">
         <div className={`${styles.container} mx-auto`}>
-          <h2 className={`text-[50px] leading-none text-[#0E1A28] font-bold mb-[127px] pb-[18px] border-b-[1px] border-[#0E1A28]`}>{t('about.title')}</h2>
+          <h2 className={`text-[50px] leading-none text-[#0E1A28] font-bold mb-[127px] pb-[18px] border-b-[1px] border-[#0E1A28]`} style={{ fontFamily: fontGuide.headings.h1[i18n.language as 'en' | 'sr'] }}>{t('about.title')}</h2>
           <div className="grid grid-cols-[repeat(18,minmax(0,1fr))] grid-rows-5 max-xs:grid-cols-[repeat(14,minmax(0,1fr))] max-xs:grid-rows-7 gap-x-6 md:grid-rows-3 [&>*]:min-w-0">
-            <h3 className={`w-[clamp(300px,_90vw,_658px)] text-[clamp(53px,_5.625vw,_94px)] leading-[.9] col-span-full md:col-span-8 row-span-1 font-['glitten-standard']`}>{t('about.description')}</h3>
+            <h3 className={`w-[clamp(300px,_90vw,_658px)] text-[clamp(53px,_5.625vw,_94px)] leading-[.9] col-span-full md:col-span-8 row-span-1`} style={{ fontFamily: fontGuide.headings.h2[i18n.language as 'en' | 'sr'] }}>{t('about.description')}</h3>
             <div className="row-start-2 row-span-2 col-start-2 col-span-8 max-xs:-col-end-2 max-xs:self-center md:col-span-6 pt-[clamp(32px,_10vw,_128px)]">
-              <p className="w-full md:w-[clamp(150px,_25vw,_429px)] max-w-full mb-6 text-[#0E1A28] text-[clamp(15px,_1.125vw,_20px)] leading-normal text-justify" style={{fontFamily: 'var(--font-alaska)'}}>
+              <p className="w-full md:w-[clamp(150px,_25vw,_429px)] max-w-full mb-6 text-[#0E1A28] text-[clamp(15px,_1.125vw,_20px)] leading-normal text-justify" style={{fontFamily: fontGuide.body.secondary}}>
                 {parse(t('about.founder'))}
               </p>
-              <p className="w-full md:w-[clamp(150px,_25vw,_429px)] max-w-full mb-6 text-[#0E1A28] text-[clamp(15px,_1.125vw,_20px)] leading-normal text-justify" style={{fontFamily: 'var(--font-alaska)'}}>
+              <p className="w-full md:w-[clamp(150px,_25vw,_429px)] max-w-full mb-6 text-[#0E1A28] text-[clamp(15px,_1.125vw,_20px)] leading-normal text-justify" style={{fontFamily: fontGuide.body.secondary}}>
                 {parse(t('about.founderDescription'))}
               </p>
             </div>
             <div className="row-start-2 row-span-2 col-start-10 col-span-8 max-xs:row-start-4 max-xs:col-start-2 max-xs:-col-end-2 md:col-span-6 md:pt-[clamp(74px,_20vw,_296px)]">
-              <p className="w-full md:w-[clamp(150px,_25vw,_434px)] mb-6 text-[#0E1A28] text-[clamp(15px,_1.125vw,_20px)] leading-normal text-justify" style={{fontFamily: 'var(--font-alaska)'}}>
+              <p className="w-full md:w-[clamp(150px,_25vw,_434px)] mb-6 text-[#0E1A28] text-[clamp(15px,_1.125vw,_20px)] leading-normal text-justify" style={{fontFamily: fontGuide.body.secondary}}>
                 {parse(t('about.founderDescription2'))}
               </p>
-              <p className="w-full md:w-[clamp(150px,_25vw,_434px)] text-[#0E1A28] text-[clamp(15px,_1.125vw,_20px)] leading-normal text-justify" style={{fontFamily: 'var(--font-alaska)'}}>
+              <p className="w-full md:w-[clamp(150px,_25vw,_434px)] text-[#0E1A28] text-[clamp(15px,_1.125vw,_20px)] leading-normal text-justify" style={{fontFamily: fontGuide.body.secondary}}>
                 {parse(t('about.founderDescription3'))}
               </p>
             </div>
             <div className="relative flex flex-row max-xs:flex-col-reverse max-xs:self-center md:flex-col row-start-4 row-span-2 max-xs:row-start-6 md:row-start-1 md:row-span-3 col-start-2 col-end-auto md:col-start-15 md:col-span-5 self-end h-[80%] xl:h-full max-md:h-[500px] max-md:w-[80vw] md:max-w-[407px]">
-              <div className="relative grow-[.9] md:grow-[.8] md:grow max-h-[696px] max-md:min-w-48 rounded-[27px] overflow-hidden">
+              <div className="relative grow-[.9] md:grow-[.8] md:grow max-h-[696px] max-md:min-w-48 rounded-[27px] overflow-hidden bg-[#53758F]">
                 <Image 
                   src="/assets/images/founder.png" 
                   alt="Founder and CEO" 
-                  layout="fill" 
-                  objectFit="contain"
+                  width={800}
+                  height={1200}
                   quality={100}
-                  className="object-center"
+                  className="object-contain w-full h-full"
+                  style={{ objectPosition: 'center 10%' }}
                 /> 
               </div>
               <div className="flex flex-col justify-end relative bottom-0 left-0 bg-white p-6 text-center whitespace-nowrap">
-                <p className="text-[clamp(14px,_1.7vw,_24px)] leading-5" style={{fontFamily: 'var(--font-alaska)'}}>{parse(t('about.founderName'))}</p>
+                <p className="text-[clamp(14px,_1.7vw,_24px)] leading-5" style={{fontFamily: fontGuide.body.secondary}}>{parse(t('about.founderName'))}</p>
                 <p className={`font-['glitten-standard'] text-[#0E1A28] text-[clamp(26px,_3vw,_50px)]`}>{parse(t('about.founderPosition'))}</p>
               </div>
             </div>
@@ -397,7 +399,7 @@ function AversFinancialContent() {
       {/* Trust Section */}
       <section className="pt-12 pb-24 ml:py-24 text-[#0E1A28]">
         <div className={`${styles.container} mx-auto text-center`}>
-          <p className="text-[clamp(18px,_1.4vw,_24px)] font-light leading-[1.8] mx-auto mb-[35px]" style={{fontFamily: 'var(--font-alaska)'}}>{parse(t('trust.description'))}</p>
+          <p className="text-[clamp(18px,_1.4vw,_24px)] font-light leading-[1.8] mx-auto mb-[35px]" style={{fontFamily: fontGuide.body.secondary}}>{parse(t('trust.description'))}</p>
           <h2
             className="text-[clamp(85px,_6.5vw,_116px)] font-bold mt-9 mb-6 leading-none max-xs:break-words"
             style={{
@@ -421,19 +423,19 @@ function AversFinancialContent() {
           <div className="flex justify-between bg-white w-full mx-auto py-[97px] px-[clamp(14px,_2.5vw,_86px)] rounded-[27px] shadow-xl flex-col ml:flex-row ml:max-w-[1621px]">
             <div className="max-w-full ml:max-w-[clamp(300px,_30vw,_538px)]">
               <div className="mb-[76px]">
-                <h2 className="text-[50px] font-bold leading-none mb-5">{parse(t('contact.title'))}</h2>
-                <p className="text-xl mb-8" style={{fontFamily: 'var(--font-alaska)'}}>{parse(t('contact.description'))}</p>
+                <h2 className={`text-[50px] leading-none text-[#0E1A28] font-bold pb-[18px]`} style={{ fontFamily: fontGuide.headings.h2[i18n.language as 'en' | 'sr'] }}>{t('contact.title')}</h2>
+                <p className="text-xl mb-8" style={{ fontFamily: fontGuide.body.secondary }}>{parse(t('contact.description'))}</p>
               </div>
               <div className="mb-[53px]">
                 <h3 className="text-[50px] font-bold leading-none mb-5">{parse(t('contact.address.title'))}</h3>
-                <p className="" style={{fontFamily: 'var(--font-alaska)'}}>{parse(t('contact.address.description'))}</p>
+                <p className="" style={{fontFamily: fontGuide.body.secondary}}>{parse(t('contact.address.description'))}</p>
               </div>
               <div>
                 <h3 className="text-[50px] font-bold leading-none mb-5">{parse(t('contact.phone.title'))}</h3>
-                <p className="" style={{fontFamily: 'var(--font-alaska)'}}>{parse(t('contact.phone.description'))}</p>
+                <p className="" style={{fontFamily: fontGuide.body.secondary}}>{parse(t('contact.phone.description'))}</p>
               </div>
             </div>
-            <div className="w-full ml:w-1/2 ml:max-w-[772px] mt-[53px] ml:mb-0" style={{fontFamily: 'var(--font-alaska)'}}>
+            <div className="w-full ml:w-1/2 ml:max-w-[772px] mt-[53px] ml:mb-0" style={{fontFamily: fontGuide.body.secondary}}>
               <form 
                 onSubmit={handleSubmit} 
                 className="space-y-[28px]"
