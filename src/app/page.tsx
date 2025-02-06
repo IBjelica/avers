@@ -194,7 +194,7 @@ function AversFinancialContent() {
         <div className="absolute inset-0 bg-black opacity-25 z-0"></div>
         <div className={`${styles.container} mt-20 mx-auto flex flex-col h-full justify-start row-gap-[15%] text-white text-center pt-20 relative z-10`}>
           <Image src="/assets/icons/logo-white.svg" alt="Avers Logo" width={237} height={102} className="mb-8 mx-auto" />
-          <h1 className={`font-medium mt-[40%] md:mt-[25%] ml:mt-[92px] mb-8 leading-[0.987] uppercase w-full md:w-[85vw] max-w-[1344px] text-[min(12vw,157px)] mx-auto`} style={{ fontFamily: fontGuide.headings.h1[i18n.language as 'en' | 'sr'] }}>
+          <h1 className={`font-medium mt-[40%] md:mt-[25%] ml:mt-[92px] mb-8 leading-[0.987] uppercase w-full md:w-[85vw] max-w-[1344px] text-[min(12vw,157px)] mx-auto`}>
             {t('hero.title')}
           </h1>
         </div>
@@ -255,7 +255,6 @@ function AversFinancialContent() {
               <h2 
                 className="text-[clamp(50px,_6vw,_116px)] font-bold leading-none max-xs:break-words"
                 style={{
-                  fontFamily: fontGuide.headings.h2[i18n.language as 'en' | 'sr'],
                   backgroundImage: "url('/assets/images/gradient.png')",
                   backgroundClip: "text",
                   WebkitBackgroundClip: "text",
@@ -286,7 +285,6 @@ function AversFinancialContent() {
           <h2
             className="text-5xl font-bold mb-16"
             style={{
-              fontFamily: fontGuide.headings.h2[i18n.language as 'en' | 'sr'],
               color: '#0E1A28',
               paddingBottom: '18px',
               borderBottom: '1px solid #0E1A28',
@@ -356,9 +354,9 @@ function AversFinancialContent() {
       {/* About Us Section */}
       <section id="about-us" className="py-[clamp(50px,_2vw,_154px)] scroll-mt-12">
         <div className={`${styles.container} mx-auto`}>
-          <h2 className={`text-[50px] leading-none text-[#0E1A28] font-bold mb-[127px] pb-[18px] border-b-[1px] border-[#0E1A28]`} style={{ fontFamily: fontGuide.headings.h1[i18n.language as 'en' | 'sr'] }}>{t('about.title')}</h2>
+          <h2 className={`text-[50px] leading-none text-[#0E1A28] font-bold mb-[127px] pb-[18px] border-b-[1px] border-[#0E1A28]`}>{t('about.title')}</h2>
           <div className="grid grid-cols-[repeat(18,minmax(0,1fr))] grid-rows-5 max-xs:grid-cols-[repeat(14,minmax(0,1fr))] max-xs:grid-rows-7 gap-x-6 md:grid-rows-3 [&>*]:min-w-0">
-            <h3 className={`w-[clamp(300px,_90vw,_658px)] text-[clamp(53px,_5.625vw,_94px)] leading-[.9] col-span-full md:col-span-8 row-span-1`} style={{ fontFamily: fontGuide.headings.h2[i18n.language as 'en' | 'sr'] }}>{t('about.description')}</h3>
+            <h3 className={`w-[clamp(300px,_90vw,_658px)] text-[clamp(53px,_5.625vw,_94px)] leading-[.9] col-span-full md:col-span-8 row-span-1`}>{t('about.description')}</h3>
             <div className="row-start-2 row-span-2 col-start-2 col-span-8 max-xs:-col-end-2 max-xs:self-center md:col-span-6 pt-[clamp(32px,_10vw,_128px)]">
               <p className="w-full md:w-[clamp(150px,_25vw,_429px)] max-w-full mb-6 text-[#0E1A28] text-[clamp(15px,_1.125vw,_20px)] leading-normal text-justify" style={{fontFamily: fontGuide.body.secondary}}>
                 {parse(t('about.founder'))}
@@ -423,7 +421,7 @@ function AversFinancialContent() {
           <div className="flex justify-between bg-white w-full mx-auto py-[97px] px-[clamp(14px,_2.5vw,_86px)] rounded-[27px] shadow-xl flex-col ml:flex-row ml:max-w-[1621px]">
             <div className="max-w-full ml:max-w-[clamp(300px,_30vw,_538px)]">
               <div className="mb-[76px]">
-                <h2 className={`text-[50px] leading-none text-[#0E1A28] font-bold pb-[18px]`} style={{ fontFamily: fontGuide.headings.h2[i18n.language as 'en' | 'sr'] }}>{t('contact.title')}</h2>
+                <h2 className={`text-[50px] leading-none text-[#0E1A28] font-bold pb-[18px]`}>{t('contact.title')}</h2>
                 <p className="text-xl mb-8" style={{ fontFamily: fontGuide.body.secondary }}>{parse(t('contact.description'))}</p>
               </div>
               <div className="mb-[53px]">
