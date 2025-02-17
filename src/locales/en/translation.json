@@ -1,6 +1,5 @@
 {
   "menu": {
-    "home": "HOME",
     "ourvalues": "OUR VALUES",
     "services": "SERVICES",
     "aboutus": "ABOUT US",
@@ -17,7 +16,7 @@
     "join": "Join us on the path toward financial prosperity and security."
   },
   "services": {
-    "title": "Our Services",
+    "title": "OUR SERVICES",
     "financial": "FINANCIAL CONSULTING",
     "accounting": "ACCOUNTING AND BOOKKEEPING",
     "backoffice": "BACK OFFICE"
@@ -29,7 +28,7 @@
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus nibh mauris, nec turpis orci lectus maecenas. Suspendisse sed magna eget nibh in turpis."
   },
   "about": {
-    "title": "About Us",
+    "title": "ABOUT US",
     "description": "YOUR GUIDE TO FINANCIAL EXCELLENCE",
     "founder": "With a dynamic blend of 25 years of financial wisdom and a personal mission to drive business success, Samira isn't just the founder and CEO of Avers — she's a <b>transformative force in financial consulting.</b>",
     "founderDescription": "Her approach combines deep market insight, personalised strategies and a wealth of knowledge, making Avers synonymous with an unparalleled commitment to client success.",
@@ -54,8 +53,8 @@
       "description": "+1 234 567 8901"
     },
     "form": {
-      "name": "Name",
-      "email": "Email",
+      "name": "Name & Surname",
+      "email": "Email address",
       "message": "Message",
       "submitting": "Sending...",
       "submit": "Submit"

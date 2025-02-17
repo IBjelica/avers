@@ -26,23 +26,39 @@ const inter = Inter({
   display: 'swap',
 })
 
-const MENU_ITEMS = ['menu.home', 'menu.ourvalues', 'menu.services', 'menu.aboutus', 'menu.contactus'] as const;
+const MENU_ITEMS = ['menu.ourvalues', 'menu.services', 'menu.aboutus', 'menu.contactus'] as const;
 type MenuItem = typeof MENU_ITEMS[number];
 
 function AversFinancialContent() {
   const { t, i18n } = useTranslation();
   const [mounted, setMounted] = useState(false);
+  const [pageLoaded, setPageLoaded] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
-  const [activeSection, setActiveSection] = useState<MenuItem>('menu.home');
+  const [activeSection, setActiveSection] = useState<MenuItem>('menu.ourvalues');
   const [hoveredItem, setHoveredItem] = useState<MenuItem | null>(null);
   const menuItemRefs = useRef<Map<MenuItem, HTMLLIElement>>(new Map());
   const underlineRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setMounted(true);
+    
+    const handleLoad = () => {
+      setPageLoaded(true);
+      // Set initial underline position
+      updateUnderlinePosition(activeSection);
+    };
+
+    if (document.readyState === 'complete') {
+      handleLoad();
+    } else {
+      window.addEventListener('load', handleLoad);
+      return () => window.removeEventListener('load', handleLoad);
+    }
   }, []);
 
   useEffect(() => {
+    if (!pageLoaded) return;
+
     const handleScroll = () => {
       const heroSection = document.querySelector('#home');
       if (heroSection) {
@@ -55,8 +71,9 @@ function AversFinancialContent() {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const sectionId = entry.target.id;
+          // Match the section ID directly with the menu item
           const menuItem = MENU_ITEMS.find(
-            item => item.replace('menu.', '').toLowerCase().replace(' ', '-') === sectionId
+            item => item.replace('menu.', '') === sectionId
           );
           if (menuItem) {
             setActiveSection(menuItem);
@@ -75,7 +92,8 @@ function AversFinancialContent() {
 
     // Observe all sections
     MENU_ITEMS.forEach(item => {
-      const section = document.querySelector(`#${item.replace('menu.', '').toLowerCase().replace(' ', '-')}`);
+      const sectionId = item.replace('menu.', '');
+      const section = document.querySelector(`#${sectionId}`);
       if (section) {
         observer.observe(section);
       }
@@ -89,7 +107,7 @@ function AversFinancialContent() {
       window.removeEventListener('scroll', handleScroll);
       observer.disconnect();
     };
-  }, [hoveredItem]);
+  }, [pageLoaded, hoveredItem]);
 
   useEffect(() => {
     // Sync language with URL on mount
@@ -102,6 +120,7 @@ function AversFinancialContent() {
   }, []);
 
   const updateUnderlinePosition = (item: MenuItem) => {
+    console.log(item);
     const currentItem = menuItemRefs.current.get(item);
     if (!currentItem || !underlineRef.current) return;
 
@@ -227,7 +246,7 @@ function AversFinancialContent() {
                 onMouseLeave={handleMouseLeave}
               >
                 <a 
-                  href={`#${item.replace('menu.', '').toLowerCase().replace(' ', '-')}`} 
+                  href={`#${item.replace('menu.', '')}`}
                   className="whitespace-nowrap hover:text-white transition-colors duration-200 py-1 block"
                 >
                   {t(item)}
@@ -240,7 +259,7 @@ function AversFinancialContent() {
             className="absolute bottom-0 h-0.5 bg-white transition-all duration-300"
             style={{
               left: '0px',
-              width: '0px',
+              width: '100px',
               transform: 'translateX(0px)'
             }}
           />
@@ -248,7 +267,7 @@ function AversFinancialContent() {
       </nav>
 
       {/* Our Values Section */}
-      <section id="our-values" className="py-24 text-white" style={{ backgroundColor: '#53758F' }}>
+      <section id="ourvalues" className="py-24 text-white" style={{ backgroundColor: '#53758F' }}>
         <div className={`${styles.container} mx-auto`}>
           <div className="flex flex-col md:flex-row items-start justify-evenly">
             <div className="md:w-[53%] mb-8 md:mb-0">
@@ -283,7 +302,7 @@ function AversFinancialContent() {
       <section id="services" className="py-24 bg-gray-100">
         <div className={`${styles.container} mx-auto`}>
           <h2
-            className="text-5xl font-bold mb-16"
+            className="font-['glitten-standard'] text-5xl font-bold mb-16"
             style={{
               color: '#0E1A28',
               paddingBottom: '18px',
@@ -306,7 +325,7 @@ function AversFinancialContent() {
                   }}
                 >
                   <div className="w-[300px] max-w-full bg-white rounded-2xl text-center px-[clamp(1rem,_2vw,_3rem)] py-6">
-                    <h3 className="text-[#53758F] text-[clamp(14px,_1.4vw,_20px)] leading-5 whitespace-nowrap ml:whitespace-pre-line" style={{ fontFamily: fontGuide.headings.h3.en }}>{t(`services.${service.key}`)}</h3>
+                    <h3 className="text-[#53758F] text-[clamp(14px,_1.4vw,_20px)] leading-6 whitespace-nowrap ml:whitespace-pre-line" style={{ fontFamily: fontGuide.headings.h3.en }}>{t(`services.${service.key}`)}</h3>
                   </div>
                 </div>
               </div>
@@ -318,7 +337,7 @@ function AversFinancialContent() {
       {/* Testimonials Section */}
       <section className="py-28 text-white overflow-hidden" style={{ backgroundColor: '#53758F' }}>
         <div className="w-full mx-auto px-4">
-          <h2 className="text-5xl font-bold mb-[86px] text-center">{t('testimonials.title')}</h2>
+          <h2 className="font-['glitten-standard'] text-5xl font-bold mb-[86px] text-center">{t('testimonials.title')}</h2>
           <div className="relative -mx-4 sm:-mx-6 md:-mx-8 lg:-mx-16">
             <Carousel
               opts={{
@@ -352,9 +371,9 @@ function AversFinancialContent() {
       </section>
 
       {/* About Us Section */}
-      <section id="about-us" className="py-[clamp(50px,_2vw,_154px)] scroll-mt-12">
+      <section id="aboutus" className="py-[clamp(50px,_2vw,_154px)] scroll-mt-12">
         <div className={`${styles.container} mx-auto`}>
-          <h2 className={`text-[50px] leading-none text-[#0E1A28] font-bold mb-[127px] pb-[18px] border-b-[1px] border-[#0E1A28]`}>{t('about.title')}</h2>
+          <h2 className={`font-['glitten-standard'] text-[50px] leading-none text-[#0E1A28] font-bold mb-[127px] pb-[18px] border-b-[1px] border-[#0E1A28]`}>{t('about.title')}</h2>
           <div className="grid grid-cols-[repeat(18,minmax(0,1fr))] grid-rows-5 max-xs:grid-cols-[repeat(14,minmax(0,1fr))] max-xs:grid-rows-7 gap-x-6 md:grid-rows-3 [&>*]:min-w-0">
             <h3 className={`w-[clamp(300px,_90vw,_658px)] text-[clamp(53px,_5.625vw,_94px)] leading-[.9] col-span-full md:col-span-8 row-span-1`}>{t('about.description')}</h3>
             <div className="row-start-2 row-span-2 col-start-2 col-span-8 max-xs:-col-end-2 max-xs:self-center md:col-span-6 pt-[clamp(32px,_10vw,_128px)]">
@@ -376,12 +395,12 @@ function AversFinancialContent() {
             <div className="relative flex flex-row max-xs:flex-col-reverse max-xs:self-center md:flex-col row-start-4 row-span-2 max-xs:row-start-6 md:row-start-1 md:row-span-3 col-start-2 col-end-auto md:col-start-15 md:col-span-5 self-end h-[80%] xl:h-full max-md:h-[500px] max-md:w-[80vw] md:max-w-[407px]">
               <div className="relative grow-[.9] md:grow-[.8] md:grow max-h-[696px] max-md:min-w-48 rounded-[27px] overflow-hidden bg-[#53758F]">
                 <Image 
-                  src="/assets/images/founder.png" 
-                  alt="Founder and CEO" 
-                  width={800}
-                  height={1200}
+                  src="/assets/images/founder@2x.png"
+                  alt="Founder and CEO"
+                  layout="fill"
+                  objectFit="cover"
                   quality={100}
-                  className="object-contain w-full h-full"
+                  priority
                   style={{ objectPosition: 'center 10%' }}
                 /> 
               </div>
@@ -416,7 +435,7 @@ function AversFinancialContent() {
       </section>
 
       {/* Contact Form Section */}
-      <section id="contact-us" className="py-24 bg-cover bg-center" style={{backgroundImage: "url('/assets/images/contact-bg.png')"}}>
+      <section id="contactus" className="py-24 bg-cover bg-center" style={{backgroundImage: "url('/assets/images/contact-bg.png')"}}>
         <div className={`${styles.container} mx-auto`}>
           <div className="flex justify-between bg-white w-full mx-auto py-[97px] px-[clamp(14px,_2.5vw,_86px)] rounded-[27px] shadow-xl flex-col ml:flex-row ml:max-w-[1621px]">
             <div className="max-w-full ml:max-w-[clamp(300px,_30vw,_538px)]">
@@ -508,7 +527,12 @@ function AversFinancialContent() {
       <footer className="bg-[#111111] text-white py-4">
         <div className={`${styles.container} flex items-center justify-between max-w-[940px] w-full text-[13px] leading-5 mx-auto text-center ${inter.className}`}>
           <p>{parse(t('footer.copyright'))}</p>
-          <p>{parse(t('footer.info'))}</p>
+          <p>
+            {parse((t('footer.info') as string).replace(
+              'NTSH',
+              '<a href="https://ntsh.studio/" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300 transition-colors">NTSH</a>'
+            ))}
+          </p>
         </div>
       </footer>
     </div>

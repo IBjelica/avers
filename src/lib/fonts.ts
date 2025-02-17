@@ -14,6 +14,10 @@ export const alaska = localFont({
   variable: "--font-alaska",
   display: 'swap',
   preload: true,
+  // Explicitly declare support for Latin Extended characters
+  subsets: ['latin', 'latin-ext'],
+  // Ensure proper Unicode range coverage
+  unicodeRange: 'U+0000-00FF, U+0100-017F',
 });
 
 export const newYork = localFont({

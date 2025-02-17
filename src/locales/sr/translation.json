@@ -1,6 +1,5 @@
 {
   "menu": {
-    "home": "POČETNA",
     "ourvalues": "NAŠE VREDNOSTI",
     "services": "USLUGE",
     "aboutus": "O NAMA",
@@ -17,9 +16,9 @@
     "join": "Pridružite nam se na putu ka finansijskom prosperitetu i sigurnosti."
   },
   "services": {
-    "title": "Usluge Koje Nudimo",
-    "financial": "FINANSISKO KONSULTOVANJE",
-    "accounting": "KNJIGOVODSTVO I RAČUNOVODSTVO",
+    "title": "USLUGE KOJE NUDIMO",
+    "financial": "FINANSIJSKO KONSULTOVANJE",
+    "accounting": "KNJIGOVOĐSTVO I RAČUNOVOĐSTVO",
     "backoffice": "ADMINISTRACIJA"
   },
   "testimonials": {
@@ -29,7 +28,7 @@
     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus nibh mauris, nec turpis orci lectus maecenas. Suspendisse sed magna eget nibh in turpis."
   },
   "about": {
-    "title": "O Nama",
+    "title": "O NAMA",
     "description": "OSLONAC NA PUTU KA FINANSIJSKOJ IZVRSNOSTI",
     "founder": "Sa dinamičnom kombinacijom od 25 godina finansijske mudrosti i lične misije da podstakne poslovni uspeh, Samira nije samo osnivač i CEO Avers-a — ona je <b>transformativna snaga u finansijskom konsultovanju.</b>",
     "founderDescription": "Njen pristup kombinuje duboko razumevanje tržišta, personalizovane strategije i bogatstvo znanja, čineći Avers sinonimom za neuporedivu posvećenost uspehu klijenata.",
@@ -54,8 +53,8 @@
       "description": "+1 234 567 8901"
     },
     "form": {
-      "name": "Ime",
-      "email": "Email",
+      "name": "Ime i Prezime",
+      "email": "Email adresa",
       "message": "Poruka",
       "submitting": "Šaljem...",
       "submit": "Pošalji"
