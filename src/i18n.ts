@@ -9,20 +9,7 @@ type SupportedLanguage = typeof SUPPORTED_LANGUAGES[number];
 
 // Type for translation resources
 interface TranslationResources {
-  translation: {
-    menu: {
-      ourvalues: string;
-      services: string;
-      aboutus: string;
-      contactus: string;
-    };
-    footer: {
-      copyright: string;
-      info: string;
-    };
-    // ... other translations
-    [key: string]: any;
-  };
+  translation: typeof enTranslations;
 }
 
 declare module 'i18next' {
@@ -32,7 +19,6 @@ declare module 'i18next' {
       en: TranslationResources;
       sr: TranslationResources;
     };
-    returnNull: false;
   }
 }
 
