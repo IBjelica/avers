@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://avers.rs/sitemap.xml
+
+# Optimized for both English and Serbian content
+Allow: /en/
+Allow: /sr/
+
+# Prevent access to development/staging environments
+Disallow: /dev/
+Disallow: /staging/
+Disallow: /test/
+
+# Prevent indexing of admin or private areas
+Disallow: /admin/
+Disallow: /private/

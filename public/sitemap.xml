@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- English URLs -->
+  <url>
+    <loc>https://avers.rs/en</loc>
+    <xhtml:link rel="alternate" hreflang="sr" href="https://avers.rs/sr"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://avers.rs/en"/>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://avers.rs/en/services</loc>
+    <xhtml:link rel="alternate" hreflang="sr" href="https://avers.rs/sr/usluge"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://avers.rs/en/services"/>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://avers.rs/en/about</loc>
+    <xhtml:link rel="alternate" hreflang="sr" href="https://avers.rs/sr/o-nama"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://avers.rs/en/about"/>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://avers.rs/en/contact</loc>
+    <xhtml:link rel="alternate" hreflang="sr" href="https://avers.rs/sr/kontakt"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://avers.rs/en/contact"/>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Serbian URLs -->
+  <url>
+    <loc>https://avers.rs/sr</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://avers.rs/en"/>
+    <xhtml:link rel="alternate" hreflang="sr" href="https://avers.rs/sr"/>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://avers.rs/sr/usluge</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://avers.rs/en/services"/>
+    <xhtml:link rel="alternate" hreflang="sr" href="https://avers.rs/sr/usluge"/>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://avers.rs/sr/o-nama</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://avers.rs/en/about"/>
+    <xhtml:link rel="alternate" hreflang="sr" href="https://avers.rs/sr/o-nama"/>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://avers.rs/sr/kontakt</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://avers.rs/en/contact"/>
+    <xhtml:link rel="alternate" hreflang="sr" href="https://avers.rs/sr/kontakt"/>
+    <lastmod>2025-02-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>
