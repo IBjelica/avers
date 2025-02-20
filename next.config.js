@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'standalone',
-  tracing: false, // Disable tracing
   images: {
     unoptimized: true
   },

@@ -5,15 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { useEffect, useState, useRef } from 'react'
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-  CarouselDots,
-  Autoplay,
-} from "@/components/ui/carousel"
+import { Carousel, CarouselContent, CarouselItem, CarouselDots } from "@/components/ui/carousel"
 import { Inter } from 'next/font/google'
 import styles from './layout.module.css'
 import React from 'react';
@@ -109,6 +101,30 @@ function AversFinancialContent() {
       observer.disconnect();
     };
   }, [pageLoaded, hoveredItem]);
+
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const handleScroll = () => {
+      const sections = ['hero', 'about', 'services', 'testimonials', 'contact'];
+      const scrollPosition = window.scrollY + window.innerHeight / 2;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section as MenuItem);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Call it initially
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [setActiveSection]); // Only depend on setActiveSection
 
   useEffect(() => {
     // Sync language with URL on mount
@@ -348,14 +364,6 @@ function AversFinancialContent() {
                 dragFree: true,
                 startIndex: 1
               }}
-              // plugins={[
-              //   Autoplay({
-              //     delay: 3000,
-              //     stopOnInteraction: false,
-              //     stopOnMouseEnter: true,
-              //     rootNode: (emblaRoot: HTMLElement) => emblaRoot
-              //   })
-              // ]}
               className="w-full"
             >
               <CarouselContent className="-ml-[clamp(50px,_10vw,_113px)]" style={{fontFamily: fontGuide.body.primary}}>

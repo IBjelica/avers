@@ -1,7 +1,6 @@
 import * as React from "react"
-import useEmblaCarousel, { type EmblaCarouselType, type EmblaOptionsType, type EmblaPluginType } from "embla-carousel-react"
+import useEmblaCarousel, { type EmblaPluginType } from "embla-carousel-react"
 import Autoplay from 'embla-carousel-autoplay'
-import { ChevronLeft, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 
@@ -15,7 +14,7 @@ interface CarouselProps {
   setApi?: (api: CarouselApi) => void
 }
 
-type CarouselContextProps = {
+interface CarouselContextProps extends CarouselProps {
   carouselRef: ReturnType<typeof useEmblaCarousel>[0]
   api: CarouselApi
   scrollPrev: () => void
@@ -23,7 +22,7 @@ type CarouselContextProps = {
   scrollTo: (index: number) => void
   canScrollPrev: boolean
   canScrollNext: boolean
-} & CarouselProps
+}
 
 interface CarouselDotButtonProps {
   index: number
@@ -352,7 +351,7 @@ const CarouselDots = React.forwardRef<
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => {
   const { api } = useCarousel()
-  const [selectedIndex, setSelectedIndex] = React.useState(0)
+  const [, setSelectedIndex] = React.useState(0)
   const [slideCount, setSlideCount] = React.useState(0)
 
   React.useEffect(() => {
