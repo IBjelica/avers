@@ -10,14 +10,10 @@ export const glitten = localFont({
 });
 
 export const alaska = localFont({
-  src: "../app/fonts/Alaska.otf",
+  src: "../app/fonts/Alaska-NormalLight.ttf",
   variable: "--font-alaska",
   display: 'swap',
-  preload: true,
-  // Explicitly declare support for Latin Extended characters
-  subsets: ['latin', 'latin-ext'],
-  // Ensure proper Unicode range coverage
-  unicodeRange: 'U+0000-00FF, U+0100-017F',
+  preload: true
 });
 
 export const newYork = localFont({

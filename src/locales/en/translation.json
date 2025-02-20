@@ -23,9 +23,21 @@
   },
   "testimonials": {
     "title": "WHAT OUR CLIENTS SAY ABOUT US",
-    "name": "Hannah Schmitt",
-    "position": "CEO at TechCorp",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus nibh mauris, nec turpis orci lectus maecenas. Suspendisse sed magna eget nibh in turpis."
+    "testimonial1": {
+      "name": "Danka Okiljević",
+      "position": "Owner at Kenova D.O.O.",
+      "description": "As a small business owner, accounting was always more of a headache than a help - until I met Mrs. Bjelica from Avers. They know their stuff, explain things in a way I can actually understand, and most importantly, make sure everything is done right without unnecessary complications. I no longer stress about deadlines, taxes, and paperwork because I know it's all taken care of on time. When I have a question, I get a quick and clear answer, without the classic 'we'll have to check' that drags on for weeks. In short, if you're looking for someone to take these worries off your shoulders and really be there for you - Avers is the right team."
+    },
+    "testimonial2": {
+      "name": "Dejan Ilic",
+      "position": "Director at B.G.D.L. Group d.o.o.",
+      "description": "I have been working with \"Avers\" for several years now. From an initially cautious collaboration, we have developed into a relationship of complete cooperation and trust, which is crucial in financial advisory and business operations. Mrs. Bjelica is a person full of tact, understanding of the times we live in, yet unwavering in respecting legal regulations pertaining to specific areas. I particularly emphasize, which is such a rare quality today, that I have never been misled with a casual \"we'll figure it out\" approach. Communication is impeccable and always accessible. Recommendation - more of a financial advisor and less of a traditional bookkeeper. All the best to \"Avers\" and Mrs. Bjelica."
+    },
+    "testimonial3": {
+      "name": "Nenad Tadic",
+      "position": "Director at Good Living Development d.o.o.",
+      "description": "As the director of Good Living Development d.o.o., I want to emphasize that Avers performs their duties with exceptional dedication and commitment that few can match. They are highly professional and focused on long-term client relationships. They execute tasks operationally, both routine ones and those that arise unexpectedly.\n\nMore than anything, our satisfaction with the collaboration is evidenced by the fact that our company has entrusted Avers with managing our bookkeeping obligations since our very founding, and our partnership has been going strong for over 5 years now."
+    }
   },
   "about": {
     "title": "ABOUT US",

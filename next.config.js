@@ -1,5 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'standalone',
+  tracing: false, // Disable tracing
+  images: {
+    unoptimized: true
+  },
   webpack: (config) => {
     config.module.rules.push({
       test: /\.json$/,

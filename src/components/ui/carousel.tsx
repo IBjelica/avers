@@ -1,43 +1,70 @@
 import * as React from "react"
-import useEmblaCarousel, {
-  type UseEmblaCarouselType,
-} from "embla-carousel-react"
+import useEmblaCarousel, { type EmblaCarouselType, type EmblaOptionsType, type EmblaPluginType } from "embla-carousel-react"
+import Autoplay from 'embla-carousel-autoplay'
+import { ChevronLeft, ChevronRight } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 
-type CarouselApi = UseEmblaCarouselType[1]
-type UseCarouselParameters = Parameters<typeof useEmblaCarousel>[0]
+type CarouselApi = ReturnType<typeof useEmblaCarousel>[1]
+type CarouselOptions = NonNullable<Parameters<typeof useEmblaCarousel>[0]>
 
 interface CarouselProps {
-  opts?: UseCarouselParameters
+  opts?: CarouselOptions
+  plugins?: EmblaPluginType[]
   orientation?: "horizontal" | "vertical"
   setApi?: (api: CarouselApi) => void
-  showDots?: boolean
 }
 
 type CarouselContextProps = {
   carouselRef: ReturnType<typeof useEmblaCarousel>[0]
-  api: ReturnType<typeof useEmblaCarousel>[1]
+  api: CarouselApi
   scrollPrev: () => void
   scrollNext: () => void
+  scrollTo: (index: number) => void
   canScrollPrev: boolean
   canScrollNext: boolean
-  selectedIndex: number
-  scrollSnaps: number[]
-  scrollTo: (index: number) => void
 } & CarouselProps
 
-const CarouselContext = React.createContext<CarouselContextProps | null>(null)
-
-function useCarousel() {
-  const context = React.useContext(CarouselContext)
-
-  if (!context) {
-    throw new Error("useCarousel must be used within a <Carousel />")
-  }
-
-  return context
+interface CarouselDotButtonProps {
+  index: number
 }
+
+const CarouselDotButton: React.FC<CarouselDotButtonProps> = ({ index }) => {
+  const { api } = useCarousel();
+  const [selected, setSelected] = React.useState(false);
+
+  React.useEffect(() => {
+    if (!api) return;
+
+    const onSelect = () => {
+      const currentIndex = api.selectedScrollSnap();
+      setSelected(currentIndex === index);
+    };
+
+    api.on('select', onSelect);
+    onSelect();
+
+    return () => {
+      api.off('select', onSelect);
+    };
+  }, [api, index]);
+
+  const onClick = React.useCallback(() => {
+    if (!api) return;
+    api.scrollTo(index);
+  }, [api, index]);
+
+  return (
+    <button
+      className={cn(
+        'w-3 h-3 rounded-full transition-all duration-300',
+        selected ? 'bg-white' : 'bg-gray-300 hover:bg-gray-400'
+      )}
+      onClick={onClick}
+      aria-label={`Go to slide ${index + 1}`}
+    />
+  );
+};
 
 const Carousel = React.forwardRef<
   HTMLDivElement,
@@ -47,6 +74,7 @@ const Carousel = React.forwardRef<
     {
       orientation = "horizontal",
       opts,
+      plugins,
       setApi,
       className,
       children,
@@ -59,25 +87,14 @@ const Carousel = React.forwardRef<
         ...opts,
         axis: orientation === "horizontal" ? "x" : "y",
       },
+      plugins
     )
     const [canScrollPrev, setCanScrollPrev] = React.useState(false)
     const [canScrollNext, setCanScrollNext] = React.useState(false)
-    const [selectedIndex, setSelectedIndex] = React.useState(0)
-    const [scrollSnaps, setScrollSnaps] = React.useState<number[]>([])
-
-    const scrollTo = React.useCallback(
-      (index: number) => {
-        api?.scrollTo(index)
-      },
-      [api]
-    )
 
     const onSelect = React.useCallback((api: CarouselApi) => {
-      if (!api) {
-        return
-      }
+      if (!api) return
 
-      setSelectedIndex(api.selectedScrollSnap())
       setCanScrollPrev(api.canScrollPrev())
       setCanScrollNext(api.canScrollNext())
     }, [])
@@ -88,6 +105,10 @@ const Carousel = React.forwardRef<
 
     const scrollNext = React.useCallback(() => {
       api?.scrollNext()
+    }, [api])
+
+    const scrollTo = React.useCallback((index: number) => {
+      api?.scrollTo(index)
     }, [api])
 
     const handleKeyDown = React.useCallback(
@@ -116,7 +137,6 @@ const Carousel = React.forwardRef<
         return
       }
 
-      setScrollSnaps(api.scrollSnapList())
       onSelect(api)
       api.on("select", onSelect)
       api.on("reInit", onSelect)
@@ -137,11 +157,9 @@ const Carousel = React.forwardRef<
             orientation || (opts?.axis === "y" ? "vertical" : "horizontal"),
           scrollPrev,
           scrollNext,
+          scrollTo,
           canScrollPrev,
           canScrollNext,
-          selectedIndex,
-          scrollSnaps,
-          scrollTo,
         }}
       >
         <div
@@ -333,38 +351,58 @@ const CarouselDots = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => {
-  const { scrollSnaps, selectedIndex, scrollTo } = useCarousel()
+  const { api } = useCarousel()
+  const [selectedIndex, setSelectedIndex] = React.useState(0)
+  const [slideCount, setSlideCount] = React.useState(0)
+
+  React.useEffect(() => {
+    if (!api) return
+
+    setSlideCount(api.scrollSnapList().length)
+    const onSelect = () => {
+      setSelectedIndex(api.selectedScrollSnap())
+    }
+
+    api.on("select", onSelect)
+    return () => {
+      api.off("select", onSelect)
+    }
+  }, [api])
+
+  if (slideCount === 0) return null
 
   return (
     <div
       ref={ref}
-      className={cn("flex justify-center gap-2 py-4", className)}
+      className={cn("flex items-center justify-center gap-2 mt-8", className)}
       {...props}
     >
-      {scrollSnaps.map((_, index) => (
-        <button
-          key={index}
-          className={cn(
-            "w-[clamp(6px,_0.8vw,_16px)] h-[clamp(6px,_0.8vw,_16px)] rounded-full transition-colors",
-            index === selectedIndex
-              ? "bg-[#0E1A28]"
-              : "bg-[#C7C7C7]/50 hover:bg-[#0E1A28]/75"
-          )}
-          onClick={() => scrollTo(index)}
-          aria-label={`Go to slide ${index + 1}`}
-        />
+      {Array.from({ length: slideCount }).map((_, index) => (
+        <CarouselDotButton key={index} index={index} />
       ))}
     </div>
   )
 })
 CarouselDots.displayName = "CarouselDots"
 
+const CarouselContext = React.createContext<CarouselContextProps | null>(null)
+
+function useCarousel() {
+  const context = React.useContext(CarouselContext)
+
+  if (!context) {
+    throw new Error("useCarousel must be used within a <Carousel />")
+  }
+
+  return context
+}
+
 export {
-  type CarouselApi,
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselPrevious,
   CarouselNext,
   CarouselDots,
+  Autoplay,
 }

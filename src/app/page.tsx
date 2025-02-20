@@ -12,6 +12,7 @@ import {
   CarouselNext,
   CarouselPrevious,
   CarouselDots,
+  Autoplay,
 } from "@/components/ui/carousel"
 import { Inter } from 'next/font/google'
 import styles from './layout.module.css'
@@ -120,7 +121,6 @@ function AversFinancialContent() {
   }, []);
 
   const updateUnderlinePosition = (item: MenuItem) => {
-    console.log(item);
     const currentItem = menuItemRefs.current.get(item);
     if (!currentItem || !underlineRef.current) return;
 
@@ -343,28 +343,39 @@ function AversFinancialContent() {
               opts={{
                 align: "center",
                 loop: true,
-                skipSnaps: false,
-                containScroll: "trimSnaps",
-                dragFree: false,
+                watchDrag: true,
+                containScroll: false,
+                dragFree: true,
+                startIndex: 1
               }}
+              // plugins={[
+              //   Autoplay({
+              //     delay: 3000,
+              //     stopOnInteraction: false,
+              //     stopOnMouseEnter: true,
+              //     rootNode: (emblaRoot: HTMLElement) => emblaRoot
+              //   })
+              // ]}
               className="w-full"
             >
               <CarouselContent className="-ml-[clamp(50px,_10vw,_113px)]" style={{fontFamily: fontGuide.body.primary}}>
-                {[1, 2, 3, 4, 5].map((i) => (
+                {[1, 2, 3].map((i) => (
                   <CarouselItem key={i} className="max-w-[658px] max-md:max-w-[90vw] pl-[clamp(20px,_5vw,_113px)] basis-full sm:basis-3/4 md:basis-2/3 lg:basis-1/2 xl:basis-[35%] transition-opacity duration-300">
-                    <div className="bg-white p-8 rounded-2xl h-full shadow-lg mx-2 transition-all duration-300 hover:shadow-xl" style={{color: '#0E1A28'}}>
-                      <p className="font-bold text-[clamp(26px,_1.75vw,_32px)] leading-[1.155]" style={{fontFamily: fontGuide.headings.h3[i18n.language as 'en' | 'sr']}}>{t('testimonials.name')}</p>
-                      <p className="text-[clamp(12px,_0.9vw,_16px)] leading-none">{t('testimonials.position')}</p>
-                      <p className="text-[clamp(16px,_1.25vw,_26px)] mt-6 leading-[1.155]" style={{fontFamily: fontGuide.body.primary}}>{t('testimonials.description')}</p>
+                    <div className="bg-white p-8 rounded-2xl h-full shadow-lg mx-2 transition-all duration-300 hover:shadow-xl select-none" style={{color: '#0E1A28'}}>
+                      <p className="font-bold text-[clamp(26px,_1.75vw,_32px)] leading-[1.155]" style={{fontFamily: fontGuide.headings.h3[i18n.language as 'en' | 'sr']}}>
+                        {t(`testimonials.testimonial${i}.name`)}
+                      </p>
+                      <p className="text-[#53758F] text-[clamp(15px,_1.125vw,_20px)] leading-[1.155] mt-2" style={{fontFamily: fontGuide.body.primary}}>
+                        {t(`testimonials.testimonial${i}.position`)}
+                      </p>
+                      <p className="text-[#0E1A28] text-[clamp(15px,_1.125vw,_20px)] leading-normal mt-6" style={{fontFamily: fontGuide.body.secondary}}>
+                        {t(`testimonials.testimonial${i}.description`)}
+                      </p>
                     </div>
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <div className="flex items-center justify-center w-1/5 mx-auto mt-[85px]">
-                <CarouselPrevious variant="ghost" className="relative w-[clamp(20px,_2vw,_40px)] border-none" />
-                <CarouselDots className="mx-4" />
-                <CarouselNext variant="ghost" className="relative w-[clamp(20px,_2vw,_40px)] border-none" />
-              </div>
+              <CarouselDots />
             </Carousel>
           </div>
         </div>
@@ -393,7 +404,7 @@ function AversFinancialContent() {
               </p>
             </div>
             <div className="relative flex flex-row max-xs:flex-col-reverse max-xs:self-center md:flex-col row-start-4 row-span-2 max-xs:row-start-6 md:row-start-1 md:row-span-3 col-start-2 col-end-auto md:col-start-15 md:col-span-5 self-end h-[80%] xl:h-full max-md:h-[500px] max-md:w-[80vw] md:max-w-[407px]">
-              <div className="relative grow-[.9] md:grow-[.8] md:grow max-h-[696px] max-md:min-w-48 rounded-[27px] overflow-hidden bg-[#53758F]">
+              <div className="relative grow-[.9] md:grow-[.8] max-h-[696px] max-md:min-w-48 rounded-[27px] overflow-hidden bg-[#53758F]">
                 <Image 
                   src="/assets/images/founder@2x.png"
                   alt="Founder and CEO"

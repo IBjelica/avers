@@ -23,9 +23,21 @@
   },
   "testimonials": {
     "title": "UTISCI KLIJENATA",
-    "name": "Hana Šmit",
-    "position": "CEO u TechCorp",
-    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cursus nibh mauris, nec turpis orci lectus maecenas. Suspendisse sed magna eget nibh in turpis."
+    "testimonial1": {
+      "name": "Danka Okiljević",
+      "position": "Vlasnik Kenova D.O.O.",
+      "description": "Kao mali biznis, računovodstvo mi je uvek bilo nešto što me više boli nego što mi pomaže – dok nisam upoznala gospođu Bjelicu iz Aversa. Oni znaju svoj posao, objašnjavaju stvari tako da ih zaista razumem i, što je najvažnije, brinu da sve bude kako treba, bez nepotrebnih komplikacija. Više ne razbijam glavu oko rokova, poreza i papira jer znam da je sve sređeno na vreme. Kad imam pitanje, dobijem brz i jasan odgovor, bez onog klasičnog \"moraćemo da proverimo\" koje traje nedeljama. Ukratko, ako tražite nekoga ko će vam skinuti te brige s leđa i biti stvarno tu za vas – Avers je prava ekipa."
+    },
+    "testimonial2": {
+      "name": "Dejan Ilić",
+      "position": "Direktor B.G.D.L. Group d.o.o.",
+      "description": "Sa \"Avers\"-om sarađujem već par godina. Od početne oprezne saradnje došli smo do potpune saradnje i poverenja, ključnog u poslovima finansiskog savetovanja i poslovanja. Gđa. Bjelica je osoba puna takta, razumevanja za vreme u kome živimo a opet nepokolebljiva u poštovanju odredbi zakona koje se odnose na određenu oblast. Posebno ističem, danas tako retku osobinu, nikada nisam bio doveden u zabludu tipa \"ma lako ćemo to\". Komunikacija besprekorna i uvek ostvariva. Preporuka- više finansijski savetnik a manje klasični knjigovođa. Sve najbolje \"Avers\"-u i Gđi. Bjelici."
+    },
+    "testimonial3": {
+      "name": "Nenad Tadić",
+      "position": "Direktor Good Living Development d.o.o.",
+      "description": "Kao direktor firme Good Living Development d.o.o. želim da istaknem da u firmi Avers svoje obaveze izvršavaju izuzetno predano i sa posvećenošću kojom se retki mogu pohvaliti. Veoma su poslovni i orjentisani na digoročnu saradnju sa klijentom. Operativno izvršavaju zadatke, kako tekuće, tako i one koji se pojave neočekivano i neplanirano.\n\nViše od svega o zadovoljstvu saradnjom govori podatak da je naša firma od samog osnivanja vodjenje knjigovodstvenih poslova i obaveza poverila firmi Avers i da naša saradnja traje već duže od 5 godina."
+    }
   },
   "about": {
     "title": "O NAMA",
