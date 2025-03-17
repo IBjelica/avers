@@ -354,31 +354,37 @@ function AversFinancialContent() {
       <section className="py-28 text-white overflow-hidden" style={{ backgroundColor: '#53758F' }}>
         <div className="w-full mx-auto px-4">
           <h2 className="font-['glitten-standard'] text-5xl font-bold mb-[86px] text-center">{t('testimonials.title')}</h2>
-          <div className="relative -mx-4 sm:-mx-6 md:-mx-8 lg:-mx-16">
+          <div className="relative max-w-7xl mx-auto">
             <Carousel
+              className="w-full"
               opts={{
                 align: "center",
                 loop: true,
                 watchDrag: true,
                 containScroll: false,
                 dragFree: true,
-                startIndex: 1
+                startIndex: 0
               }}
-              className="w-full"
             >
               <CarouselContent className="-ml-[clamp(50px,_10vw,_113px)]" style={{fontFamily: fontGuide.body.primary}}>
                 {[1, 2, 3].map((i) => (
-                  <CarouselItem key={i} className="max-w-[658px] max-md:max-w-[90vw] pl-[clamp(20px,_5vw,_113px)] basis-full sm:basis-3/4 md:basis-2/3 lg:basis-1/2 xl:basis-[35%] transition-opacity duration-300">
-                    <div className="bg-white p-8 rounded-2xl h-full shadow-lg mx-2 transition-all duration-300 hover:shadow-xl select-none" style={{color: '#0E1A28'}}>
-                      <p className="font-bold text-[clamp(26px,_1.75vw,_32px)] leading-[1.155]" style={{fontFamily: fontGuide.headings.h3[i18n.language as 'en' | 'sr']}}>
-                        {t(`testimonials.testimonial${i}.name`)}
-                      </p>
-                      <p className="text-[#53758F] text-[clamp(15px,_1.125vw,_20px)] leading-[1.155] mt-2" style={{fontFamily: fontGuide.body.primary}}>
-                        {t(`testimonials.testimonial${i}.position`)}
-                      </p>
-                      <p className="text-[#0E1A28] text-[clamp(15px,_1.125vw,_20px)] leading-normal mt-6" style={{fontFamily: fontGuide.body.secondary}}>
-                        {t(`testimonials.testimonial${i}.description`)}
-                      </p>
+                  <CarouselItem key={i} className="max-w-[658px] max-md:max-w-[90vw] pl-0 basis-full transition-opacity duration-300">
+                    <div className="w-full h-full bg-white p-8 rounded-2xl shadow-lg mx-0 transition-all duration-300 hover:shadow-xl select-none">
+                      <div className="w-full h-full grid grid-rows-[auto_auto_1fr] gap-6" style={{color: '#0E1A28'}}>
+                        <div className="space-y-2">
+                          <p className="font-bold text-[clamp(26px,_1.75vw,_32px)] leading-[1.155]" style={{fontFamily: fontGuide.headings.h3[i18n.language as 'en' | 'sr']}}>
+                            {t(`testimonials.testimonial${i}.name`)}
+                          </p>
+                          <p className="text-[#53758F] text-[clamp(15px,_1.125vw,_20px)] leading-[1.155]" style={{fontFamily: fontGuide.body.primary}}>
+                            {t(`testimonials.testimonial${i}.position`)}
+                          </p>
+                        </div>
+                        <div className="self-stretch">
+                          <p className="text-[#0E1A28] text-[clamp(15px,_1.125vw,_20px)] leading-normal" style={{fontFamily: fontGuide.body.secondary}}>
+                            {t(`testimonials.testimonial${i}.description`)}
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </CarouselItem>
                 ))}

@@ -56,7 +56,7 @@ const CarouselDotButton: React.FC<CarouselDotButtonProps> = ({ index }) => {
   return (
     <button
       className={cn(
-        'w-3 h-3 rounded-full transition-all duration-300',
+        'w-3 h-3 rounded-full transition-none',
         selected ? 'bg-white' : 'bg-gray-300 hover:bg-gray-400'
       )}
       onClick={onClick}
@@ -184,11 +184,11 @@ const CarouselContent = React.forwardRef<
   const { carouselRef, orientation } = useCarousel()
 
   return (
-    <div ref={carouselRef} className="overflow-hidden">
+    <div ref={carouselRef} className="h-full">
       <div
         ref={ref}
         className={cn(
-          "flex cursor-grab active:cursor-grabbing",
+          "flex cursor-grab active:cursor-grabbing justify-start",
           orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
           className
         )}
@@ -202,9 +202,63 @@ CarouselContent.displayName = "CarouselContent"
 const CarouselItem = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => {
+>(({ className, children, ...props }, forwardedRef) => {
   const { orientation, api } = useCarousel()
   const [isCurrent, setIsCurrent] = React.useState(false)
+  const [rotation, setRotation] = React.useState(0)
+  const itemRef = React.useRef<HTMLDivElement>(null)
+
+  React.useImperativeHandle(forwardedRef, () => itemRef.current as HTMLDivElement)
+
+  React.useEffect(() => {
+    if (!api || !itemRef.current) return undefined
+
+    const updateRotation = () => {
+      if (!itemRef.current) return
+
+      const engine = api.internalEngine()
+      const location = engine.location.get()
+      const target = engine.target.get()
+      const scrollProgress = api.scrollProgress()
+      const slideNodes = api.slideNodes()
+      const itemIndex = slideNodes.findIndex(node => node === itemRef.current)
+      
+      if (itemIndex === -1) return
+
+      // Get the item's position and viewport width
+      const itemRect = itemRef.current.getBoundingClientRect()
+      const containerRect = api.rootNode().getBoundingClientRect()
+      const containerCenter = containerRect.left + containerRect.width / 2
+      const itemCenter = itemRect.left + itemRect.width / 2
+
+      // Calculate distance from center as a percentage of container width
+      const distanceFromCenter = (itemCenter - containerCenter) / containerRect.width
+      const maxRotation = 4
+
+      // Apply rotation based on distance from center
+      // Items to the right (positive distance) get positive rotation
+      // Items to the left (negative distance) get negative rotation
+      const rotation = maxRotation * (distanceFromCenter * 2) // Multiply by 2 for more pronounced effect
+      setRotation(Math.max(-maxRotation, Math.min(maxRotation, rotation)))
+    }
+
+    const handleScroll = () => {
+      requestAnimationFrame(updateRotation)
+    }
+
+    api.on("scroll", handleScroll)
+    api.on("reInit", updateRotation)
+    api.on("select", updateRotation)
+
+    // Initial calculation
+    updateRotation()
+
+    return () => {
+      api.off("scroll", handleScroll)
+      api.off("reInit", updateRotation)
+      api.off("select", updateRotation)
+    }
+  }, [api])
 
   React.useEffect(() => {
     if (!api) return undefined
@@ -213,16 +267,11 @@ const CarouselItem = React.forwardRef<
       const slideNodes = api.slideNodes()
       const currentIndex = api.selectedScrollSnap()
       
-      // Handle cases with single child or array of children
-      const childrenArray = React.Children.toArray(props.children)
-      const index = childrenArray.findIndex((child) => {
-        // Check if the child is a valid React element
+      const childArray = React.Children.toArray(children)
+      const index = childArray.findIndex((child) => {
         if (React.isValidElement(child)) {
-          // Use optional chaining and nullish coalescing to safely access ref
           const childRef = (child as React.ReactElement & { ref?: React.Ref<HTMLElement> }).ref
           const refCurrent = childRef && 'current' in childRef ? childRef.current : null
-          
-          // Only compare if refCurrent is not null
           return refCurrent ? slideNodes.indexOf(refCurrent) !== -1 : false
         }
         return false
@@ -237,21 +286,37 @@ const CarouselItem = React.forwardRef<
     return () => {
       api.off("select", updateOpacity)
     }
-  }, [api, props.children])
+  }, [api, children])
+
+  // Clone the child element and add rotation
+  const child = React.Children.only(children)
+  const enhancedChild = React.cloneElement(child as React.ReactElement, {
+    style: {
+      ...((child as React.ReactElement).props.style || {}),
+      transform: `rotate(${rotation}deg)`,
+      height: '100%'
+    },
+    className: cn(
+      ((child as React.ReactElement).props.className || ""),
+      "transition-none origin-center"
+    )
+  })
 
   return (
     <div
-      ref={ref}
+      ref={itemRef}
       role="group"
       aria-roledescription="slide"
       className={cn(
-        "min-w-0 shrink-0 grow-0",
+        "min-w-0 shrink-0 grow-0 transition-none",
         orientation === "horizontal" ? "pl-4" : "pt-4",
         className,
         isCurrent ? "opacity-100 scale-100" : "scale-95"
       )}
       {...props}
-    />
+    >
+      {enhancedChild}
+    </div>
   )
 })
 CarouselItem.displayName = "CarouselItem"
