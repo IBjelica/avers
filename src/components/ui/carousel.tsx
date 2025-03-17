@@ -1,8 +1,6 @@
 import * as React from "react"
 import useEmblaCarousel, { type EmblaPluginType } from "embla-carousel-react"
-import Autoplay from 'embla-carousel-autoplay'
 import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
 
 type CarouselApi = ReturnType<typeof useEmblaCarousel>[1]
 type CarouselOptions = NonNullable<Parameters<typeof useEmblaCarousel>[0]>
@@ -28,42 +26,17 @@ interface CarouselDotButtonProps {
   index: number
 }
 
-const CarouselDotButton: React.FC<CarouselDotButtonProps> = ({ index }) => {
-  const { api } = useCarousel();
-  const [selected, setSelected] = React.useState(false);
+const CarouselContext = React.createContext<CarouselContextProps | null>(null)
 
-  React.useEffect(() => {
-    if (!api) return;
+function useCarousel() {
+  const context = React.useContext(CarouselContext)
 
-    const onSelect = () => {
-      const currentIndex = api.selectedScrollSnap();
-      setSelected(currentIndex === index);
-    };
+  if (!context) {
+    throw new Error("useCarousel must be used within a <Carousel />")
+  }
 
-    api.on('select', onSelect);
-    onSelect();
-
-    return () => {
-      api.off('select', onSelect);
-    };
-  }, [api, index]);
-
-  const onClick = React.useCallback(() => {
-    if (!api) return;
-    api.scrollTo(index);
-  }, [api, index]);
-
-  return (
-    <button
-      className={cn(
-        'w-3 h-3 rounded-full transition-none',
-        selected ? 'bg-white' : 'bg-gray-300 hover:bg-gray-400'
-      )}
-      onClick={onClick}
-      aria-label={`Go to slide ${index + 1}`}
-    />
-  );
-};
+  return context
+}
 
 const Carousel = React.forwardRef<
   HTMLDivElement,
@@ -124,17 +97,13 @@ const Carousel = React.forwardRef<
     )
 
     React.useEffect(() => {
-      if (!api || !setApi) {
-        return
-      }
+      if (!api || !setApi) return
 
       setApi(api)
     }, [api, setApi])
 
     React.useEffect(() => {
-      if (!api) {
-        return
-      }
+      if (!api) return
 
       onSelect(api)
       api.on("select", onSelect)
@@ -150,10 +119,9 @@ const Carousel = React.forwardRef<
       <CarouselContext.Provider
         value={{
           carouselRef,
-          api: api,
+          api: api!,
           opts,
-          orientation:
-            orientation || (opts?.axis === "y" ? "vertical" : "horizontal"),
+          orientation: orientation || "horizontal",
           scrollPrev,
           scrollNext,
           scrollTo,
@@ -216,10 +184,6 @@ const CarouselItem = React.forwardRef<
     const updateRotation = () => {
       if (!itemRef.current) return
 
-      const engine = api.internalEngine()
-      const location = engine.location.get()
-      const target = engine.target.get()
-      const scrollProgress = api.scrollProgress()
       const slideNodes = api.slideNodes()
       const itemIndex = slideNodes.findIndex(node => node === itemRef.current)
       
@@ -321,127 +285,63 @@ const CarouselItem = React.forwardRef<
 })
 CarouselItem.displayName = "CarouselItem"
 
-const CarouselPrevious = React.forwardRef<
-  HTMLButtonElement,
-  React.ComponentProps<typeof Button>
->(({ className, variant = "ghost", size = "icon", ...props }, ref) => {
-  const { orientation, scrollPrev, canScrollPrev } = useCarousel()
+const CarouselDotButton: React.FC<CarouselDotButtonProps> = ({ index }) => {
+  const { api } = useCarousel();
+  const [selected, setSelected] = React.useState(false);
+
+  React.useEffect(() => {
+    if (!api) return;
+
+    const onSelect = () => {
+      const currentIndex = api.selectedScrollSnap();
+      setSelected(currentIndex === index);
+    };
+
+    api.on('select', onSelect);
+    onSelect();
+
+    return () => {
+      api.off('select', onSelect);
+    };
+  }, [api, index]);
+
+  const onClick = React.useCallback(() => {
+    if (!api) return;
+    api.scrollTo(index);
+  }, [api, index]);
 
   return (
-    <Button
-      ref={ref}
-      variant={variant}
-      size={size}
+    <button
       className={cn(
-        "h-10 w-10 rounded-full flex items-center justify-center bg-transparent hover:bg-transparent",
-        orientation === "horizontal"
-          ? "-left-12 top-1/2"
-          : "-top-12 left-1/2 rotate-90",
-        className
+        'w-2 h-2 rounded-full transition-all duration-300',
+        selected ? 'bg-[#0E1A28] scale-125' : 'bg-[#D9D9D9] hover:bg-[#0E1A28] hover:opacity-50'
       )}
-      disabled={!canScrollPrev}
-      onClick={scrollPrev}
-      {...props}
-    >
-      <svg 
-        width="40" 
-        height="40" 
-        viewBox="0 0 40 40" 
-        fill="none" 
-        xmlns="http://www.w3.org/2000/svg"
-        className="transition-colors group"
-      >
-        <path 
-          d="M25 10L15 20L25 30" 
-          stroke="#0E1A28" 
-          strokeWidth="5" 
-          strokeLinecap="round" 
-          strokeLinejoin="round"
-          className="transition-colors group-hover:stroke-white"
-        />
-      </svg>
-      <span className="sr-only">Previous slide</span>
-    </Button>
-  )
-})
-CarouselPrevious.displayName = "CarouselPrevious"
-
-const CarouselNext = React.forwardRef<
-  HTMLButtonElement,
-  React.ComponentProps<typeof Button>
->(({ className, variant = "ghost", size = "icon", ...props }, ref) => {
-  const { orientation, scrollNext, canScrollNext } = useCarousel()
-
-  return (
-    <Button
-      ref={ref}
-      variant={variant}
-      size={size}
-      className={cn(
-        "h-10 w-10 rounded-full flex items-center justify-center bg-transparent hover:bg-transparent",
-        orientation === "horizontal"
-          ? "-right-12 top-1/2"
-          : "-bottom-12 left-1/2 rotate-90",
-        className
-      )}
-      disabled={!canScrollNext}
-      onClick={scrollNext}
-      {...props}
-    >
-      <svg 
-        width="40" 
-        height="40" 
-        viewBox="0 0 40 40" 
-        fill="none" 
-        xmlns="http://www.w3.org/2000/svg" 
-        className="rotate-180 transition-colors group"
-      >
-        <path 
-          d="M25 10L15 20L25 30" 
-          stroke="#0E1A28" 
-          strokeWidth="5" 
-          strokeLinecap="round" 
-          strokeLinejoin="round"
-          className="transition-colors group-hover:stroke-white"
-        />
-      </svg>
-      <span className="sr-only">Next slide</span>
-    </Button>
-  )
-})
-CarouselNext.displayName = "CarouselNext"
+      onClick={onClick}
+      aria-label={`Go to slide ${index + 1}`}
+    />
+  );
+};
 
 const CarouselDots = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => {
   const { api } = useCarousel()
-  const [, setSelectedIndex] = React.useState(0)
-  const [slideCount, setSlideCount] = React.useState(0)
+  const [slides, setSlides] = React.useState<number>(0)
 
   React.useEffect(() => {
     if (!api) return
 
-    setSlideCount(api.scrollSnapList().length)
-    const onSelect = () => {
-      setSelectedIndex(api.selectedScrollSnap())
-    }
-
-    api.on("select", onSelect)
-    return () => {
-      api.off("select", onSelect)
-    }
+    setSlides(api.scrollSnapList().length)
   }, [api])
-
-  if (slideCount === 0) return null
 
   return (
     <div
       ref={ref}
-      className={cn("flex items-center justify-center gap-2 mt-8", className)}
+      className={cn("flex justify-center gap-2 mt-4", className)}
       {...props}
     >
-      {Array.from({ length: slideCount }).map((_, index) => (
+      {Array.from({ length: slides }).map((_, index) => (
         <CarouselDotButton key={index} index={index} />
       ))}
     </div>
@@ -449,24 +349,9 @@ const CarouselDots = React.forwardRef<
 })
 CarouselDots.displayName = "CarouselDots"
 
-const CarouselContext = React.createContext<CarouselContextProps | null>(null)
-
-function useCarousel() {
-  const context = React.useContext(CarouselContext)
-
-  if (!context) {
-    throw new Error("useCarousel must be used within a <Carousel />")
-  }
-
-  return context
-}
-
 export {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselPrevious,
-  CarouselNext,
   CarouselDots,
-  Autoplay,
 }
