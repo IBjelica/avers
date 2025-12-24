@@ -91,3 +91,18 @@
     font-family: var(--font-glitten), serif;
   }
 }
+
+/* Custom animations for contact links */
+.contact-link {
+  position: relative;
+  text-decoration: none;
+  background-image: linear-gradient(to right, currentColor 0%, currentColor 100%);
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  transition: background-size 0.3s ease-in-out;
+}
+
+.contact-link:hover {
+  background-size: 100% 1px;
+}

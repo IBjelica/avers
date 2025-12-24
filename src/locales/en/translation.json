@@ -17,9 +17,71 @@
   },
   "services": {
     "title": "OUR SERVICES",
-    "financial": "FINANCIAL CONSULTING",
-    "accounting": "ACCOUNTING AND BOOKKEEPING",
-    "backoffice": "BACK OFFICE"
+    "categories": {
+      "mandatory": {
+        "title": "📚 Mandatory Bookkeeping and Accounting Services",
+        "services": [
+          "Business book management – for legal entities and entrepreneurs (double-entry or simplified system)",
+          "VAT records and filings – regular monthly/quarterly preparation and submission",
+          "Preparation and submission of financial reports to APR (annual financial reports and balances)",
+          "Calculation and filing of taxes and contributions for wages (PPPD and PPP PO)",
+          "Management of incoming/outgoing invoice books (KUF/KIF)",
+          "Reconciliation of balances with suppliers and customers",
+          "Depreciation calculation",
+          "Preparation of tax balances and filings (PO PD, PPDG-1, PPDG-5 etc.)",
+          "Creation and storage of business documentation by law (invoices, travel orders, contracts etc.)",
+          "Annual inventory of assets and liabilities"
+        ]
+      },
+      "hr": {
+        "title": "💼 HR and Payroll Services",
+        "services": [
+          "Salary and fee calculation – with all obligations (contributions, taxes, net)",
+          "Registration and deregistration of employees via CROSO system",
+          "Time tracking, annual leave, sick leave records",
+          "Management of employee personal files"
+        ]
+      },
+      "tax": {
+        "title": "🧾 Tax Services and Compliance",
+        "services": [
+          "Tax consulting – tax optimization",
+          "Registration for VAT, lump sum regime and other tax statuses",
+          "Submission of tax filings to Tax Administration and communication with TA",
+          "Representation of clients in tax audits and inspections",
+          "Filing and calculation of income tax from self-employment (lump sum and bookkeepers)"
+        ]
+      },
+      "additional": {
+        "title": "📊 Additional Services That Add Value",
+        "services": [
+          "Business plan creation and profitability analysis (for banks, investors, subsidies)",
+          "Consultations for company establishment / change of legal form",
+          "Profitability assessment and business cost analysis",
+          "Budget planning and cash flow",
+          "Advice on cost reduction and efficiency increase",
+          "Connection to e-banking systems and support for electronic payments"
+        ]
+      },
+      "emergency": {
+        "title": "🔍 Help in Emergency Situations",
+        "services": [
+          "Preparation of documentation for subsidies, loans, tender applications",
+          "Audit support – preparation for external audit",
+          "Company reorganization or liquidation – complete administrative support",
+          "Correction of previous bookkeeping errors and alignment with laws"
+        ]
+      },
+      "freelancers": {
+        "title": "🟩 For Lump Sum Taxpayers and Entrepreneurs",
+        "services": [
+          "Creation and monitoring of lump sum taxation decisions",
+          "Management of turnover records (legal minimum for lump sum taxpayers)",
+          "Submission of tax filings for personal income (lump sum, freelancers)",
+          "Annual reports for RFZO and Tax Administration"
+        ]
+      }
+    }
   },
   "testimonials": {
     "title": "WHAT OUR CLIENTS SAY ABOUT US",
@@ -62,7 +124,7 @@
     },
     "phone": {
       "title": "PHONE NUMBER",
-      "description": "+1 234 567 8901"
+      "description": "+381 60 397 3097"
     },
     "form": {
       "name": "Name & Surname",

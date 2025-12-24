@@ -17,9 +17,71 @@
   },
   "services": {
     "title": "USLUGE KOJE NUDIMO",
-    "financial": "FINANSIJSKO KONSULTOVANJE",
-    "accounting": "KNJIGOVOĐSTVO I RAČUNOVOĐSTVO",
-    "backoffice": "ADMINISTRACIJA"
+    "categories": {
+      "mandatory": {
+        "title": "📚 Obavezne knjigovodstvene i računovodstvene usluge",
+        "services": [
+          "Vođenje poslovnih knjiga – za pravna lica i preduzetnike (po sistemu dvojnog knjigovodstva ili uprošćenom)",
+          "PDV evidencije i prijave – redovna mesečna/kvartalna priprema i predaja",
+          "Izrada i predaja finansijskih izveštaja APR-u (godišnji finansijski izveštaji i bilansi)",
+          "Obračun i prijava poreza i doprinosa za zarade (PPPD i PPP PO)",
+          "Vođenje knjige ulaznih/izlaznih faktura (KUF/KIF)",
+          "Usklađivanje salda sa dobavljačima i kupcima",
+          "Obračun amortizacije",
+          "Priprema poreskih bilansa i prijava (PO PD, PPDG-1, PPDG-5 itd.)",
+          "Izrada i čuvanje poslovne dokumentacije po zakonu (fakture, putni nalozi, ugovori itd.)",
+          "Godišnje popisivanje imovine i obaveza (inventar)"
+        ]
+      },
+      "hr": {
+        "title": "💼 Kadrovske i platne usluge",
+        "services": [
+          "Obračun plata i honorara – sa svim obavezama (doprinosi, porezi, neto)",
+          "Prijava i odjava zaposlenih preko CROSO sistema",
+          "Evidencija radnog vremena, godišnjih odmora, bolovanja",
+          "Vođenje personalnih dosijea zaposlenih"
+        ]
+      },
+      "tax": {
+        "title": "🧾 Poreske usluge i usklađenost",
+        "services": [
+          "Poresko savetovanje – optimizacija poreza",
+          "Registracija za PDV, paušalni režim i druge poreske statuse",
+          "Podnošenje poreskih prijava Poreskoj upravi i komunikacija sa PU",
+          "Zastupanje klijenata u poreskim kontrolama i inspekcijama",
+          "Prijava i obračun poreza na prihod od samostalne delatnosti (paušalci i knjigaši)"
+        ]
+      },
+      "additional": {
+        "title": "📊 Dodatne usluge koje povećavaju vrednost",
+        "services": [
+          "Izrada biznis planova i analiza isplativosti (za banke, investitore, subvencije)",
+          "Konsultacije za osnivanje firme / promenu pravne forme",
+          "Procena rentabilnosti i analiza troškova poslovanja",
+          "Planiranje budžeta i novčanog toka (cash flow)",
+          "Saveti za smanjenje troškova i povećanje efikasnosti",
+          "Povezivanje sa e-banking sistemima i podrška za elektronska plaćanja"
+        ]
+      },
+      "emergency": {
+        "title": "🔍 Pomoć u vanrednim situacijama",
+        "services": [
+          "Priprema dokumentacije za subvencije, kredite, konkursne prijave",
+          "Revizorska podrška – priprema za eksternu reviziju",
+          "Reorganizacija ili likvidacija firme – kompletna administrativna podrška",
+          "Ispravka prethodnih knjigovodstvenih grešaka i usklađivanje sa zakonima"
+        ]
+      },
+      "freelancers": {
+        "title": "🟩 Za paušalce i preduzetnike",
+        "services": [
+          "Izrada i praćenje rešenja o paušalnom oporezivanju",
+          "Vođenje evidencije o prometu (zakonski minimum za paušalce)",
+          "Podnošenje poreskih prijava za lične prihode (paušalci, frilenseri)",
+          "Godišnji izveštaji za RFZO i Poresku upravu"
+        ]
+      }
+    }
   },
   "testimonials": {
     "title": "UTISCI KLIJENATA",
@@ -62,7 +124,7 @@
     },
     "phone": {
       "title": "BROJ TELEFONA",
-      "description": "+1 234 567 8901"
+      "description": "+381 60 397 3097"
     },
     "form": {
       "name": "Ime i Prezime",
