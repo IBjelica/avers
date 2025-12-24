@@ -3,6 +3,7 @@ import "./globals.css";
 import styles from "./layout.module.css";
 import { glitten, alaska, newYork, roboto } from "@/lib/fonts";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://avers.rs"),
