@@ -104,6 +104,7 @@ export default function RootLayout({
       </head>
       <body className="antialiased bg-[#53758F]" suppressHydrationWarning>
         {children}
+        <Analytics />
       </body>
     </html>
   );
