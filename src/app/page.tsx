@@ -42,6 +42,9 @@ function AversFinancialContent() {
   const [hoveredItem, setHoveredItem] = useState<MenuItem | null>(null);
   const menuItemRefs = useRef<Map<MenuItem, HTMLLIElement>>(new Map());
   const underlineRef = useRef<HTMLDivElement>(null);
+  const [testimonialExpandedStates, setTestimonialExpandedStates] = useState<
+    boolean[]
+  >([false, false, false]);
 
   useEffect(() => {
     setMounted(true);
@@ -298,7 +301,7 @@ function AversFinancialContent() {
 
       {/* Navigation */}
       <nav
-        className="sticky top-[80px] py-6 z-50 transition-colors duration-300 -translate-y-full"
+        className="sticky top-[72px] xl:top-[80px] py-6 z-50 transition-colors duration-300 -translate-y-full"
         style={{
           backgroundColor: isSticky ? "#53758F" : "rgba(83, 117, 143, 0.85)",
         }}
@@ -521,12 +524,76 @@ function AversFinancialContent() {
                       >
                         {t(`testimonials.testimonial${i}.position`)}
                       </p>
-                      <p
+                      <div
                         className="text-[#0E1A28] text-[clamp(15px,_1.125vw,_20px)] leading-normal mt-6"
                         style={{ fontFamily: fontGuide.body.secondary }}
                       >
-                        {t(`testimonials.testimonial${i}.description`)}
-                      </p>
+                        {(() => {
+                          const description = t(
+                            `testimonials.testimonial${i}.description`
+                          ) as string;
+                          const isExpanded = testimonialExpandedStates[i - 1];
+                          const shouldTruncate = description.length > 250;
+                          const initialText = shouldTruncate
+                            ? description.slice(0, 250)
+                            : description;
+                          const remainingText = shouldTruncate
+                            ? description.slice(250)
+                            : "";
+
+                          return (
+                            <>
+                              <p>
+                                {initialText}
+                                {shouldTruncate && !isExpanded && "..."}
+                                {shouldTruncate && !isExpanded && (
+                                  <button
+                                    onClick={() => {
+                                      const newStates = [
+                                        ...testimonialExpandedStates,
+                                      ];
+                                      newStates[i - 1] = true;
+                                      setTestimonialExpandedStates(newStates);
+                                    }}
+                                    className="text-[#53758F] hover:underline ml-1"
+                                  >
+                                    read more
+                                  </button>
+                                )}
+                              </p>
+                              {shouldTruncate && (
+                                <div
+                                  className={`grid transition-all duration-300 ${
+                                    isExpanded
+                                      ? "grid-rows-[1fr]"
+                                      : "grid-rows-[0fr]"
+                                  }`}
+                                >
+                                  <div className="overflow-hidden">
+                                    <p>{remainingText}</p>
+                                    {isExpanded && (
+                                      <button
+                                        onClick={() => {
+                                          const newStates = [
+                                            ...testimonialExpandedStates,
+                                          ];
+                                          newStates[i - 1] = false;
+                                          setTestimonialExpandedStates(
+                                            newStates
+                                          );
+                                        }}
+                                        className="text-[#53758F] hover:underline mt-2 block"
+                                      >
+                                        show less
+                                      </button>
+                                    )}
+                                  </div>
+                                </div>
+                              )}
+                            </>
+                          );
+                        })()}
+                      </div>
                     </div>
                   </CarouselItem>
                 ))}
@@ -544,17 +611,17 @@ function AversFinancialContent() {
       >
         <div className={`${styles.container} mx-auto`}>
           <h2
-            className={`font-['glitten-standard'] text-[50px] leading-none text-[#0E1A28] font-bold mb-[127px] pb-[18px] border-b-[1px] border-[#0E1A28]`}
+            className={`font-['glitten-standard'] text-[50px] leading-none text-[#0E1A28] font-bold mb-[clamp(50px,_5vw,_127px)] pb-[18px] border-b-[1px] border-[#0E1A28]`}
           >
             {t("about.title")}
           </h2>
-          <div className="grid grid-cols-[repeat(18,minmax(0,1fr))] grid-rows-5 max-xs:grid-cols-[repeat(14,minmax(0,1fr))] max-xs:grid-rows-7 gap-x-6 md:grid-rows-3 [&>*]:min-w-0">
+          <div className="grid grid-cols-[repeat(18,minmax(0,1fr))] grid-rows-5 max-xs:grid-cols-[repeat(14,minmax(0,1fr))] max-xs:grid-rows-5 gap-x-6 md:grid-rows-3 [&>*]:min-w-0">
             <h3
               className={`w-[clamp(300px,_90vw,_658px)] text-[clamp(53px,_5.625vw,_94px)] leading-[.9] col-span-full md:col-span-8 row-span-1`}
             >
               {t("about.description")}
             </h3>
-            <div className="row-start-2 row-span-2 col-start-2 col-span-8 max-xs:-col-end-2 max-xs:self-center md:col-span-6 pt-[clamp(32px,_10vw,_128px)]">
+            <div className="row-start-2 row-span-2 col-start-2 col-span-8 max-xs:-col-end-2 max-xs:self-center max-xs:row-span-1 md:col-span-6 pt-[clamp(32px,_10vw,_128px)] max-xs:pt-4">
               <p
                 className="w-full md:w-[clamp(150px,_25vw,_429px)] max-w-full mb-6 text-[#0E1A28] text-[clamp(15px,_1.125vw,_20px)] leading-normal text-justify"
                 style={{ fontFamily: fontGuide.body.secondary }}
@@ -568,7 +635,7 @@ function AversFinancialContent() {
                 {parse(t("about.founderDescription"))}
               </p>
             </div>
-            <div className="row-start-2 row-span-2 col-start-10 col-span-8 max-xs:row-start-4 max-xs:col-start-2 max-xs:-col-end-2 md:col-span-6 md:pt-[clamp(74px,_20vw,_296px)]">
+            <div className="row-start-2 row-span-2 col-start-10 col-span-8 max-xs:row-start-3 max-xs:row-span-1 max-xs:col-start-2 max-xs:-col-end-2 md:col-span-6 md:pt-[clamp(74px,_20vw,_296px)] max-xs:pt-2">
               <p
                 className="w-full md:w-[clamp(150px,_25vw,_434px)] mb-6 text-[#0E1A28] text-[clamp(15px,_1.125vw,_20px)] leading-normal text-justify"
                 style={{ fontFamily: fontGuide.body.secondary }}
@@ -582,7 +649,7 @@ function AversFinancialContent() {
                 {parse(t("about.founderDescription3"))}
               </p>
             </div>
-            <div className="relative flex flex-row max-xs:flex-col-reverse max-xs:self-center md:flex-col row-start-4 row-span-2 max-xs:row-start-6 md:row-start-1 md:row-span-3 col-start-2 col-end-auto md:col-start-15 md:col-span-5 self-end h-[80%] xl:h-full max-md:h-[500px] max-md:w-[80vw] md:max-w-[407px]">
+            <div className="relative flex flex-row max-xs:flex-col-reverse max-xs:self-center md:flex-col row-start-4 row-span-2 max-xs:row-start-4 md:row-start-1 md:row-span-3 col-start-2 col-end-auto md:col-start-15 md:col-span-5 self-end h-[80%] xl:h-full max-md:h-[500px] max-md:w-[80vw] md:max-w-[407px]">
               <div className="relative grow-[.9] md:grow-[.8] max-h-[696px] max-md:min-w-48 rounded-[27px] overflow-hidden bg-[#53758F]">
                 <Image
                   src="/assets/images/founder@2x.png"
