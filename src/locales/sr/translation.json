@@ -12,11 +12,11 @@
   "values": {
     "title": "ZAJEDNO KREIRAJMO FINANSIJSKI USPEH",
     "mission": "U AVERS finansijskoj konsultantskoj i knjigovodstvenoj agenciji, naša misija je jasna: ovde smo da unapredimo finansijsku efikasnost, osiguramo doslednost i podstaknemo finansijski rast za Vas, naše cenjene klijente.",
-    "commitment": "Naša posvećenost se proteže na smanjenje troškova, upravljanje rizicima i kultivaciju inovacija kroz naša personalizovana, pouzdana rešenja. Fokusirajući se na obrazovanje i osnaživanje, prilagođavamo naše usluge vašim jedinstvenim potrebama. Vaš uspeh je naš prioritet, i obećavamo integritet u svakom aspektu našeg rada.",
+    "commitment": "Naša posvećenost podrazumeva smanjenje troškova, upravljanje rizicima i podsticanje inovacija kroz naša personalizovana i pouzdana rešenja. Fokusirajući se na obrazovanje i osnaživanje, prilagođavamo naše usluge vašim jedinstvenim potrebama. Vaš uspeh je naš prioritet, i obećavamo integritet u svakom aspektu našeg rada.",
     "join": "Pridružite nam se na putu ka finansijskom prosperitetu i sigurnosti."
   },
   "services": {
-    "title": "USLUGE KOJE NUDIMO",
+    "title": "NAŠE USLUGE",
     "categories": {
       "mandatory": {
         "title": "📚 Obavezne knjigovodstvene i računovodstvene usluge",
@@ -43,7 +43,7 @@
         ]
       },
       "tax": {
-        "title": "🧾 Poreske usluge i usklađenost",
+        "title": "🧾 Poreske usluge i usaglašenost",
         "services": [
           "Poresko savetovanje – optimizacija poreza",
           "Registracija za PDV, paušalni režim i druge poreske statuse",
@@ -53,7 +53,7 @@
         ]
       },
       "additional": {
-        "title": "📊 Dodatne usluge koje povećavaju vrednost",
+        "title": "📊 Dodatne usluge koje dodaju vrednost",
         "services": [
           "Izrada biznis planova i analiza isplativosti (za banke, investitore, subvencije)",
           "Konsultacije za osnivanje firme / promenu pravne forme",
@@ -73,7 +73,7 @@
         ]
       },
       "freelancers": {
-        "title": "🟩 Za paušalce i preduzetnike",
+        "title": "🟩 Za paušalne obveznike i preduzetnike",
         "services": [
           "Izrada i praćenje rešenja o paušalnom oporezivanju",
           "Vođenje evidencije o prometu (zakonski minimum za paušalce)",
@@ -93,31 +93,31 @@
     "testimonial2": {
       "name": "Dejan Ilić",
       "position": "Direktor B.G.D.L. Group d.o.o.",
-      "description": "Sa \"Avers\"-om sarađujem već par godina. Od početne oprezne saradnje došli smo do potpune saradnje i poverenja, ključnog u poslovima finansiskog savetovanja i poslovanja. Gđa. Bjelica je osoba puna takta, razumevanja za vreme u kome živimo a opet nepokolebljiva u poštovanju odredbi zakona koje se odnose na određenu oblast. Posebno ističem, danas tako retku osobinu, nikada nisam bio doveden u zabludu tipa \"ma lako ćemo to\". Komunikacija besprekorna i uvek ostvariva. Preporuka- više finansijski savetnik a manje klasični knjigovođa. Sve najbolje \"Avers\"-u i Gđi. Bjelici."
+      "description": "Sa \"Avers\"-om sarađujem već nekoliko godina. Od početne oprezne saradnje došli smo do potpune saradnje i poverenja, što je ključno u poslovima finansijskog savetovanja i poslovanja. Gđa. Bjelica je osoba puna takta, razumevanja za vreme u kome živimo, a opet nepokolebljiva u poštovanju zakonskih odredbi koje se odnose na određenu oblast. Posebno ističem, danas tako retku osobinu, nikada nisam bio doveden u zabludu tipa \"ma lako ćemo to\". Komunikacija je besprekorna i uvek ostvariva. Preporuka: više finansijski savetnik nego klasični knjigovođa. Sve najbolje \"Avers\"-u i Gđi. Bjelici."
     },
     "testimonial3": {
       "name": "Nenad Tadić",
       "position": "Direktor Good Living Development d.o.o.",
-      "description": "Kao direktor firme Good Living Development d.o.o. želim da istaknem da u firmi Avers svoje obaveze izvršavaju izuzetno predano i sa posvećenošću kojom se retki mogu pohvaliti. Veoma su poslovni i orjentisani na digoročnu saradnju sa klijentom. Operativno izvršavaju zadatke, kako tekuće, tako i one koji se pojave neočekivano i neplanirano.\n\nViše od svega o zadovoljstvu saradnjom govori podatak da je naša firma od samog osnivanja vodjenje knjigovodstvenih poslova i obaveza poverila firmi Avers i da naša saradnja traje već duže od 5 godina."
+      "description": "Kao direktor firme Good Living Development d.o.o. želim da istaknem da u firmi Avers svoje obaveze izvršavaju izuzetno predano i sa posvećenošću kojom se retki mogu pohvaliti. Veoma su profesionalni i orijentisani na dugoročnu saradnju sa klijentima. Operativno izvršavaju zadatke, kako tekuće, tako i one koji se pojave neočekivano i neplanirano.\n\nViše od svega o zadovoljstvu saradnjom govori podatak da je naša firma od samog osnivanja vođenje knjigovodstvenih poslova i obaveza poverila firmi Avers i da naša saradnja traje već duže od 5 godina."
     }
   },
   "about": {
     "title": "O NAMA",
     "description": "OSLONAC NA PUTU KA FINANSIJSKOJ IZVRSNOSTI",
-    "founder": "Sa dinamičnom kombinacijom od 25 godina finansijske mudrosti i lične misije da podstakne poslovni uspeh, Samira nije samo osnivač i CEO Avers-a — ona je <b>transformativna snaga u finansijskom konsultovanju.</b>",
+    "founder": "Sa dinamičnom kombinacijom 25 godina finansijskog iskustva i lične misije da podstakne poslovni uspeh, Samira nije samo osnivač i CEO Avers-a — ona je <b>snaga promene u finansijskom konsultovanju.</b>",
     "founderDescription": "Njen pristup kombinuje duboko razumevanje tržišta, personalizovane strategije i bogatstvo znanja, čineći Avers sinonimom za neuporedivu posvećenost uspehu klijenata.",
-    "founderDescription2": "Sa <b>temeljima izgrađenim na poverenju, inovacijama i nepokolebljivoj posvećenosti postizanju finansijske izvrsnosti,</b> Samira i njen tim u Avers-u nisu samo savetnici, već partneri na vašem putu ka izvrsnosti.",
+    "founderDescription2": "Sa <b>temeljima zasnovanim na poverenju, inovacijama i nepokolebljivoj posvećenosti postizanju finansijske izvrsnosti,</b> Samira i njen tim u Avers-u nisu samo savetnici, već partneri na vašem putu ka izvrsnosti.",
     "founderDescription3": "Njihovo bogatstvo iskustva i strast prema finansijama se ogleda u svakom poduhvatu, osiguravajući da vaše poslovanje ne samo bude spremno za budućnost, već i da u njoj uspeva.",
     "founderName": "Osnivač i CEO",
     "founderPosition": "Samira Bjelica"
   },
   "trust": {
-    "description": "OTKRIVANJE PRILIKA, NAVIGACIJA KROZ PROSPERITET I OSIGURANJE MIRNOG UMA.",
+    "description": "Otkrivanje prilika, navigacija kroz prosperitet i obezbeđivanje mira uma.",
     "title": "ZA POVERENJE DAJEMO PREDANOST"
   },
   "contact": {
     "title": "UPOZNAJMO SE",
-    "description": "Imate veliku ideju ili brend koji treba razviti i potrebna vam je pomoć? Onda nas kontaktirajte, rado bismo čuli o vašem projektu i pružili pomoć.",
+    "description": "Imate neku veliku ideju ili brend koji treba razviti i potrebna vam je pomoć? Onda nas kontaktirajte, rado bismo čuli o vašem projektu i pružili pomoć.",
     "address": {
       "title": "ADRESA",
       "description": "dr Dragoslava Popovića 14, lokal 12<br/>Beograd, Srbija"
@@ -135,7 +135,7 @@
     }
   },
   "footer": {
-    "copyright": "Autorska prava | Informacije",
+    "copyright": "Autorsko pravo | Informacije",
     "info": "Dizajnirano i razvijeno od strane NTSH ekskluzivno za Avers."
   }
 }
