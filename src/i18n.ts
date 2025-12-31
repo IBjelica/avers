@@ -24,8 +24,8 @@ declare module 'i18next' {
 
 // Get initial language from URL or localStorage, fallback to 'en'
 const getInitialLanguage = (): SupportedLanguage => {
-  // Default to English on server-side
-  if (typeof window === 'undefined') return 'en';
+  // Default to Serbian on server-side
+  if (typeof window === 'undefined') return 'sr';
 
   try {
     // Check URL first
@@ -45,7 +45,7 @@ const getInitialLanguage = (): SupportedLanguage => {
     console.warn('Error accessing localStorage or URL parameters:', error);
   }
 
-  return 'en';
+  return 'sr';
 };
 
 const resources = {
@@ -62,7 +62,7 @@ i18n
   .init({
     resources,
     lng: getInitialLanguage(),
-    fallbackLng: 'en',
+    fallbackLng: 'sr',
     interpolation: {
       escapeValue: false // React already escapes by default
     },

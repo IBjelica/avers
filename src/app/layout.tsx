@@ -23,8 +23,8 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    locale: "en_US",
-    alternateLocale: "sr_RS",
+    locale: "sr_RS",
+    alternateLocale: "en_US",
     title: "Avers Financial - Professional Financial Consulting Serbia",
     description: "Expert financial and tax advisory services in Serbia",
     siteName: "Avers Financial",
@@ -62,7 +62,7 @@ export default function RootLayout({
   return (
     <html
       className={`${styles.smoothScroll} ${glitten.variable} ${alaska.variable} ${newYork.variable} ${roboto.variable}`}
-      lang="en"
+      lang="sr"
       suppressHydrationWarning
     >
       <head>
