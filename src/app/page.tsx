@@ -149,19 +149,19 @@ function AversFinancialContent() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [setActiveSection]); // Only depend on setActiveSection
 
-  // useEffect(() => {
-  //   // Sync language with URL on mount
-  //   const urlParams = new URLSearchParams(window.location.search);
-  //   const langParam = urlParams.get("lang");
-  //   if (
-  //     langParam &&
-  //     ["en", "sr"].includes(langParam) &&
-  //     langParam !== i18n.language
-  //   ) {
-  //     i18n.changeLanguage(langParam);
-  //     localStorage.setItem("language", langParam);
-  //   }
-  // }, []);
+  useEffect(() => {
+    // Sync language with URL on mount
+    const urlParams = new URLSearchParams(window.location.search);
+    const langParam = urlParams.get("lang");
+    if (
+      langParam &&
+      ["en", "sr"].includes(langParam) &&
+      langParam !== i18n.language
+    ) {
+      i18n.changeLanguage(langParam);
+      localStorage.setItem("language", langParam);
+    }
+  }, []);
 
   const [openCategories, setOpenCategories] = useState<Record<string, boolean>>(
     {}
@@ -254,16 +254,16 @@ function AversFinancialContent() {
     updateUnderlinePosition(activeSection);
   };
 
-  // const toggleLanguage = () => {
-  //   const newLang = i18n.language === "en" ? "sr" : "en";
-  //   i18n.changeLanguage(newLang);
-  //   localStorage.setItem("language", newLang);
+  const toggleLanguage = () => {
+    const newLang = i18n.language === "en" ? "sr" : "en";
+    i18n.changeLanguage(newLang);
+    localStorage.setItem("language", newLang);
 
-  //   // Update URL without refresh
-  //   const url = new URL(window.location.href);
-  //   url.searchParams.set("lang", newLang);
-  //   window.history.pushState({}, "", url);
-  // };
+    // Update URL without refresh
+    const url = new URL(window.location.href);
+    url.searchParams.set("lang", newLang);
+    window.history.pushState({}, "", url);
+  };
 
   if (!mounted) {
     return null;
@@ -465,15 +465,15 @@ function AversFinancialContent() {
         </div>
       </section>
 
-      {/* Language Switcher
-      // <div className="fixed top-4 right-8 z-50">
-      //   <button
-      //     onClick={toggleLanguage}
-      //     className="px-3 py-1 rounded bg-white/90 hover:bg-white text-[#53758F] font-medium transition-colors duration-200"
-      //   >
-      //     {i18n.language === "en" ? "SR" : "EN"}
-      //   </button>
-      // </div> */}
+      {/* Language Switcher */}
+      <div className="fixed top-4 right-8 z-50">
+        <button
+          onClick={toggleLanguage}
+          className="px-3 py-1 rounded bg-white/90 hover:bg-white text-[#53758F] font-medium transition-colors duration-200"
+        >
+          {i18n.language === "en" ? "SR" : "EN"}
+        </button>
+      </div>
 
       {/* Testimonials Section */}
       <section

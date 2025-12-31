@@ -11,7 +11,7 @@
   },
   "values": {
     "title": "ZAJEDNO KREIRAJMO FINANSIJSKI USPEH",
-    "mission": "U AVERS finansijskoj konsultantskoj i knjigovodstvenoj agenciji, naša misija je jasna: ovde smo da unapredimo finansijsku efikasnost, osiguramo doslednost i podstaknemo finansijski rast za Vas, naše cenjene klijente.",
+    "mission": "U AVERS finansijsko konsultantskoj i knjigovodstvenoj agenciji, naša misija je jasna: ovde smo da unapredimo finansijsku efikasnost, osiguramo doslednost i podstaknemo finansijski rast za Vas, naše cenjene klijente.",
     "commitment": "Naša posvećenost podrazumeva smanjenje troškova, upravljanje rizicima i podsticanje inovacija kroz naša personalizovana i pouzdana rešenja. Fokusirajući se na obrazovanje i osnaživanje, prilagođavamo naše usluge vašim jedinstvenim potrebama. Vaš uspeh je naš prioritet, i obećavamo integritet u svakom aspektu našeg rada.",
     "join": "Pridružite nam se na putu ka finansijskom prosperitetu i sigurnosti."
   },
@@ -72,13 +72,13 @@
           "Ispravka prethodnih knjigovodstvenih grešaka i usklađivanje sa zakonima"
         ]
       },
-       "freelancers": {
-         "title": "🟩 Za paušalne obveznike i preduzetnike",
-         "services": [
-           "Podnošenje poreskih prijava za lične prihode (paušalci, frilenseri)",
-           "Godišnji izveštaji za RFZO i Poresku upravu"
-         ]
-       }
+      "freelancers": {
+        "title": "🟩 Za paušalne obveznike i preduzetnike",
+        "services": [
+          "Podnošenje poreskih prijava za lične prihode (paušalci, frilenseri)",
+          "Godišnji izveštaji za RFZO i Poresku upravu"
+        ]
+      }
     }
   },
   "testimonials": {
