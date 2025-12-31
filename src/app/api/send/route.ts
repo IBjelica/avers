@@ -15,36 +15,40 @@ export async function POST(request: Request) {
       );
     }
 
-    // Validate Turnstile token
-    if (!turnstileToken) {
-      return NextResponse.json(
-        { error: "Turnstile verification is required" },
-        { status: 400 }
-      );
-    }
+    // Validate Turnstile token if provided
+    if (turnstileToken) {
+      try {
+        const turnstileResponse = await fetch(
+          "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: new URLSearchParams({
+              secret: process.env.TURNSTILE_SECRET_KEY!,
+              response: turnstileToken,
+            }),
+          }
+        );
 
-    // Verify Turnstile token with Cloudflare
-    const turnstileResponse = await fetch(
-      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams({
-          secret: process.env.TURNSTILE_SECRET_KEY!,
-          response: turnstileToken,
-        }),
+        const turnstileResult = await turnstileResponse.json();
+
+        if (!turnstileResult.success) {
+          return NextResponse.json(
+            { error: "Turnstile verification failed" },
+            { status: 400 }
+          );
+        }
+      } catch (error) {
+        // If Turnstile verification fails due to network issues, allow submission
+        // This provides a fallback in case of Cloudflare API issues
+        console.warn("Turnstile verification error:", error);
       }
-    );
-
-    const turnstileResult = await turnstileResponse.json();
-
-    if (!turnstileResult.success) {
-      return NextResponse.json(
-        { error: "Turnstile verification failed" },
-        { status: 400 }
-      );
+    } else {
+      // If no token is provided, allow submission as fallback
+      // This handles cases where Turnstile fails to load or initialize
+      console.warn("No Turnstile token provided - allowing submission as fallback");
     }
 
     const data = await resend.emails.send({

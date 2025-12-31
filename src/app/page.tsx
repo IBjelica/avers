@@ -177,6 +177,7 @@ function AversFinancialContent() {
     message: "",
   });
   const [turnstileToken, setTurnstileToken] = useState<string>("");
+  const [turnstileError, setTurnstileError] = useState<boolean>(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
     type: "success" | "error" | null;
@@ -829,13 +830,37 @@ function AversFinancialContent() {
                 <div
                   className="cf-turnstile"
                   data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
-                  data-callback={(token: string) => setTurnstileToken(token)}
+                  data-callback={(token: string) => {
+                    setTurnstileToken(token);
+                    setTurnstileError(false);
+                  }}
+                  data-error-callback={() => {
+                    setTurnstileToken("");
+                    setTurnstileError(true);
+                  }}
+                  data-expired-callback={() => {
+                    setTurnstileToken("");
+                    setTurnstileError(true);
+                  }}
                   data-theme="light"
-                  style={{ display: 'none' }}
+                  style={{
+                    position: 'absolute',
+                    left: '-9999px',
+                    top: '-9999px',
+                    opacity: 0,
+                    pointerEvents: 'none',
+                    width: '1px',
+                    height: '1px'
+                  }}
                 ></div>
+                {turnstileError && (
+                  <div className="text-sm text-amber-600 mb-2">
+                    Note: Turnstile verification encountered an issue, but you can still submit the form.
+                  </div>
+                )}
                 <Button
                   type="submit"
-                  disabled={isSubmitting || !turnstileToken}
+                  disabled={isSubmitting}
                   className="w-full h-12 bg-black hover:bg-black/90 text-white text-lg font-medium disabled:opacity-50"
                 >
                   {isSubmitting
