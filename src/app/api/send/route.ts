@@ -1,7 +1,7 @@
-import { NextResponse } from 'next/server';
-import { Resend } from 'resend';
+import { NextResponse } from "next/server";
+import { Resend } from "resend";
 
-const resend = new Resend('re_7nXdm73k_FVoA5Mk41o8KZtzNJyAqfHFe');
+const resend = new Resend("re_7nXdm73k_FVoA5Mk41o8KZtzNJyAqfHFe");
 
 export async function POST(request: Request) {
   try {
@@ -10,14 +10,14 @@ export async function POST(request: Request) {
     // Basic validation
     if (!name || !email || !message) {
       return NextResponse.json(
-        { error: 'Name, email, and message are required' },
+        { error: "Name, email, and message are required" },
         { status: 400 }
       );
     }
 
     const data = await resend.emails.send({
-      from: 'Avers Financial <onboarding@resend.dev>',
-      to: 'aversacc@gmail.com',
+      from: "Avers Financial <contact@aversacc.com>",
+      to: "aversacc@gmail.com",
       replyTo: email,
       subject: `New Contact Form Submission from ${name}`,
       text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
@@ -31,6 +31,9 @@ export async function POST(request: Request) {
 
     return NextResponse.json(data);
   } catch (error) {
-    return NextResponse.json({ error: 'Failed to send email' }, { status: 500 });
+    return NextResponse.json(
+      { error: "Failed to send email" },
+      { status: 500 }
+    );
   }
 }
