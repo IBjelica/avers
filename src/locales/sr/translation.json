@@ -72,15 +72,13 @@
           "Ispravka prethodnih knjigovodstvenih grešaka i usklađivanje sa zakonima"
         ]
       },
-      "freelancers": {
-        "title": "🟩 Za paušalne obveznike i preduzetnike",
-        "services": [
-          "Izrada i praćenje rešenja o paušalnom oporezivanju",
-          "Vođenje evidencije o prometu (zakonski minimum za paušalce)",
-          "Podnošenje poreskih prijava za lične prihode (paušalci, frilenseri)",
-          "Godišnji izveštaji za RFZO i Poresku upravu"
-        ]
-      }
+       "freelancers": {
+         "title": "🟩 Za paušalne obveznike i preduzetnike",
+         "services": [
+           "Podnošenje poreskih prijava za lične prihode (paušalci, frilenseri)",
+           "Godišnji izveštaji za RFZO i Poresku upravu"
+         ]
+       }
     }
   },
   "testimonials": {
