@@ -176,6 +176,7 @@ function AversFinancialContent() {
     email: "",
     message: "",
   });
+  const [turnstileToken, setTurnstileToken] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
     type: "success" | "error" | null;
@@ -191,7 +192,10 @@ function AversFinancialContent() {
       const response = await fetch("/api/send", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          turnstileToken,
+        }),
       });
 
       const data = await response.json();
@@ -822,9 +826,16 @@ function AversFinancialContent() {
                     {parse(submitStatus.message)}
                   </div>
                 )}
+                <div
+                  className="cf-turnstile"
+                  data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+                  data-callback={(token: string) => setTurnstileToken(token)}
+                  data-theme="light"
+                  style={{ display: 'none' }}
+                ></div>
                 <Button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !turnstileToken}
                   className="w-full h-12 bg-black hover:bg-black/90 text-white text-lg font-medium disabled:opacity-50"
                 >
                   {isSubmitting

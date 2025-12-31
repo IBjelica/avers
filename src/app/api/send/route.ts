@@ -5,12 +5,44 @@ const resend = new Resend("re_7nXdm73k_FVoA5Mk41o8KZtzNJyAqfHFe");
 
 export async function POST(request: Request) {
   try {
-    const { name, email, message } = await request.json();
+    const { name, email, message, turnstileToken } = await request.json();
 
     // Basic validation
     if (!name || !email || !message) {
       return NextResponse.json(
         { error: "Name, email, and message are required" },
+        { status: 400 }
+      );
+    }
+
+    // Validate Turnstile token
+    if (!turnstileToken) {
+      return NextResponse.json(
+        { error: "Turnstile verification is required" },
+        { status: 400 }
+      );
+    }
+
+    // Verify Turnstile token with Cloudflare
+    const turnstileResponse = await fetch(
+      "https://challenges.cloudflare.com/turnstile/v0/siteverify",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: new URLSearchParams({
+          secret: process.env.TURNSTILE_SECRET_KEY!,
+          response: turnstileToken,
+        }),
+      }
+    );
+
+    const turnstileResult = await turnstileResponse.json();
+
+    if (!turnstileResult.success) {
+      return NextResponse.json(
+        { error: "Turnstile verification failed" },
         { status: 400 }
       );
     }

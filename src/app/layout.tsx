@@ -78,6 +78,11 @@ export default function RootLayout({
           as="image"
           type="image/svg+xml"
         />
+        <Script
+          src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+          async
+          defer
+        />
         <Script id="schema-org" type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
