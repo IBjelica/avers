@@ -6,16 +6,17 @@ import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://avers.rs"),
+  metadataBase: new URL("https://aversacc.com"),
   title: {
     default: "Avers Financial | Professional Financial Consulting Serbia",
     template: "%s | Avers Financial",
   },
   description:
-    "Expert financial consulting, tax advisory, and business services in Serbia. International business solutions and local market expertise. | Profesionalne finansijske i poreske usluge u Srbiji",
+    "Expert financial consulting and tax advisory services in Serbia. Professional business solutions with local expertise.",
   keywords:
     "financial consulting, tax advisory, Serbia business, finansijski konsalting, poresko savetovanje, poslovno savetovanje",
   alternates: {
+    canonical: "https://aversacc.com",
     languages: {
       en: "/en",
       sr: "/sr",
@@ -101,9 +102,15 @@ export default function RootLayout({
               "Tax Advisory",
               "Business Services",
             ],
-            "@id": "https://avers.rs",
-            url: "https://avers.rs",
+            "@id": "https://aversacc.com",
+            url: "https://aversacc.com",
             sameAs: ["https://www.linkedin.com/company/avers-financial"],
+          contactPoint: {
+            "@type": "ContactPoint",
+            telephone: "+381603973097",
+            contactType: "customer service",
+            availableLanguage: ["English", "Serbian"]
+          }
           })}
         </Script>
       </head>
