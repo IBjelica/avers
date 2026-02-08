@@ -18,6 +18,7 @@ import { I18nextProvider, useTranslation } from "react-i18next";
 import i18n from "@/i18n";
 import parse from "html-react-parser";
 import { fontGuide } from "@/lib/fonts";
+import { NEXT_PUBLIC_TURNSTILE_SITE_KEY } from "@/lib/env";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -303,6 +304,33 @@ function AversFinancialContent() {
           </h1>
         </div>
       </section>
+
+      <main>
+        {/* Hero Section */}
+        <section
+          id="home"
+          className="h-svh bg-cover bg-left-top bg-no-repeat relative"
+          style={{ backgroundImage: "url('/assets/images/hero-bg.jpg')" }}
+        >
+          <div className="absolute inset-0 bg-black opacity-25 z-0"></div>
+          <div
+            className={`${styles.container} mt-20 mx-auto flex flex-col h-full justify-start row-gap-[15%] text-white text-center pt-20 relative z-10`}
+          >
+            <Image
+              src="/assets/icons/logo-white.svg"
+              alt="Avers Logo"
+              width={237}
+              height={102}
+              className="mb-8 mx-auto"
+            />
+            <h1
+              className={`font-medium mt-[40%] md:mt-[25%] ml:mt-[92px] mb-8 leading-[0.987] uppercase w-full md:w-[85vw] max-w-[1344px] text-[min(12vw,157px)] mx-auto`}
+            >
+              {t("hero.title")}
+            </h1>
+          </div>
+        </section>
+      
 
       {/* Navigation */}
       <nav
@@ -829,7 +857,7 @@ function AversFinancialContent() {
                 )}
                 <div
                   className="cf-turnstile"
-                  data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+                  data-sitekey={NEXT_PUBLIC_TURNSTILE_SITE_KEY}
                   data-callback={(token: string) => {
                     setTurnstileToken(token);
                     setTurnstileError(false);
@@ -887,8 +915,14 @@ function AversFinancialContent() {
               )
             )}
           </p>
+          <div className="text-center">
+            <a href="/privacy-policy" className="hover:text-gray-300 transition-colors text-xs">
+              Privacy Policy
+            </a>
+          </div>
         </div>
       </footer>
+      </main>
     </div>
   );
 }
