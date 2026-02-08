@@ -1,7 +1,13 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { RESEND_API_KEY, TURNSTILE_SECRET_KEY } from "@/lib/env";
 
-const resend = new Resend("re_7nXdm73k_FVoA5Mk41o8KZtzNJyAqfHFe");
+// Validate environment variables
+if (!RESEND_API_KEY) {
+  throw new Error("RESEND_API_KEY environment variable is not set");
+}
+
+const resend = new Resend(RESEND_API_KEY);
 
 export async function POST(request: Request) {
   try {
@@ -26,7 +32,7 @@ export async function POST(request: Request) {
               "Content-Type": "application/x-www-form-urlencoded",
             },
             body: new URLSearchParams({
-              secret: process.env.TURNSTILE_SECRET_KEY!,
+              secret: TURNSTILE_SECRET_KEY,
               response: turnstileToken,
             }),
           }
