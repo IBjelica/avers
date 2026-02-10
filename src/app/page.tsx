@@ -306,31 +306,6 @@ function AversFinancialContent() {
       </section>
 
       <main>
-        {/* Hero Section */}
-        <section
-          id="home"
-          className="h-svh bg-cover bg-left-top bg-no-repeat relative"
-          style={{ backgroundImage: "url('/assets/images/hero-bg.jpg')" }}
-        >
-          <div className="absolute inset-0 bg-black opacity-25 z-0"></div>
-          <div
-            className={`${styles.container} mt-20 mx-auto flex flex-col h-full justify-start row-gap-[15%] text-white text-center pt-20 relative z-10`}
-          >
-            <Image
-              src="/assets/icons/logo-white.svg"
-              alt="Avers Logo"
-              width={237}
-              height={102}
-              className="mb-8 mx-auto"
-            />
-            <h1
-              className={`font-medium mt-[40%] md:mt-[25%] ml:mt-[92px] mb-8 leading-[0.987] uppercase w-full md:w-[85vw] max-w-[1344px] text-[min(12vw,157px)] mx-auto`}
-            >
-              {t("hero.title")}
-            </h1>
-          </div>
-        </section>
-      
 
       {/* Navigation */}
       <nav
@@ -429,6 +404,7 @@ function AversFinancialContent() {
               paddingBottom: "18px",
               borderBottom: "1px solid #0E1A28",
               overflow: "hidden",
+              fontSize: "calc(5rem * 0.7)",
             }}
           >
             {t("services.title")}
@@ -514,7 +490,10 @@ function AversFinancialContent() {
         style={{ backgroundColor: "#53758F" }}
       >
         <div className="w-full mx-auto px-4">
-          <h2 className="font-['glitten-standard'] text-5xl font-bold mb-[86px] text-center">
+          <h2 
+            className="font-['glitten-standard'] text-5xl font-bold mb-[86px] text-center"
+            style={{ fontSize: "calc(5rem * 0.7)" }}
+          >
             {t("testimonials.title")}
           </h2>
           <div className="relative -mx-4 sm:-mx-6 md:-mx-8 lg:-mx-16">
@@ -566,12 +545,12 @@ function AversFinancialContent() {
                             `testimonials.testimonial${i}.description`
                           ) as string;
                           const isExpanded = testimonialExpandedStates[i - 1];
-                          const shouldTruncate = description.length > 250;
+                          const shouldTruncate = description.length > 150;
                           const initialText = shouldTruncate
-                            ? description.slice(0, 250)
+                            ? description.slice(0, 150)
                             : description;
                           const remainingText = shouldTruncate
-                            ? description.slice(250)
+                            ? description.slice(150)
                             : "";
 
                           return (
@@ -645,6 +624,7 @@ function AversFinancialContent() {
         <div className={`${styles.container} mx-auto`}>
           <h2
             className={`font-['glitten-standard'] text-[50px] leading-none text-[#0E1A28] font-bold mb-[clamp(50px,_5vw,_127px)] pb-[18px] border-b-[1px] border-[#0E1A28]`}
+            style={{ fontSize: "calc(50px * 0.7)" }}
           >
             {t("about.title")}
           </h2>
@@ -731,6 +711,7 @@ function AversFinancialContent() {
               backgroundSize: "cover",
               backgroundPosition: "center",
               backgroundRepeat: "no-repeat",
+              fontSize: "calc(clamp(85px,_6.5vw,_116px) * 0.7)",
             }}
           >
             {parse(t("trust.title"))}
@@ -750,6 +731,7 @@ function AversFinancialContent() {
               <div className="mb-[76px]">
                 <h2
                   className={`text-[50px] leading-none text-[#0E1A28] font-bold pb-[18px]`}
+                  style={{ fontSize: "calc(50px * 0.7)" }}
                 >
                   {t("contact.title")}
                 </h2>
