@@ -113,6 +113,15 @@ export default function RootLayout({
           }
           })}
         </Script>
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-7G4HLBR6MG" />
+        <Script id="gtag-config">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-7G4HLBR6MG');
+          `}
+        </Script>
       </head>
       <body className="antialiased bg-[#53758F]" suppressHydrationWarning>
         {children}
