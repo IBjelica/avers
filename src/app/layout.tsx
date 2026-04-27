@@ -67,6 +67,9 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        {/* Cookie consent */}
+        <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="578a6aef-ae24-444e-8be0-090a200aaee8" type="text/javascript" async></script>
+        <script src="https://t.contentsquare.net/uxa/369f371adc9e3.js"></script>
         <link
           rel="preload"
           href="/assets/images/hero-bg.jpg"
@@ -105,12 +108,12 @@ export default function RootLayout({
             "@id": "https://aversacc.com",
             url: "https://aversacc.com",
             sameAs: ["https://www.linkedin.com/company/avers-financial"],
-          contactPoint: {
-            "@type": "ContactPoint",
-            telephone: "+381603973097",
-            contactType: "customer service",
-            availableLanguage: ["English", "Serbian"]
-          }
+            contactPoint: {
+              "@type": "ContactPoint",
+              telephone: "+381603973097",
+              contactType: "customer service",
+              availableLanguage: ["English", "Serbian"]
+            }
           })}
         </Script>
         <Script async src="https://www.googletagmanager.com/gtag/js?id=G-7G4HLBR6MG" />
