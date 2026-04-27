@@ -67,9 +67,10 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        {/* Cookie consent */}
-        <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="578a6aef-ae24-444e-8be0-090a200aaee8" type="text/javascript" async></script>
-        <script src="https://t.contentsquare.net/uxa/369f371adc9e3.js"></script>
+        {/* Cookie consent & Analytics */}
+        <Script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="578a6aef-ae24-444e-8be0-090a200aaee8" async strategy="afterInteractive" />
+        <Script src="https://t.contentsquare.net/uxa/369f371adc9e3.js" async strategy="afterInteractive" />
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-7G4HLBR6MG" strategy="afterInteractive" />
         <link
           rel="preload"
           href="/assets/images/hero-bg.jpg"
@@ -84,8 +85,7 @@ export default function RootLayout({
         />
         <Script
           src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-          async
-          defer
+          strategy="afterInteractive"
         />
         <Script id="schema-org" type="application/ld+json">
           {JSON.stringify({
@@ -116,8 +116,8 @@ export default function RootLayout({
             }
           })}
         </Script>
-        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-7G4HLBR6MG" />
-        <Script id="gtag-config">
+        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-7G4HLBR6MG" strategy="afterInteractive" />
+        <Script id="gtag-config" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
