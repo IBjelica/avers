@@ -55,6 +55,17 @@ function AversFinancialContent() {
       setPageLoaded(true);
       // Set initial underline position
       updateUnderlinePosition(activeSection);
+
+      // Extract hash and scroll to it if present
+      if (window.location.hash) {
+        const targetId = window.location.hash.substring(1);
+        setTimeout(() => {
+          const targetElement = document.getElementById(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({ behavior: "smooth" });
+          }
+        }, 500); // Delay slightly to ensure React has fully painted the layout
+      }
     };
 
     if (document.readyState === "complete") {
@@ -162,6 +173,10 @@ function AversFinancialContent() {
     ) {
       i18n.changeLanguage(langParam);
       localStorage.setItem("language", langParam);
+    } else if (!localStorage.getItem("language")) {
+      // Force set Serbian if there's no language in local storage
+      i18n.changeLanguage("sr");
+      localStorage.setItem("language", "sr");
     }
   }, []);
 
