@@ -1,5 +1,6 @@
 "use client";
 
+import { Turnstile } from "@marsidev/react-turnstile";
 import Image from "next/legacy/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -669,9 +670,9 @@ function AversFinancialContent() {
                   alt="Founder and CEO"
                   layout="fill"
                   objectFit="cover"
+                  objectPosition="center 10%"
                   quality={100}
                   priority
-                  style={{ objectPosition: "center 10%" }}
                 />
               </div>
               <div className="flex flex-col justify-end relative bottom-0 left-0 bg-white p-6 text-center whitespace-nowrap">
@@ -837,22 +838,23 @@ function AversFinancialContent() {
                     {parse(submitStatus.message)}
                   </div>
                 )}
-                <div
-                  className="cf-turnstile"
-                  data-sitekey={NEXT_PUBLIC_TURNSTILE_SITE_KEY}
-                  data-callback={(token: string) => {
+                <Turnstile
+                  siteKey={NEXT_PUBLIC_TURNSTILE_SITE_KEY || "1x00000000000000000000AA"}
+                  onSuccess={(token: string) => {
                     setTurnstileToken(token);
                     setTurnstileError(false);
                   }}
-                  data-error-callback={() => {
+                  onError={() => {
                     setTurnstileToken("");
                     setTurnstileError(true);
                   }}
-                  data-expired-callback={() => {
+                  onExpire={() => {
                     setTurnstileToken("");
                     setTurnstileError(true);
                   }}
-                  data-theme="light"
+                  options={{
+                    theme: "light",
+                  }}
                   style={{
                     position: 'absolute',
                     left: '-9999px',
@@ -862,7 +864,7 @@ function AversFinancialContent() {
                     width: '1px',
                     height: '1px'
                   }}
-                ></div>
+                />
                 {turnstileError && (
                   <div className="text-sm text-amber-600 mb-2">
                     Note: Turnstile verification encountered an issue, but you can still submit the form.

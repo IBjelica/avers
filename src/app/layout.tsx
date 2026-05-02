@@ -3,7 +3,8 @@ import "./globals.css";
 import styles from "./layout.module.css";
 import { glitten, alaska, newYork, roboto } from "@/lib/fonts";
 import Script from "next/script";
-import { Analytics } from "@vercel/analytics/next";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://aversacc.com"),
@@ -67,8 +68,31 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        {/* Google Tag Manager */}
+        <Script id="google-tag-manager" strategy="afterInteractive">
+          {`
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-MZBBRFR8');
+          `}
+        </Script>
+        {/* End Google Tag Manager */}
+
         {/* Cookie consent & Analytics */}
         <Script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="578a6aef-ae24-444e-8be0-090a200aaee8" async strategy="afterInteractive" />
+
+        <Script id="gtag-session-start" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('event', 'session_start', {
+              // <event_parameters>
+            });
+          `}
+        </Script>
+
         <Script src="https://t.contentsquare.net/uxa/369f371adc9e3.js" async strategy="afterInteractive" />
         <Script async src="https://www.googletagmanager.com/gtag/js?id=G-7G4HLBR6MG" strategy="afterInteractive" />
         <link
@@ -83,10 +107,7 @@ export default function RootLayout({
           as="image"
           type="image/svg+xml"
         />
-        <Script
-          src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-          strategy="afterInteractive"
-        />
+
         <Script id="schema-org" type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -116,19 +137,31 @@ export default function RootLayout({
             }
           })}
         </Script>
-        <Script async src="https://www.googletagmanager.com/gtag/js?id=G-7G4HLBR6MG" strategy="afterInteractive" />
-        <Script id="gtag-config" strategy="afterInteractive">
+        <Script src="https://www.googletagmanager.com/gtag/js?id=AW-18126403351" strategy="afterInteractive" />
+        <Script id="google-tag-init" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-7G4HLBR6MG');
+
+            gtag('config', 'AW-18126403351');
           `}
         </Script>
       </head>
       <body className="antialiased bg-[#53758F]" suppressHydrationWarning>
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-MZBBRFR8"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
+        {/* End Google Tag Manager (noscript) */}
         {children}
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
